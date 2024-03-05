@@ -10,6 +10,7 @@ import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_fashion/presentation/blog_post_page/bloc/bloc/blog_post_bloc.dart';
+import 'package:open_fashion/widgets/footer.dart';
 
 class BLogPostProvier extends StatelessWidget {
   const BLogPostProvier({super.key});
@@ -217,6 +218,9 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                         );
                       },
                     ),
+
+                    //Footer
+                    const FooterWidget()
                   ],
                 );
               },
