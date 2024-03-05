@@ -12,7 +12,7 @@ part 'blog_post.g.dart';
 */
 @JsonSerializable()
 class BLogPostResponseModel extends Equatable {
-  BLogPostResponseModel({
+  const BLogPostResponseModel({
     required this.code,
     required this.message,
     required this.data,
@@ -47,7 +47,7 @@ class BLogPostResponseModel extends Equatable {
 
 @JsonSerializable()
 class BlogPostModel extends Equatable {
-  BlogPostModel({
+  const BlogPostModel({
     required this.postBy,
     required this.titlePost,
     required this.content,

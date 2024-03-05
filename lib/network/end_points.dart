@@ -1,3 +1,12 @@
+/* 
+  Modify:
+    Modify by Thach
+    Date: 5/3
+    Content: Add new endPoint's blogPost
+
+    
+*/
+
 class EndPoints {
   static const String baseUrl =
       'https://raw.githubusercontent.com/thanhhuy114/linhtinh/master/';
