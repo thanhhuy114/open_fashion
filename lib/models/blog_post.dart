@@ -3,6 +3,13 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'blog_post.g.dart';
 
+/* 
+  Create by: Thach
+  date: 3/5/2024 10:00
+  Conent: BlogPostResponseModel class, BlogPostModel class
+
+  Modify: 
+*/
 @JsonSerializable()
 class BLogPostResponseModel extends Equatable {
   BLogPostResponseModel({
@@ -97,6 +104,7 @@ class BlogPostModel extends Equatable {
         tag,
       ];
 }
+
 
 /*
 {
