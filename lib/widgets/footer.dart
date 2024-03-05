@@ -37,7 +37,7 @@ class FooterWidget extends StatelessWidget {
 
           //Lien he
           Container(
-            width: size.width / 2,
+            width: size.width,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
