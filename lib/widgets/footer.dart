@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class FooterWidget extends StatelessWidget {
-  const FooterWidget({super.key});
+  const FooterWidget(
+      {super.key,
+      this.email = '___@___.____',
+      this.phone = '+60 825 876',
+      this.closeTime = '08:00',
+      this.openTime = '22:00',
+      this.daysPerWeek = 'Everyday',
+      this.copyRight = 'OpenUI All Rights Reserved.'});
+  final String email;
+  final String phone;
+  final String openTime;
+  final String closeTime;
+  final String daysPerWeek;
+  final String copyRight;
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +52,28 @@ class FooterWidget extends StatelessWidget {
           Container(
             width: size.width,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'support@openui.design',
-                  style: TextStyle(
+                  email,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     height: 2.4,
                   ),
                 ),
                 Text(
-                  '+60 825 876',
-                  style: TextStyle(
+                  phone,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     height: 2.4,
                   ),
                 ),
                 Text(
-                  '08:00 - 22:00 - Everyday',
-                  style: TextStyle(
+                  '$openTime - $closeTime - $daysPerWeek',
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     height: 2.4,
@@ -123,9 +136,9 @@ class FooterWidget extends StatelessWidget {
             alignment: Alignment.center,
             width: size.width,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: const Text(
-              'Copyright© OpenUI All Rights Reserved.',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+            child: Text(
+              'Copyright© $copyRight',
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
             ),
           )
         ],
@@ -140,7 +153,7 @@ class DividerCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width / 3,
       height: 50,
       child: Stack(
