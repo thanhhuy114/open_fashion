@@ -4,18 +4,17 @@ abstract class BlogPostState extends Equatable {
   const BlogPostState();
 
   @override
-  List<Object> props() => [];
+  List<Object> get props => [];
 }
 
 class BlogPostLoading extends BlogPostState {}
 
 class BlogPostLoaded extends BlogPostState {
+  const BlogPostLoaded(this.blogPost);
   final BlogPostModel blogPost;
 
-  const BlogPostLoaded(this.blogPost);
-
   @override
-  List<Object> props() => [blogPost];
+  List<Object> get props => [blogPost];
 }
 
 class BlogPostLoadFailure extends BlogPostState {}

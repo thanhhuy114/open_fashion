@@ -1,17 +1,16 @@
-import 'package:open_fashion/models/blog_post.dart';
-import 'package:open_fashion/network/api_provider.dart';
-import 'package:open_fashion/network/end_points.dart';
-import 'package:open_fashion/network/network_helper.dart';
+import '../models/blog_post.dart';
+import 'api_provider.dart';
+import 'end_points.dart';
+import 'network_helper.dart';
+import 'dart:developer';
+import '../models/post_menu_response_model.dart';
 
 class Api {
   static final ApiProvider http = ApiProvider();
 
-  /* 
-    Create by: Thach
-    Date: 5/3 13:20
-  */
-  static Future<Map<String, dynamic>> getHeaders(
-      {bool useConfigToken = false}) async {
+  static Future<Map<String, dynamic>> getHeaders({
+    final bool useConfigToken = false,
+  }) async {
     const version = '1.0.0';
     const tokenApi =
         '678b86d66b46eccc9357d611a7bdfd5c56e247b1fa3b4306b254e475848a0207';
@@ -28,13 +27,35 @@ class Api {
   */
   static Future<BLogPostResponseModel?> getBlogPost() async {
     try {
-      final res = await http.getRequest(EndPoints.blogPost,
-          headers: await getHeaders());
+      final res = await http.getRequest(
+        EndPoints.blogPost,
+        headers: await getHeaders(),
+      );
       final BLogPostResponseModel blogPost =
           BLogPostResponseModel.fromJson(res!);
       handleExceptionCase(blogPost.code);
       return blogPost;
     } catch (_) {
+      return null;
+    }
+  }
+
+  /* 
+    Create by: Huy Thanh
+    Date: 6/3 16:40
+    Content: 
+  */
+  static Future<PostMenuResponseModel?> fetchPostMenu() async {
+    try {
+      final res = await http.getRequest(
+        EndPoints.postMenu,
+        headers: await getHeaders(),
+      );
+      final result = PostMenuResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    } catch (e) {
+      log(e.toString());
       return null;
     }
   }

@@ -18,27 +18,27 @@ class BLogPostResponseModel extends Equatable {
     required this.data,
   });
 
+  factory BLogPostResponseModel.fromJson(final Map<String, dynamic> json) =>
+      _$BLogPostResponseModelFromJson(json);
+
   final int? code;
-  static const String codeKey = "code";
+  static const String codeKey = 'code';
 
   final String? message;
-  static const String messageKey = "message";
+  static const String messageKey = 'message';
 
   final BlogPostModel? data;
-  static const String dataKey = "data";
-
-  factory BLogPostResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$BLogPostResponseModelFromJson(json);
+  static const String dataKey = 'data';
 
   Map<String, dynamic> toJson() => _$BLogPostResponseModelToJson(this);
 
   @override
   String toString() {
-    return "$code, $message, $data, ";
+    return '$code, $message, $data, ';
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         code,
         message,
         data,
@@ -57,44 +57,44 @@ class BlogPostModel extends Equatable {
     required this.tag,
   });
 
+  factory BlogPostModel.fromJson(final Map<String, dynamic> json) =>
+      _$BlogPostModelFromJson(json);
+
   @JsonKey(name: 'post_by')
   final String? postBy;
-  static const String postByKey = "post_by";
+  static const String postByKey = 'post_by';
 
   @JsonKey(name: 'title_post')
   final String? titlePost;
-  static const String titlePostKey = "title_post";
+  static const String titlePostKey = 'title_post';
 
   final String? content;
-  static const String contentKey = "content";
+  static const String contentKey = 'content';
 
   @JsonKey(name: 'main_picture')
   final String? mainPicture;
-  static const String mainPictureKey = "main_picture";
+  static const String mainPictureKey = 'main_picture';
 
   @JsonKey(name: 'image_array')
   final List<String>? imageArray;
-  static const String imageArrayKey = "image_array";
+  static const String imageArrayKey = 'image_array';
 
   @JsonKey(name: 'post_date')
   final String? postDate;
-  static const String postDateKey = "post_date";
+  static const String postDateKey = 'post_date';
 
   final List<String>? tag;
-  static const String tagKey = "tag";
-
-  factory BlogPostModel.fromJson(Map<String, dynamic> json) =>
-      _$BlogPostModelFromJson(json);
+  static const String tagKey = 'tag';
 
   Map<String, dynamic> toJson() => _$BlogPostModelToJson(this);
 
   @override
   String toString() {
-    return "$postBy, $titlePost, $content, $mainPicture, $imageArray, $postDate, $tag, ";
+    return '$postBy, $titlePost, $content, $mainPicture, $imageArray, $postDate, $tag, ';
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         postBy,
         titlePost,
         content,
