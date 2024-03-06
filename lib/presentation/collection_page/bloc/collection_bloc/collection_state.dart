@@ -11,10 +11,11 @@ class CollectionState extends Equatable {
   final List<CollectionDetailModel> collections;
   final bool hasReachedMax;
 
-  CollectionState copyWith(
-      {CollectionStatus? status,
-      List<CollectionDetailModel>? collections,
-      bool? hasReachedMax}) {
+  CollectionState copyWith({
+    CollectionStatus? status,
+    List<CollectionDetailModel>? collections,
+    bool? hasReachedMax,
+  }) {
     return CollectionState(
       status: status ?? this.status,
       collections: collections ?? this.collections,

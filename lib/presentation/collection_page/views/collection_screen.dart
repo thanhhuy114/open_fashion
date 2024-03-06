@@ -6,8 +6,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/presentation/collection_page/bloc/collection_bloc/collection_bloc.dart';
-import 'package:open_fashion/presentation/collection_page/views/collection_item_screen.dart';
+
+import '../../collection_detail_page/view/collection_detail_screen.dart';
+import '../bloc/collection_bloc/collection_bloc.dart';
+import 'collection_item_screen.dart';
 
 class CollectionScreen extends StatefulWidget {
   const CollectionScreen({super.key});
@@ -36,10 +38,27 @@ class _CollectionScreenState extends State<CollectionScreen> {
                 return ListView.builder(
                   itemCount: state.collections.length,
                   itemBuilder: (context, index) {
-                    return CollectionItem(
-                      collectionName: state.collections[index].collectionName!,
-                      idx: index + 1,
-                      image: state.collections[index].collectionImage!,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return CollectionDetailScreen(
+                                collection: state.collections[index],
+                                moreCollection: state.collections,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: CollectionItem(
+                        collectionName:
+                            state.collections[index].collectionName!,
+                        idx: index + 1,
+                        image: state.collections[index].collectionImage!,
+                      ),
                     );
                   },
                 );

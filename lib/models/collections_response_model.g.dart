@@ -32,7 +32,8 @@ CollectionDetailModel _$CollectionDetailModelFromJson(
       collectionName: json['collection_name'] as String?,
       collectionImage: json['collection_image'] as String?,
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => ItemOfCollection.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => ItemOfCollectionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -45,8 +46,9 @@ Map<String, dynamic> _$CollectionDetailModelToJson(
       'items': instance.items,
     };
 
-ItemOfCollection _$ItemOfCollectionFromJson(Map<String, dynamic> json) =>
-    ItemOfCollection(
+ItemOfCollectionModel _$ItemOfCollectionModelFromJson(
+        Map<String, dynamic> json) =>
+    ItemOfCollectionModel(
       id: json['id'] as int?,
       name: json['name'] as String?,
       image: json['image'] as String?,
@@ -54,7 +56,8 @@ ItemOfCollection _$ItemOfCollectionFromJson(Map<String, dynamic> json) =>
       price: json['price'] as double?,
     );
 
-Map<String, dynamic> _$ItemOfCollectionToJson(ItemOfCollection instance) =>
+Map<String, dynamic> _$ItemOfCollectionModelToJson(
+        ItemOfCollectionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

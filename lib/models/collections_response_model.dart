@@ -63,7 +63,7 @@ class CollectionDetailModel extends Equatable {
   final String? collectionImage;
   static const String collectionImageKey = "collection_image";
 
-  final List<ItemOfCollection>? items;
+  final List<ItemOfCollectionModel>? items;
   static const String itemsKey = "items";
 
   factory CollectionDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -86,8 +86,8 @@ class CollectionDetailModel extends Equatable {
 }
 
 @JsonSerializable()
-class ItemOfCollection extends Equatable {
-  ItemOfCollection({
+class ItemOfCollectionModel extends Equatable {
+  const ItemOfCollectionModel({
     required this.id,
     required this.name,
     required this.image,
@@ -110,10 +110,10 @@ class ItemOfCollection extends Equatable {
   final double? price;
   static const String priceKey = "price";
 
-  factory ItemOfCollection.fromJson(Map<String, dynamic> json) =>
-      _$ItemOfCollectionFromJson(json);
+  factory ItemOfCollectionModel.fromJson(Map<String, dynamic> json) =>
+      _$ItemOfCollectionModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ItemOfCollectionToJson(this);
+  Map<String, dynamic> toJson() => _$ItemOfCollectionModelToJson(this);
 
   @override
   String toString() {
