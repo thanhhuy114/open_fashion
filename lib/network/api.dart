@@ -4,8 +4,13 @@ import 'end_points.dart';
 import 'network_helper.dart';
 import 'dart:developer';
 import '../models/post_menu_response_model.dart';
+import '../models/footer_response_model.dart';
+import '../models/menu_arrival_response_model.dart';
 
 class Api {
+  /* Api._internal();
+  static Api instance = Api._internal(); */
+
   static final ApiProvider http = ApiProvider();
 
   static Future<Map<String, dynamic>> getHeaders({
@@ -59,4 +64,56 @@ class Api {
       return null;
     }
   }
+
+  /*
+    Create by: Thuan
+    Date: 5/3
+    Content: Lấy Dữ liệu cho HomePageScreen
+  */
+  Future<MenuArrivalResponseModel?> getMenuArrival() async {
+    try {
+      final res = await http.getRequest(EndPoints.menuArrival);
+      final result = MenuArrivalResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<FooterResponseModel?> getFooter() async {
+    try {
+      final res = await http.getRequest(EndPoints.footer);
+      final result = FooterResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // static Future<LoginModel?> login({
+  //   required String email,
+  //   required String password,
+  //   required String unixTime,
+  //   required String token,
+  // }) async {
+  //   try {
+  //     final res = await http.postRequest(
+  //       EndPoints.login,
+  //       headers: await getHeaders(),
+  //       body: {
+  //         'email': email,
+  //         'pass': password,
+  //         'unix_time': unixTime,
+  //         'token': token,
+  //       },
+  //     );
+  //     final result = LoginModel.fromJson(res!);
+  //     handleExceptionCase(result.status);
+  //     return result;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
 }

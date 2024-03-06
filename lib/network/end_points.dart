@@ -3,8 +3,6 @@
     Modify by Thach
     Date: 5/3
     Content: Add new endPoint's blogPost
-
-    
 */
 
 class EndPoints {
@@ -17,7 +15,9 @@ class EndPoints {
 
   static const String orderDetail = '/order_detail.json';
   static const String menu = '/menu.json';
-
+  
+  static const String menuArrival = '/menu_arrival.json';
+  static const String footer = '/footer.json';
   static const String blogPost = '/blog_post_detail.json';
   static const String postMenu = '/posts_menu.json';
 }

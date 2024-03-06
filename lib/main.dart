@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'widget/text_theme_custom.dart';
+import 'widgets/text_theme_custom.dart';
+import 'presentation/home_page/view/home_page_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: TextThemeCustom(),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:const HomePageScreen(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../widget/appbar_custom_widget.dart';
-import '../../../widget/button_lead_more.dart';
-import '../../../widget/header_blog.dart';
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/button_lead_more.dart';
+import '../../../widgets/header_blog.dart';
 import '../bloc/post_menu/post_menu_bloc.dart';
 import '../bloc/post_menu/post_menu_state.dart';
 import '../widget/button_list_gird.dart';

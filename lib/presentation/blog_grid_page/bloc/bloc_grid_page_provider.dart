@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../view/bloc_grid_page.dart';
+import '../view/blog_grid_page.dart';
 import 'post_menu/post_menu_bloc.dart';
 import 'post_menu/post_menu_event.dart';
 
