@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
   Create by: Thach
   Date: 11:00 6/5,
   Content: Item of Collection screen
+
+  Modify 
+  Date: 9:00 7/3
+  Content: change margin.symmetric -> margin.only
  */
 class CollectionItem extends StatelessWidget {
   const CollectionItem(
@@ -19,7 +23,7 @@ class CollectionItem extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     double heightItem = size.width / (3 / 4) - 27;
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: const EdgeInsets.only(top: 10, bottom: 60, left: 10, right: 10),
       width: size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

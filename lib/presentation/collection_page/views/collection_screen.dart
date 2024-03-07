@@ -2,6 +2,13 @@
   Create by: Thach
   Date: 9:55 6/5,
   Content: Colection list screen
+
+  Modify
+  Date 7/5 9:00
+  Content: 
+    - Change Listvire -> Column List.genarate
+    - Add Title at top list
+    - Add SingleChildScrollView
  */
 
 import 'package:flutter/material.dart';
@@ -35,32 +42,62 @@ class _CollectionScreenState extends State<CollectionScreen> {
             },
             builder: (context, state) {
               if (state.status == CollectionStatus.success) {
-                return ListView.builder(
-                  itemCount: state.collections.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) {
-                              return CollectionDetailScreen(
-                                collection: state.collections[index],
-                                moreCollection: state.collections,
+                //add singlechidScollview
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        state.collections[0].collectionName!.substring(0,
+                            state.collections[0].collectionName!.indexOf(' ')),
+                        style: const TextStyle(
+                          fontFamily: 'BodoniModa',
+                          fontSize: 46,
+                          fontStyle: FontStyle.italic,
+                          color: Color.fromRGBO(252, 252, 252, 1),
+                        ),
+                      ),
+                      Text(
+                        'Collection'.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromRGBO(252, 252, 252, 1),
+                        ),
+                      ),
+
+                      //Collection List changing lisview -> column
+                      Column(
+                        children: List.generate(
+                          state.collections.length,
+                          (index) => GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation, secondaryAnimation) {
+                                    return CollectionDetailScreen(
+                                      collection: state.collections[index],
+                                      moreCollection: state.collections,
+                                    );
+                                  },
+                                ),
                               );
                             },
+                            child: CollectionItem(
+                              collectionName:
+                                  state.collections[index].collectionName!,
+                              idx: index + 1,
+                              image: state.collections[index].collectionImage!,
+                            ),
                           ),
-                        );
-                      },
-                      child: CollectionItem(
-                        collectionName:
-                            state.collections[index].collectionName!,
-                        idx: index + 1,
-                        image: state.collections[index].collectionImage!,
+                        ),
                       ),
-                    );
-                  },
+                    ],
+                  ),
                 );
               }
               return SizedBox(
