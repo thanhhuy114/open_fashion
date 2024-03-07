@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:open_fashion/model/category_status_filer_manager.dart';
+import 'package:open_fashion/presentation/category_screen/model/category_status_filer_manager.dart';
 import 'package:open_fashion/presentation/category_screen/widgets/category_bottom.dart';
 import 'package:open_fashion/presentation/category_screen/widgets/category_filter.dart';
 import 'package:open_fashion/presentation/category_screen/widgets/category_gridview.dart';
@@ -32,11 +32,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ValueListenableBuilder<int>(
                     valueListenable: CategoryStatusFilterManager.status,
                     builder: (context, value, child) {
-                      if (value == 1) {
+                      if (value == 3) {
                         return const CategoryGridView(
                           state: true,
                         );
-                      } else if (value == 2) {
+                      } else if (value == 1) {
                         return const CategoryList();
                       } else {
                         return const CategoryGridView(

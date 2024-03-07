@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:open_fashion/model/category.dart';
+import 'package:open_fashion/presentation/category_screen/model/category.dart';
 
 part 'category_data.g.dart';
 

@@ -1,5 +1,5 @@
-import 'package:open_fashion/model/category.dart';
-import 'package:open_fashion/model/category_data.dart';
+import 'package:open_fashion/presentation/category_screen/model/category.dart';
+import 'package:open_fashion/presentation/category_screen/model/category_data.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 
