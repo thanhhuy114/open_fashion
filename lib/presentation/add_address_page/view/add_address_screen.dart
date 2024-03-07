@@ -99,7 +99,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 builder: (final context, final state) {
                                   return ShowValidator(
                                     isValid: state.firstNameTextField,
-                                    validate: 'InValid',
+                                    validate: state.firstNameMessage,
                                   );
                                 },
                               ),
@@ -143,7 +143,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 builder: (final context, final state) {
                                   return ShowValidator(
                                     isValid: state.lastNameTextField,
-                                    validate: 'InValid',
+                                    validate: state.lastNameMessage,
                                   );
                                 },
                               ),
@@ -190,7 +190,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       builder: (final context, final state) {
                         return ShowValidator(
                           isValid: state.addressTextField,
-                          validate: 'InValid',
+                          validate: state.addressMessage,
                         );
                       },
                     ),
@@ -232,7 +232,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       builder: (final context, final state) {
                         return ShowValidator(
                           isValid: state.cityTextField,
-                          validate: 'InValid',
+                          validate: state.cityMessage,
                         );
                       },
                     ),
@@ -279,7 +279,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 builder: (final context, final state) {
                                   return ShowValidator(
                                     isValid: state.stateTextField,
-                                    validate: 'InValid',
+                                    validate: state.stateMessage,
                                   );
                                 },
                               ),
@@ -322,7 +322,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 builder: (final context, final state) {
                                   return ShowValidator(
                                     isValid: state.zipCodeTextField,
-                                    validate: 'InValid',
+                                    validate: state.zipCodeMessage,
                                   );
                                 },
                               ),
@@ -362,14 +362,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
                     child: BlocBuilder<AddAddressBloc, AddAddressState>(
                       builder: (final context, final state) {
                         return ShowValidator(
                           isValid: state.phoneNumberTextField,
-                          validate: 'InValid',
+                          validate: state.phoneNumberMessage,
                         );
                       },
                     ),

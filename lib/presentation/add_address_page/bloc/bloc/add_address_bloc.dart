@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 part 'add_address_event.dart';
 part 'add_address_state.dart';
 
-RegExp regexOnlyLetter = RegExp(r'^[a-zA-Z]*$');
+RegExp regexOnlyLetter = RegExp(r'^[a-zA-Z]* $');
 
 RegExp regexOnlyNumber = RegExp(r'^[0-9]+$');
 RegExp vietnamPhoneRegex = RegExp(
@@ -34,11 +34,26 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(firstNameTextField: true));
+      emit(
+        state.copyWith(
+          firstNameTextField: true,
+          firstNameMessage: '* Please fill your first name.',
+        ),
+      );
     } else if (!regexOnlyLetter.hasMatch(event.text.trim())) {
-      emit(state.copyWith(firstNameTextField: true));
+      emit(
+        state.copyWith(
+          firstNameTextField: true,
+          firstNameMessage: '* Special characters or numbers are not allowed.',
+        ),
+      );
     } else {
-      emit(state.copyWith(firstNameTextField: false));
+      emit(
+        state.copyWith(
+          firstNameTextField: false,
+          firstNameMessage: 'Valid',
+        ),
+      );
     }
   }
 
@@ -47,11 +62,24 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(lastNameTextField: true));
+      emit(
+        state.copyWith(
+          lastNameTextField: true,
+          lastNameMessage: '* Please fill your last name.',
+        ),
+      );
     } else if (!regexOnlyLetter.hasMatch(event.text.trim())) {
-      emit(state.copyWith(lastNameTextField: true));
+      emit(state.copyWith(
+        lastNameTextField: true,
+        lastNameMessage: '* Special characters or numbers are not allowed.',
+      ));
     } else {
-      emit(state.copyWith(lastNameTextField: false));
+      emit(
+        state.copyWith(
+          lastNameTextField: false,
+          lastNameMessage: 'Valid',
+        ),
+      );
     }
   }
 
@@ -60,9 +88,19 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(addressTextField: true));
+      emit(
+        state.copyWith(
+          addressTextField: true,
+          addressMessage: '* Please fill your address.',
+        ),
+      );
     } else {
-      emit(state.copyWith(addressTextField: false));
+      emit(
+        state.copyWith(
+          addressTextField: false,
+          addressMessage: 'Valid',
+        ),
+      );
     }
   }
 
@@ -71,9 +109,16 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(cityTextField: true));
+      emit(
+        state.copyWith(
+          cityTextField: true,
+          cityMessage: '* Please fill your city.',
+        ),
+      );
     } else {
-      emit(state.copyWith(cityTextField: false));
+      emit(
+        state.copyWith(cityTextField: false, cityMessage: 'Valid'),
+      );
     }
   }
 
@@ -82,9 +127,19 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(stateTextField: true));
+      emit(
+        state.copyWith(
+          stateTextField: true,
+          stateMessage: '* Please fill state.',
+        ),
+      );
     } else {
-      emit(state.copyWith(stateTextField: false));
+      emit(
+        state.copyWith(
+          stateTextField: false,
+          stateMessage: 'Valid',
+        ),
+      );
     }
   }
 
@@ -93,11 +148,26 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(zipCodeTextField: true));
+      emit(
+        state.copyWith(
+          zipCodeTextField: true,
+          zipCodeMessage: '* Please fill zip code.',
+        ),
+      );
     } else if (!usZipCodeRegex.hasMatch(event.text.trim())) {
-      emit(state.copyWith(zipCodeTextField: true));
+      emit(
+        state.copyWith(
+          zipCodeTextField: true,
+          zipCodeMessage: '* Wrong zip code format.',
+        ),
+      );
     } else {
-      emit(state.copyWith(zipCodeTextField: false));
+      emit(
+        state.copyWith(
+          zipCodeTextField: false,
+          zipCodeMessage: 'Valid',
+        ),
+      );
     }
   }
 
@@ -106,11 +176,26 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
     final Emitter<AddAddressState> emit,
   ) {
     if (event.text.trim().isEmpty) {
-      emit(state.copyWith(phoneNumberTextField: true));
+      emit(
+        state.copyWith(
+          phoneNumberTextField: true,
+          phoneNumberMessage: '* Please fill your phone number.',
+        ),
+      );
     } else if (!vietnamPhoneRegex.hasMatch(event.text.trim())) {
-      emit(state.copyWith(phoneNumberTextField: true));
+      emit(
+        state.copyWith(
+          phoneNumberTextField: true,
+          phoneNumberMessage: '* Wrong phone number format.',
+        ),
+      );
     } else {
-      emit(state.copyWith(phoneNumberTextField: false));
+      emit(
+        state.copyWith(
+          phoneNumberTextField: false,
+          phoneNumberMessage: 'Valid',
+        ),
+      );
     }
   }
 }

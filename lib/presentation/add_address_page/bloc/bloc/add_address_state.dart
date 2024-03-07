@@ -9,6 +9,13 @@ class AddAddressState extends Equatable {
     this.stateTextField = false,
     this.zipCodeTextField = false,
     this.phoneNumberTextField = false,
+    this.firstNameMessage = '',
+    this.lastNameMessage = '',
+    this.addressMessage = '',
+    this.cityMessage = '',
+    this.stateMessage = '',
+    this.zipCodeMessage = '',
+    this.phoneNumberMessage = '',
   });
   final bool firstNameTextField;
   final bool lastNameTextField;
@@ -17,6 +24,13 @@ class AddAddressState extends Equatable {
   final bool stateTextField;
   final bool zipCodeTextField;
   final bool phoneNumberTextField;
+  final String firstNameMessage;
+  final String lastNameMessage;
+  final String addressMessage;
+  final String cityMessage;
+  final String stateMessage;
+  final String zipCodeMessage;
+  final String phoneNumberMessage;
 
   AddAddressState copyWith({
     final bool? firstNameTextField,
@@ -26,6 +40,13 @@ class AddAddressState extends Equatable {
     final bool? stateTextField,
     final bool? zipCodeTextField,
     final bool? phoneNumberTextField,
+    final String? firstNameMessage,
+    final String? lastNameMessage,
+    final String? addressMessage,
+    final String? cityMessage,
+    final String? stateMessage,
+    final String? zipCodeMessage,
+    final String? phoneNumberMessage,
   }) {
     return AddAddressState(
       firstNameTextField: firstNameTextField ?? this.firstNameTextField,
@@ -35,11 +56,18 @@ class AddAddressState extends Equatable {
       phoneNumberTextField: phoneNumberTextField ?? this.phoneNumberTextField,
       stateTextField: stateTextField ?? this.stateTextField,
       zipCodeTextField: zipCodeTextField ?? this.zipCodeTextField,
+      firstNameMessage: firstNameMessage ?? this.firstNameMessage,
+      lastNameMessage: lastNameMessage ?? this.lastNameMessage,
+      addressMessage: addressMessage ?? this.addressMessage,
+      cityMessage: cityMessage ?? this.cityMessage,
+      stateMessage: stateMessage ?? this.stateMessage,
+      zipCodeMessage: zipCodeMessage ?? this.zipCodeMessage,
+      phoneNumberMessage: phoneNumberMessage ?? this.phoneNumberMessage,
     );
   }
 
   @override
-  List<Object> get props => [
+  List<Object> props() => [
         firstNameTextField,
         lastNameTextField,
         addressTextField,
