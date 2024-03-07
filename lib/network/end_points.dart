@@ -19,4 +19,5 @@ class EndPoints {
   static const String postMenu = '/posts_menu.json';
   static const String productDetail = '/product_detail.json';
   static const String productDetailLayout = '/product_detail_layout2.json';
+  static const String drawer = '/drawer.json';
 }

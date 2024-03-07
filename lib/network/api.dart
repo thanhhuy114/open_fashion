@@ -1,4 +1,5 @@
 import '../models/blog_post.dart';
+import '../models/drawer_response_model.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
@@ -106,6 +107,22 @@ class Api {
       handleExceptionCase(result.code);
       return result;
     } catch (e) {
+      return null;
+    }
+  }
+
+  /*
+    Create by Thuan
+    Data: 07/03
+    Content: Lấy data cho Drawer
+  */
+  Future<DrawerResponseModel?> getDrawer() async{
+    try{
+      final res = await http.getRequest(EndPoints.drawer);
+      final result = DrawerResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    }catch(e){
       return null;
     }
   }
