@@ -6,6 +6,8 @@ import 'dart:developer';
 import '../models/post_menu_response_model.dart';
 import '../models/footer_response_model.dart';
 import '../models/menu_arrival_response_model.dart';
+import '../models/product_detail_layout_response_models.dart';
+import '../models/product_detail_response_models.dart';
 
 class Api {
   /* Api._internal();
@@ -42,6 +44,22 @@ class Api {
       return blogPost;
     } catch (_) {
       return null;
+    }
+  }
+
+  /*
+    Create by: VieHao
+    Date: 
+    Content: 
+  */
+  static Future<ProductDetailResponseModel> getProductDetail() async {
+    try {
+      final response = await http.getRequest(EndPoints.productDetail);
+      final result = ProductDetailResponseModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
     }
   }
 
@@ -116,4 +134,21 @@ class Api {
   //     return null;
   //   }
   // }
+  /*
+    Create by: VieHao
+    Date: 
+    Content: 
+  */
+
+  static Future<ProductDetailLayoutResponseModel>
+      getProductDetailLayout() async {
+    try {
+      final response = await http.getRequest(EndPoints.productDetailLayout);
+      final result = ProductDetailLayoutResponseModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
 }
