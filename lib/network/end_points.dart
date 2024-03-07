@@ -20,4 +20,5 @@ class EndPoints {
   static const String footer = '/footer.json';
   static const String blogPost = '/blog_post_detail.json';
   static const String postMenu = '/posts_menu.json';
+  static const String drawer = '/drawer.json';
 }

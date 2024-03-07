@@ -27,7 +27,9 @@ class _AppBarCustomState extends State<AppBarCustom> {
         ),
       ),
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
         icon: Image.asset(
           'assets/images/menu.png',
           height: 25,

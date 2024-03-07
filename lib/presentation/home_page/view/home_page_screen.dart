@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/menu_arrival_response_model.dart';
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
+import '../bloc/drawer_bloc.dart';
 import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_bloc.dart';
 import '../widgets/Home_page_trending.dart';
-import '../widgets/app_bar.dart';
 import '../widgets/home_page_brand.dart';
 import '../widgets/home_page_collection.dart';
 import '../widgets/home_page_followus.dart';
@@ -34,9 +36,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
         BlocProvider(
           create: (final context) => HomePageBloc()..add(LoadHomePage()),
         ),
-        BlocProvider(
-          create: (final context) => FooterBloc()..add(LoadFooter()),
-        ),
       ],
       child: BlocBuilder<HomePageBloc, HomePageState>(
         builder: (final context, final state) {
@@ -59,15 +58,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
             jfu=state.jfu;
             fu=state.fu;
             return Scaffold(
-              appBar: const PreferredSize(
-                preferredSize: Size.fromHeight(kToolbarHeight),
-                child: AppBarWidget(),
-              ),
-              drawer: Drawer(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                ),
-              ),
+              appBar: const AppBarCustom(),
+              drawer: const MenuDrawer(),
               body: SingleChildScrollView(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,

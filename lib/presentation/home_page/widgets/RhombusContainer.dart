@@ -63,8 +63,8 @@ class Rhombus extends StatelessWidget {
   Widget build(final BuildContext context) {
     return RhombusContainer(
       child: Container(
-        width: 4,
-        height: 4,
+        width: 6,
+        height: 6,
         color: Colors.orange[700],
         child: const Text(''),
         ),
