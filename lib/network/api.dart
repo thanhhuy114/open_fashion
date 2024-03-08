@@ -1,6 +1,7 @@
 // ignore_for_file: only_throw_errors
 
 import '../models/blog_post.dart';
+import '../models/collections_response_model.dart';
 import '../models/drawer_response_model.dart';
 import '../models/checkout_response_model.dart';
 import 'api_provider.dart';
@@ -63,6 +64,26 @@ class Api {
           BLogPostResponseModel.fromJson(res!);
       handleExceptionCase(blogPost.code);
       return blogPost;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /* 
+    Create by: Thach
+    Date: 6/3 09:28
+    Content: Call API get Collections
+  */
+  static Future<CollectionsResponseModel?> getCollections() async {
+    try {
+      final res = await http.getRequest(
+        EndPoints.collections,
+        headers: await getHeaders(),
+      );
+      final CollectionsResponseModel collections =
+          CollectionsResponseModel.fromJson(res!);
+      handleExceptionCase(collections.code);
+      return collections;
     } catch (_) {
       return null;
     }

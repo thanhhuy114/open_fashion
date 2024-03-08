@@ -84,6 +84,7 @@ flutter:
     - assets/icons/
     - assets/img/
     - assets/lottie/
+  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -100,6 +101,10 @@ flutter:
     - family: TenorSans
       fonts:
         - asset: fonts/TenorSans-Regular.ttf
+    - family: BodoniModa
+      fonts:
+        - asset: fonts/BodoniModa-Italic-VariableFont_opsz,wght.ttf
+          style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

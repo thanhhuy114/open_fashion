@@ -1,0 +1,162 @@
+/*
+  Create by: Thach
+  Date: 13:00 6/3
+  Content: Collectiondetail Screen
+ */
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../models/collections_response_model.dart';
+import '../bloc/collection_detail_bloc/collection_detail_bloc.dart';
+import 'item_list_of_colletion_detail.dart';
+import 'suggestion_collection.dart';
+
+class CollectionDetailScreen extends StatefulWidget {
+  const CollectionDetailScreen({
+    super.key,
+    required this.collection,
+    required this.moreCollection,
+  });
+  final CollectionDetailModel collection;
+  final List<CollectionDetailModel> moreCollection;
+  @override
+  State<CollectionDetailScreen> createState() => _CollectionDetailScreenState();
+}
+
+class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: BlocProvider(
+            create: (context) => CollectionDetailBloc()
+              ..add(LoadCollectionDetailEvent(collection: widget.collection)),
+            child: Column(
+              children: [
+                //Collection Name
+                BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
+                  builder: (context, state) {
+                    if (state is CollectionDetailLoaded) {
+                      return SizedBox(
+                        width: size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              state.colletion.collectionName!
+                                  .replaceAll(' collection', ''),
+                              style: const TextStyle(
+                                fontSize: 42,
+                                fontFamily: 'BodoniModa',
+                                fontWeight: FontWeight.w700,
+                                fontStyle: FontStyle.italic,
+                                color: Color.fromRGBO(252, 252, 252, 1),
+                              ),
+                            ),
+                            const Text(
+                              "Collection",
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromRGBO(252, 252, 252, 1),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                    return SizedBox(
+                      width: size.width,
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Collection',
+                            style: TextStyle(
+                              fontSize: 42,
+                              fontFamily: 'BodoniModa',
+                              fontWeight: FontWeight.w700,
+                              fontStyle: FontStyle.italic,
+                              color: Color.fromRGBO(252, 252, 252, 1),
+                            ),
+                          ),
+                          Text(
+                            'Collection',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromRGBO(252, 252, 252, 1),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+
+                //Picture of image
+                BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
+                  builder: (context, state) {
+                    if (state is CollectionDetailLoaded) {
+                      return Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        width: size.width,
+                        height: size.width / (3 / 4),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              state.colletion.collectionImage!,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    return Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      width: size.width,
+                      height: size.width / (3 / 4),
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  },
+                ),
+
+                //Item list
+                BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
+                  builder: (context, state) {
+                    if (state is CollectionDetailLoaded) {
+                      return CollectionItemRowList(
+                        items: state.colletion.items!,
+                      );
+                    }
+                    return Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      width: size.width,
+                      height: size.width / (3 / 4),
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  },
+                ),
+
+                //More Collection
+                SuggestionCollection(
+                  collections: widget.moreCollection,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

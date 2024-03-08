@@ -22,4 +22,6 @@ class EndPoints {
   static const String productDetailLayout = '/product_detail_layout2.json';
   static const String drawer = '/drawer.json';
   static const String completeCheckout = '/complete_checkout.json';
+  //Thach 11:45 6/3 endpoin collection get data collecion
+  static const String collections = '/collections.json';
 }
