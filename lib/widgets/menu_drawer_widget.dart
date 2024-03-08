@@ -28,7 +28,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
         child: Drawer(
           child: BlocBuilder<DrawerBloc, DrawerState>(
             builder: (final context, final state) {
-              if (state is DrawerInitial) {
+              if (state is DrawerLoading) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
@@ -50,6 +50,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   filteredItems.add(element);
                 }
                 return ListView(
+                  physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   children: <Widget>[
                     Container(
@@ -60,7 +61,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'X',
+                          'x',
                           style: TextStyle(color: Colors.black, fontSize: 24),
                         ),
                       ),
@@ -74,7 +75,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                             children: [
                               SizedBox(
                                 width: MediaQuery.of(context).size.width,
-                                height: 28,
+                                height: MediaQuery.of(context).size.height/2-350,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: itemTab.length,
@@ -102,7 +103,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                             ],
                           ),
                           SizedBox(
-                            height: 350,
+                            height: 500,
                             width: MediaQuery.of(context).size.width,
                             child: Scrollbar(
                               trackVisibility: false,

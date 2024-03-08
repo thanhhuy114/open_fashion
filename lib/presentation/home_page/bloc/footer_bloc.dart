@@ -8,10 +8,10 @@ part 'footer_event.dart';
 part 'footer_state.dart';
 
 class FooterBloc extends Bloc<FooterEvent, FooterState> {
-  FooterBloc() : super(FooterInitial()) {
+  FooterBloc() : super(FooterLoading()) {
     on<FooterEvent>((final event, final emit) async {
     final Api api =Api();
-      emit(FooterInitial());
+      emit(FooterLoading());
       try{
         final data = await api.getFooter();
         emit(FooterLoaded(footer: data!.data));

@@ -7,7 +7,7 @@ sealed class FooterState extends Equatable {
   List<Object> get props => [];
 }
 
-final class FooterInitial extends FooterState {}
+final class FooterLoading extends FooterState {}
 class FooterLoaded extends FooterState{
   const FooterLoaded({required this.footer});
   final FooterModel? footer;

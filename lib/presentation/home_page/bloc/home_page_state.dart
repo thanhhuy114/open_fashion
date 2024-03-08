@@ -7,7 +7,7 @@ sealed class HomePageState extends Equatable {
   List<Object> get props => [];
 }
 
-class HomePageInitial extends HomePageState {}
+class HomePageLoading extends HomePageState {}
 
 class HomePageLoaded extends HomePageState {
   const HomePageLoaded(
