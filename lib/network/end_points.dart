@@ -28,4 +28,5 @@ class EndPoints {
   static const String ourStory = '/our_story.json';
 
 
+  static const String contactUs='/contact_us.json';
 }
