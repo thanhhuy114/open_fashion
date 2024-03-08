@@ -9,7 +9,7 @@ part of 'category.dart';
 Cat _$CatFromJson(Map<String, dynamic> json) => Cat(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      image: json['image'] as String?,
+      image: (json['image'] as List<dynamic>).map((e) => e as String?).toList(),
       description: json['description'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       rating: (json['rating'] as num?)?.toDouble(),

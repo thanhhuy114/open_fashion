@@ -6,7 +6,7 @@ part 'category.g.dart';
 class Cat {
   final int? id;
   final String? name;
-  final String? image;
+  final List<String?> image;
   final String? description;
   final double? price;
   final double? rating;

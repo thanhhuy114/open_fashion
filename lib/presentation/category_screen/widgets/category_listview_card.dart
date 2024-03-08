@@ -13,7 +13,7 @@ class CategoryListViewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.network(
-            mycat.image!,
+            mycat.image[0]!,
             width: 100,
             height: 500,
           ),
@@ -26,58 +26,97 @@ class CategoryListViewCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(mycat.name!.toUpperCase()),
-                    Text(mycat.description!),
-                    Text('\$ ${mycat.price}'),
+                    Text(
+                      mycat.name!.toUpperCase(),
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      mycat.description!,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      '\$ ${mycat.price}',
+                      style: TextStyle(color: Colors.orange),
+                    ),
+                  ],
+                ),
+                const Row(
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: Colors.orange,
+                    ),
+                    Text(
+                      '4.8 Ratings',
+                      style: TextStyle(fontSize: 12),
+                    )
                   ],
                 ),
                 Row(
-                  children: [Icon(Icons.star), Text('4.8 Ratings')],
-                ),
-                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Size'),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(50))),
-                        child: const Text('S'),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(50))),
-                        child: const Text('M'),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(50))),
-                        child: const Text('L'),
-                      ),
+                    Row(
+                      children: [
+                        const Text('Size'),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
+                            decoration: BoxDecoration(
+                                border: Border.all(width: 0.5),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(50))),
+                            child: const Text(
+                              'S',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
+                            decoration: BoxDecoration(
+                                border: Border.all(width: 0.5),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(50))),
+                            child: const Text(
+                              'M',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
+                            decoration: BoxDecoration(
+                                border: Border.all(width: 0.5),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(50))),
+                            child: const Text(
+                              'L',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     IconButton(
                         onPressed: () {},
                         icon: const Icon(
                           Icons.favorite_border,
-                          size: 25,
+                          size: 20,
+                          color: Colors.orange,
                         ))
                   ],
                 )
