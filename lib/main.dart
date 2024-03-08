@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'presentation/home_page/view/home_page_screen.dart';
 import 'presentation/product_detail_layout_page/views/product_detail_layout.dart';
-
+import 'presentation/blog_grid_page/bloc/bloc_grid_page_provider.dart';
+import 'presentation/category_screen/view/category_screen.dart';
+import 'widgets/text_theme_custom.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,13 +16,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Open Fashion',
       theme: ThemeData(
         fontFamily: 'TenorSans',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        textTheme: TextThemeCustom(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
+            .copyWith(background: Colors.white),
       ),
-      home: const HomePageScreen(),
+      home: const BlocGridPageProvider(),
     );
   }
 }

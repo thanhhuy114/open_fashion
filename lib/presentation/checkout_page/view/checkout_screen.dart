@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -151,7 +149,13 @@ class CheckOutScreen extends StatelessWidget {
               bottomSheet: ButtonCustom(
                 message: 'CHECKOUT',
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (final context) => CheckOutLayOutScreen(total: total,),));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (final context) => CheckOutLayOutScreen(
+                          total: total,
+                        ),
+                      ));
                 },
                 icon: const Icon(
                   Icons.shopping_bag_outlined,

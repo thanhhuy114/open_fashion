@@ -11,10 +11,10 @@ class CategoryGridviewCard extends StatelessWidget {
   final Cat myCat;
   final bool status;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.4,
-      height: MediaQuery.of(context).size.height * 0.5,
+      height: MediaQuery.of(context).size.height * 0.55,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
