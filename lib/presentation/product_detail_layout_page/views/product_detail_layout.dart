@@ -65,7 +65,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
         body: BlocBuilder<ProductDetailLayoutBloc, ProductDetailLayoutState>(
           builder: (final context, final state) {
             switch (state) {
-              case ProductDetailLayoutInitial():
+              case ProductDetailLayoutLoading():
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
