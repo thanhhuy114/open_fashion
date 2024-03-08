@@ -4,6 +4,7 @@ import '../models/blog_post.dart';
 import '../models/collections_response_model.dart';
 import '../models/drawer_response_model.dart';
 import '../models/checkout_response_model.dart';
+import '../models/card_response_model.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
@@ -47,6 +48,23 @@ class Api {
   static Future<List<Cat>?> getCategoryResponse() async {
     final data = await getCategoryDataResponse();
     return data!.data;
+  }
+
+  /*
+    Create by: Thach
+    Date: 8/3 11:26
+    Content: Lay danh sach card infor
+  */
+  static Future<CardResponseModel> getCards() async {
+    try {
+      final response = await http.getRequest(EndPoints.card);
+      final card = CardResponseModel.fromJson(response!);
+      handleExceptionCase(card.code);
+      return card;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
   }
 
   /* 
