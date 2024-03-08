@@ -60,7 +60,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
         BlocProvider(create: (final context) => SizeCubit()),
         BlocProvider(create: (final context) => ColorCubit()),
-        BlocProvider(create: (final context) => FavoriteCubit()),
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -151,7 +150,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const ButtonBasket(),
+                      BlocProvider(
+                        create: (final context) => FavoriteCubit(),
+                        child: const ButtonBasket(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
                         child: Column(

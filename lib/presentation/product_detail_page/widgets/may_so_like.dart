@@ -32,23 +32,21 @@ class MaySoLike extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: BlocBuilder<FavoriteCubit, bool>(
-                          builder: (final context, final state) {
-                            return ItemMaySoLike(
-                              categoryModel: category[actualIndex],
-                            );
-                          },
+                        child: BlocProvider(
+                          create: (final context) => FavoriteCubit(),
+                          child: ItemMaySoLike(
+                            categoryModel: category[actualIndex],
+                          ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: actualIndex + 1 < category.length
-                            ? BlocBuilder<FavoriteCubit, bool>(
-                                builder: (final context, final state) {
-                                  return ItemMaySoLike(
-                                    categoryModel: category[actualIndex + 1],
-                                  );
-                                },
+                            ? BlocProvider(
+                                create: (final context) => FavoriteCubit(),
+                                child: ItemMaySoLike(
+                                  categoryModel: category[actualIndex + 1],
+                                ),
                               )
                             : Container(),
                       ),
