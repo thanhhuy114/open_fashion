@@ -157,6 +157,7 @@ class CheckOutScreen extends StatelessWidget {
                   Icons.shopping_bag_outlined,
                   color: Colors.white,
                 ),
+                checkLR: true,
               ),
             );
           }

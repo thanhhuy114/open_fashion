@@ -260,6 +260,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                   Icons.shopping_bag_outlined,
                   color: Colors.white,
                 ),
+                checkLR: true,
               ),
             );
           }
