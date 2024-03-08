@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'presentation/blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import 'widgets/text_theme_custom.dart';
 import 'presentation/home_page/view/home_page_screen.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: TextThemeCustom(),
       ),
-      home:const HomePageScreen(),
+      home:const BlocGridPageProvider(),
     );
   }
 }

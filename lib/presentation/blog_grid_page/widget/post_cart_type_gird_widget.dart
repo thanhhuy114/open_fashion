@@ -41,10 +41,10 @@ class PostTypeGirdCart extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 5, bottom: 7),
                   child: Text(
                     postSumary.tittle.toUpperCase(),
-                    maxLines: 3,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
@@ -54,7 +54,7 @@ class PostTypeGirdCart extends StatelessWidget {
                 ),
                 Text(
                   postSumary.description,
-                  maxLines: 4,
+                  maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context)
                       .textTheme

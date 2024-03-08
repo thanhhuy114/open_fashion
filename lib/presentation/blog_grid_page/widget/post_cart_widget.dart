@@ -37,9 +37,9 @@ class PostCart extends StatelessWidget {
     );
   }
 
-  SizedBox _buildTags(final BuildContext context) {
+  Widget _buildTags(final BuildContext context) {
     return SizedBox(
-      width: 260,
+      width: 220,
       child: Wrap(
         spacing: 12,
         runSpacing: 5,
@@ -87,8 +87,8 @@ class PostCart extends StatelessWidget {
               onPressed: () {},
               icon: Image.asset(
                 'assets/images/bookmark.png',
-                height: 17,
-                width: 17,
+                height: 20,
+                width: 20,
                 fit: BoxFit.cover,
               ),
             ),

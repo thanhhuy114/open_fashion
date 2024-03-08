@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/button_lead_more.dart';
+import '../../../widgets/footer.dart';
 import '../../../widgets/header_blog.dart';
 import '../bloc/post_menu/post_menu_bloc.dart';
 import '../bloc/post_menu/post_menu_state.dart';
@@ -29,8 +30,7 @@ class _BlogGirdPageState extends State<BlogGirdPage> {
         builder: (final context, final state) {
           if (state is PostMenuStateSussess) {
             return NestedScrollView(
-              headerSliverBuilder: (final context, final innerBoxIsScrolled) =>
-                  [
+              headerSliverBuilder: (final context, final _) => [
                 const SliverPersistentHeader(
                   delegate: HeaderFromBlogGridPage(title: 'BLOG'),
                 ),
@@ -92,6 +92,7 @@ class _BlogGirdPageState extends State<BlogGirdPage> {
                     height: 55,
                     child: const ButtonLeadMore(),
                   ),
+                  const FooterWidget(),
                 ],
               ),
             );

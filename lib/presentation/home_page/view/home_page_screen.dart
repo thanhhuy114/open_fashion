@@ -1,14 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/menu_arrival_response_model.dart';
-import '../../../widgets/appbar_custom_widget.dart';
-import '../../../widgets/menu_drawer_widget.dart';
-import '../bloc/drawer_bloc.dart';
 import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_bloc.dart';
 import '../widgets/Home_page_trending.dart';
+import '../widgets/app_bar.dart';
 import '../widgets/home_page_brand.dart';
 import '../widgets/home_page_collection.dart';
 import '../widgets/home_page_followus.dart';
@@ -27,14 +23,17 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
   List<ArrivalModel> menu = [];
-  List<JustForYouModel> jfu=[];
-  List<FollowUsModel> fu=[];
+  List<JustForYouModel> jfu = [];
+  List<FollowUsModel> fu = [];
   @override
   Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (final context) => HomePageBloc()..add(LoadHomePage()),
+        ),
+        BlocProvider(
+          create: (final context) => FooterBloc()..add(LoadFooter()),
         ),
       ],
       child: BlocBuilder<HomePageBloc, HomePageState>(
@@ -55,27 +54,35 @@ class _HomePageScreenState extends State<HomePageScreen> {
           }
           if (state is HomePageLoaded) {
             menu = state.menuArrival;
-            jfu=state.jfu;
-            fu=state.fu;
+            jfu = state.jfu;
+            fu = state.fu;
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: const PreferredSize(
+                preferredSize: Size.fromHeight(kToolbarHeight),
+                child: AppBarWidget(),
+              ),
+              drawer: Drawer(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                ),
+              ),
               body: SingleChildScrollView(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child:  Column(
+                  child: Column(
                     children: [
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            
-                          });
+                          setState(() {});
                         },
-                        child: const HomePageStack(),),
+                        child: const HomePageStack(),
+                      ),
                       const SizedBox(
                         height: 35,
                       ),
-                      HomePageNewArrival(menu: menu,),
+                      HomePageNewArrival(
+                        menu: menu,
+                      ),
                       const HomePageBrand(),
                       const SizedBox(
                         height: 35,
@@ -84,7 +91,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       const SizedBox(
                         height: 35,
                       ),
-                      HomePageJustForYou(jfu: jfu,),
+                      HomePageJustForYou(
+                        jfu: jfu,
+                      ),
                       const HomePageTrending(),
                       const SizedBox(
                         height: 20,
@@ -93,7 +102,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      HomePageFollowUs(fu: fu,),
+                      HomePageFollowUs(
+                        fu: fu,
+                      ),
                       const HomePageFooter(),
                     ],
                   ),

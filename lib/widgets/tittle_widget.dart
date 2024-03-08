@@ -22,7 +22,7 @@ class TittleWidget extends StatelessWidget {
             'assets/images/3.png',
             fit: BoxFit.cover,
             width: 125,
-            height: 10,
+            height: 15,
           ),
         ],
       ),
