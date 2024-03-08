@@ -17,7 +17,11 @@ class ShowValidator extends StatelessWidget {
       height: 20,
       child: Text(
         validate,
-        style: TextStyle(color: isValid ? Colors.red : Colors.green),
+        style: TextStyle(
+          color: isValid ? Colors.red : Colors.green,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+        ),
       ),
     );
   }
