@@ -1,7 +1,10 @@
 // ignore_for_file: only_throw_errors
 
+import 'dart:async';
+
 import '../models/blog_post.dart';
 import '../models/collections_response_model.dart';
+import '../models/contact_us_response_model.dart';
 import '../models/drawer_response_model.dart';
 import '../models/checkout_response_model.dart';
 import '../models/card_response_model.dart';
@@ -182,6 +185,21 @@ class Api {
       handleExceptionCase(result.code);
       return result;
     } catch (e) {
+      return null;
+    }
+  }
+  /*
+    Create by Thuan
+    Data: 08/03
+    Content: Lấy data cho contactus
+  */
+  Future<ContactUsResponseModel?> getContactUs() async{
+    try{
+      final res = await http.getRequest(EndPoints.contactUs);
+      final result = ContactUsResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    }catch(e){
       return null;
     }
   }
