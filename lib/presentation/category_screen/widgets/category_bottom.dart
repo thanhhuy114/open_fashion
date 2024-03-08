@@ -14,7 +14,7 @@ class Bottom extends StatelessWidget {
             children: [
               Image.asset('assets/img/Twitter.png'),
               Image.asset('assets/img/Instagram.png'),
-              Image.asset('assets/img/Youtube.png'),
+              Image.asset('assets/img/YouTube.png'),
             ],
           ),
         ),

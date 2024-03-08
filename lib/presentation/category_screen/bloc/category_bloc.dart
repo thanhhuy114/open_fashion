@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:open_fashion/network/api.dart';
-import 'package:open_fashion/presentation/category_screen/model/category.dart';
+import '../../../network/api.dart';
+
+import '../../../models/category.dart';
 
 part 'category_event.dart';
 part 'category_state.dart';

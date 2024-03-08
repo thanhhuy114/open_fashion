@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_fashion/presentation/category_screen/model/category.dart';
+
+import '../../../models/category.dart';
 
 class CategoryListViewCard extends StatelessWidget {
   const CategoryListViewCard({required this.mycat, super.key});

@@ -7,15 +7,15 @@ class MockApi {
     // EndPoints.home: 'home',
   };
 
-  static Future<Map<String, dynamic>?> get(String endpoint) async {
+  static Future<Map<String, dynamic>?> get(final String endpoint) async {
     return mock(endpoint: getJsonName(endpoint));
   }
 
-  static String? getJsonName(String endpoint) {
+  static String? getJsonName(final String endpoint) {
     return mapMockApi[endpoint];
   }
 
-  static Future<Map<String, dynamic>?> mock({String? endpoint}) async {
+  static Future<Map<String, dynamic>?> mock({final String? endpoint}) async {
     // the way how to load assets in packages
     final responseStr =
         await rootBundle.loadString('assets/mockups/$endpoint.json');

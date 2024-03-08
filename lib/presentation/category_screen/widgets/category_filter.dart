@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_fashion/presentation/category_screen/model/category_status_filer_manager.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_tag_filter.dart';
+import '../../../models/category_status_filer_manager.dart';
+import 'category_tag_filter.dart';
 
 class CategoryFilter extends StatefulWidget {
   const CategoryFilter({super.key});
