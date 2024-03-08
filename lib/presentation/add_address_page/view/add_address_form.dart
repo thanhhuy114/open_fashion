@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/add_address_form/add_address_bloc.dart';
-import '../widget/show_validator.dart';
+import '../widgets/show_validator.dart';
 
 class AddAdressForm extends StatefulWidget {
   const AddAdressForm({super.key});

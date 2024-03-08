@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../add_address_page/widget/show_validator.dart';
+import '../../add_address_page/widgets/show_validator.dart';
 import '../bloc/card_form/card_form_bloc.dart';
 
 /*
