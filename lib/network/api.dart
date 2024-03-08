@@ -12,6 +12,8 @@ import '../models/footer_response_model.dart';
 import '../models/menu_arrival_response_model.dart';
 import '../models/product_detail_layout_response_models.dart';
 import '../models/product_detail_response_models.dart';
+import '../models/category_data.dart';
+import '../models/category.dart';
 
 class Api {
   /* Api._internal();
@@ -29,6 +31,21 @@ class Api {
       'version': version,
       'token': tokenApi,
     };
+  }
+
+  static Future<CategoryData?> getCategoryDataResponse() async {
+    try {
+      final data = await http.getRequest(EndPoints.category);
+      return CategoryData.fromJson(data!);
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
+
+  static Future<List<Cat>?> getCategoryResponse() async {
+    final data = await getCategoryDataResponse();
+    return data!.data;
   }
 
   /* 
@@ -119,13 +136,13 @@ class Api {
     Data: 07/03
     Content: Lấy data cho Drawer
   */
-  Future<DrawerResponseModel?> getDrawer() async{
-    try{
+  Future<DrawerResponseModel?> getDrawer() async {
+    try {
       final res = await http.getRequest(EndPoints.drawer);
       final result = DrawerResponseModel.fromJson(res!);
       handleExceptionCase(result.code);
       return result;
-    }catch(e){
+    } catch (e) {
       return null;
     }
   }

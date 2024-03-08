@@ -13,6 +13,7 @@ class EndPoints {
   static const String register = '/api/basic/customer/createCustomer';
   static const String orderDetail = '/order_detail.json';
   static const String menu = '/menu.json';
+  static const String category = '/category.json';
   static const String menuArrival = '/menu_arrival.json';
   static const String footer = '/footer.json';
   static const String blogPost = '/blog_post_detail.json';
@@ -21,5 +22,4 @@ class EndPoints {
   static const String productDetailLayout = '/product_detail_layout2.json';
   static const String drawer = '/drawer.json';
   static const String completeCheckout = '/complete_checkout.json';
-
 }
