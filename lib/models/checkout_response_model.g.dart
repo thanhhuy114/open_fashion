@@ -6,7 +6,7 @@ part of 'checkout_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CompleteCheckoutResponeModel _$CheckoutResponeModelFromJson(
+CompleteCheckoutResponeModel _$CompleteCheckoutResponeModelFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutResponeModel(
       code: json['code'] as int?,
@@ -17,7 +17,7 @@ CompleteCheckoutResponeModel _$CheckoutResponeModelFromJson(
               json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CheckoutResponeModelToJson(
+Map<String, dynamic> _$CompleteCheckoutResponeModelToJson(
         CompleteCheckoutResponeModel instance) =>
     <String, dynamic>{
       'code': instance.code,
@@ -25,7 +25,8 @@ Map<String, dynamic> _$CheckoutResponeModelToJson(
       'data': instance.data,
     };
 
-CompleteCheckoutModel _$CheckoutModelFromJson(Map<String, dynamic> json) =>
+CompleteCheckoutModel _$CompleteCheckoutModelFromJson(
+        Map<String, dynamic> json) =>
     CompleteCheckoutModel(
       checkout: json['checkout'] == null
           ? null
@@ -33,12 +34,13 @@ CompleteCheckoutModel _$CheckoutModelFromJson(Map<String, dynamic> json) =>
               json['checkout'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CheckoutModelToJson(CompleteCheckoutModel instance) =>
+Map<String, dynamic> _$CompleteCheckoutModelToJson(
+        CompleteCheckoutModel instance) =>
     <String, dynamic>{
       'checkout': instance.checkout,
     };
 
-CompleteCheckoutModelInfo _$CheckoutModelInfoFromJson(
+CompleteCheckoutModelInfo _$CompleteCheckoutModelInfoFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutModelInfo(
       address: json['address'] as String?,
@@ -50,7 +52,7 @@ CompleteCheckoutModelInfo _$CheckoutModelInfoFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$CheckoutModelInfoToJson(
+Map<String, dynamic> _$CompleteCheckoutModelInfoToJson(
         CompleteCheckoutModelInfo instance) =>
     <String, dynamic>{
       'address': instance.address,

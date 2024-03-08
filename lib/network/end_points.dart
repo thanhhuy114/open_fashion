@@ -25,4 +25,7 @@ class EndPoints {
   //Thach 11:45 6/3 endpoin collection get data collecion
   static const String collections = '/collections.json';
   static const String card = '/cards.json';
+  static const String ourStory = '/our_story.json';
+
+
 }

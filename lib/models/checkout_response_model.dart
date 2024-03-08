@@ -9,8 +9,8 @@ class CompleteCheckoutResponeModel {
   CompleteCheckoutResponeModel({this.code, this.message, this.data});
 
   factory CompleteCheckoutResponeModel.fromJson(
-          final Map<String, dynamic> json) =>
-      _$CheckoutResponeModelFromJson(json);
+          final Map<String, dynamic> json,) =>
+      _$CompleteCheckoutResponeModelFromJson(json);
   int? code;
   String? message;
   CompleteCheckoutModel? data;
@@ -21,7 +21,7 @@ class CompleteCheckoutModel {
   CompleteCheckoutModel({this.checkout});
 
   factory CompleteCheckoutModel.fromJson(final Map<String, dynamic> json) =>
-      _$CheckoutModelFromJson(json);
+      _$CompleteCheckoutModelFromJson(json);
   CompleteCheckoutModelInfo? checkout;
 }
 
@@ -36,7 +36,7 @@ class CompleteCheckoutModelInfo {
   });
 
   factory CompleteCheckoutModelInfo.fromJson(final Map<String, dynamic> json) =>
-      _$CheckoutModelInfoFromJson(json);
+      _$CompleteCheckoutModelInfoFromJson(json);
   String? address;
   @JsonKey(name: 'address_detail')
   String? addressDetail;

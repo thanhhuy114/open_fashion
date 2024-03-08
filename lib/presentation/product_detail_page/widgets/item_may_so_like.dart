@@ -29,22 +29,25 @@ class _ItemMaySoLikeState extends State<ItemMaySoLike> {
             Positioned(
               child: Image.network(widget.categoryModel.image!),
             ),
-            Positioned(
-              bottom: 10,
-              right: 10,
-              child: IconButton(
-                onPressed: () {
-                  checkFavorite = !checkFavorite!;
-
-                  context.read<FavoriteCubit>().onTap(onT: checkFavorite);
-                },
-                icon: context.read<FavoriteCubit>().state
-                    ? const Icon(
-                        Icons.favorite_border_rounded,
-                        color: Colors.red,
-                      )
-                    : const Icon(Icons.favorite_border_rounded),
-              ),
+            BlocBuilder<FavoriteCubit, bool>(
+              builder: (final context, final state) {
+                return Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: IconButton(
+                    onPressed: () {
+                      checkFavorite = !checkFavorite!;
+                      context.read<FavoriteCubit>().onTap(onT: checkFavorite);
+                    },
+                    icon: context.read<FavoriteCubit>().state
+                        ? const Icon(
+                            Icons.favorite_border_rounded,
+                            color: Colors.red,
+                          )
+                        : const Icon(Icons.favorite_border_rounded),
+                  ),
+                );
+              },
             ),
           ],
         ),

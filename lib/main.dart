@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'presentation/category_screen/view/category_screen.dart';
+
+import 'presentation/product_detail_layout_page/views/product_detail_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CategoryScreen(),
+      home: const ProductDetailLayoutPage(),
     );
   }
 }
