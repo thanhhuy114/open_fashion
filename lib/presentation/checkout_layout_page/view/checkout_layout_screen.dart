@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
-import '../../../widgets/my_color.dart';
 import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
 import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
 import '../../complete_checkout_page/cubit/total/total_cubit.dart';
@@ -230,23 +229,28 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 130,),
+                    const SizedBox(
+                      height: 130,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
                           'TOTAL',
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 3,),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 3,
+                          ),
                         ),
                         Text(
                           r'$' '${widget.total.toInt()}',
                           style: const TextStyle(
-                              color: Color.fromRGBO(221, 133, 96, 1),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,letterSpacing: 3,),
+                            color: Color.fromRGBO(221, 133, 96, 1),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 3,
+                          ),
                         ),
                       ],
                     ),
