@@ -4,7 +4,7 @@ abstract class CardFormEvent extends Equatable {
   const CardFormEvent();
 
   @override
-  List<Object> props() => [];
+  List<Object> get props => [];
 }
 
 class CheckNameOnCardTextField extends CardFormEvent {

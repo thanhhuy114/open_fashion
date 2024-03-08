@@ -80,7 +80,7 @@ class AddAddressState extends Equatable {
   }
 
   @override
-  List<Object> props() => [
+  List<Object> get props => [
         isValidFirstName,
         isValidLastName,
         isValidAddress,
