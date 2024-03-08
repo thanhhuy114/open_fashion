@@ -6,13 +6,13 @@ class CardItem extends StatelessWidget {
     required this.cardNumber,
     required this.expDate,
     required this.cardName,
-    required this.cardLogoUrl,
+    this.cardLogoUrl,
     this.backgroundColor = Colors.black,
   });
   final String cardNumber;
   final String expDate;
   final String cardName;
-  final String cardLogoUrl;
+  final String? cardLogoUrl;
   final Color backgroundColor;
 
   @override
@@ -48,14 +48,14 @@ class CardItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Name of Card',
+                    cardName,
                     style: Theme.of(context)
                         .textTheme
                         .titleSmall!
                         .copyWith(color: Colors.white),
                   ),
                   Text(
-                    '12/27',
+                    expDate,
                     style: Theme.of(context)
                         .textTheme
                         .titleSmall!
@@ -69,7 +69,7 @@ class CardItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '2365 3654 2365 3698',
+                    cardNumber,
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge!

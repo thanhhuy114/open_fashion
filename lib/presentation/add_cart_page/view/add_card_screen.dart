@@ -12,9 +12,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/button.dart';
 import '../../../widgets/tittle_widget.dart';
+import '../bloc/bloc/card_list_bloc.dart';
 import '../bloc/card_form/card_form_bloc.dart';
 import 'card_form.dart';
 import 'card_item.dart';
+import 'card_list.dart';
 
 class AddCarDProviderScreen extends StatelessWidget {
   const AddCarDProviderScreen({super.key});
@@ -37,63 +39,46 @@ class _AddCardScreenState extends State<AddCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarCustom(),
-      body: Column(
-        children: [
-          //body
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  //Title
-                  TittleWidget(
-                    text: 'Add cart'.toUpperCase(),
-                  ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CardFormBloc(),
+          ),
+          BlocProvider(
+            create: (context) => CardListBloc()..add(LoadCardList()),
+          ),
+        ],
+        child: Column(
+          children: [
+            //body
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    //Title
+                    TittleWidget(
+                      text: 'Add cart'.toUpperCase(),
+                    ),
 
-                  //List Cart
-                  CarouselSlider(
-                    items: const [
-                      CardItem(
-                        cardName: 'Card Name',
-                        cardNumber: '2365 3654 2365 3698',
-                        expDate: '03/25',
-                        cardLogoUrl: '2',
-                        backgroundColor: Colors.amber,
-                      ),
-                      CardItem(
-                        cardName: 'Card Name',
-                        cardNumber: '2365 3654 2365 3698',
-                        expDate: '03/25',
-                        cardLogoUrl: '2',
-                      ),
-                      CardItem(
-                        cardName: 'Card Name',
-                        cardNumber: '2365 3654 2365 3698',
-                        expDate: '03/25',
-                        cardLogoUrl: '2',
-                        backgroundColor: Colors.redAccent,
-                      ),
-                    ],
-                    options: CarouselOptions(viewportFraction: 0.9),
-                  ),
+                    //List Cart
+                    const CardList(),
 
-                  //Form
-                  BlocProvider(
-                    create: (context) => CardFormBloc(),
-                    child: const CardForm(),
-                  )
-                ],
+                    //Form
+                    const CardForm(),
+                  ],
+                ),
               ),
             ),
-          ),
 
-          //button
-          BottomButtonCustom(
-            content: 'Add Cart',
-            height: 56,
-            width: MediaQuery.of(context).size.width,
-            onTap: () {},
-          )
-        ],
+            //button
+            BottomButtonCustom(
+              content: 'Add Cart',
+              height: 56,
+              width: MediaQuery.of(context).size.width,
+              onTap: () {},
+            )
+          ],
+        ),
       ),
     );
   }
