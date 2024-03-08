@@ -26,6 +26,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Drawer(
+          backgroundColor: Colors.white,
           child: BlocBuilder<DrawerBloc, DrawerState>(
             builder: (final context, final state) {
               if (state is DrawerLoading) {

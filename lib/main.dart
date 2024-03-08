@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'presentation/home_page/view/home_page_screen.dart';
 import 'presentation/product_detail_layout_page/views/product_detail_layout.dart';
 
 
@@ -16,10 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'TenorSans',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ProductDetailLayoutPage(),
+      home: const HomePageScreen(),
     );
   }
 }
