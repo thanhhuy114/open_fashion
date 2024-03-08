@@ -163,7 +163,6 @@ class DividerCustom extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width / 3,
-      height: 50,
       child: Stack(
         alignment: Alignment.center,
         children: [

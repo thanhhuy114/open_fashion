@@ -7,32 +7,37 @@ class PostCart extends StatelessWidget {
   const PostCart({
     super.key,
     required this.postSumary,
+    required this.onTap,
   });
 
+  final Function() onTap;
   final PostSummaryModel postSumary;
 
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-      color: Colors.white,
-      child: Column(
-        children: [
-          _buildPostImage(context),
-          const SizedBox(height: 10),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildTags(context),
-              Text(
-                getDatePublished(postSumary.datePublished),
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+        color: Colors.white,
+        child: Column(
+          children: [
+            _buildPostImage(context),
+            const SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTags(context),
+                Text(
+                  getDatePublished(postSumary.datePublished),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }

@@ -9,9 +9,11 @@
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/presentation/blog_post_page/bloc/bloc/blog_post_bloc.dart';
-import 'package:open_fashion/presentation/blog_post_page/widgets/tag.dart';
-import 'package:open_fashion/widgets/footer.dart';
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
+import '../bloc/bloc/blog_post_bloc.dart';
+import '../widgets/tag.dart';
+import '../../../widgets/footer.dart';
 
 class BLogPostScreen extends StatefulWidget {
   const BLogPostScreen({super.key});
@@ -22,18 +24,17 @@ class BLogPostScreen extends StatefulWidget {
 
 class _BLogPostScreenState extends State<BLogPostScreen> {
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    double marginAll = 20;
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    const double marginAll = 20;
 
     return BlocProvider(
-      create: (context) => BlogPostBloc()..add(LoadBlogPostEvent()),
+      create: (final context) => BlogPostBloc()..add(LoadBlogPostEvent()),
       child: Scaffold(
-        appBar: AppBar(
-          surfaceTintColor: Colors.transparent,
-        ),
+        appBar: const AppBarCustom(),
+        drawer: const MenuDrawer(),
         body: BlocListener<BlogPostBloc, BlogPostState>(
-          listener: (context, state) {
+          listener: (final context, final state) {
             if (state is BlogPostLoadFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -56,7 +57,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                 ),
                 automaticallyImplyLeading: false,
                 flexibleSpace: BlocBuilder<BlogPostBloc, BlogPostState>(
-                  builder: (context, state) {
+                  builder: (final context, final state) {
                     if (state is BlogPostLoaded) {
                       return Container(
                         height: size.width * 2 / 3 + 10,
@@ -86,11 +87,13 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                 surfaceTintColor: Colors.transparent,
                 automaticallyImplyLeading: false,
                 flexibleSpace: BlocBuilder<BlogPostBloc, BlogPostState>(
-                  builder: (context, state) {
+                  builder: (final context, final state) {
                     if (state is BlogPostLoaded) {
                       return Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 20, horizontal: marginAll),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: marginAll,
+                        ),
                         child: Text(
                           state.blogPost.titlePost!.toUpperCase(),
                           style: const TextStyle(
@@ -108,16 +111,17 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
               // Content 1
               SliverList.builder(
                 itemCount: 1,
-                itemBuilder: (context, index) {
+                itemBuilder: (final context, final index) {
                   return Column(
                     children: [
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (context, state) {
+                        builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
                             return Container(
                               width: size.width,
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: marginAll),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: marginAll,
+                              ),
                               color: Colors.white,
                               child: Text(
                                 state.blogPost.content!.substring(
@@ -125,9 +129,10 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                                   state.blogPost.content!.indexOf('\n'),
                                 ),
                                 style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    height: 2.4),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  height: 2.4,
+                                ),
                               ),
                             );
                           }
@@ -143,7 +148,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
 
                       //slide image
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (context, state) {
+                        builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
                             final List<BannerModel> bannerModels = [];
                             for (int index = 0;
@@ -158,8 +163,10 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                             }
                             return Container(
                               width: size.width,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: marginAll, vertical: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: marginAll,
+                                vertical: 20,
+                              ),
                               color: Colors.white,
                               child: BannerCarousel.fullScreen(
                                 height: 500,
@@ -174,7 +181,6 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                                   height: 7,
                                   spaceBetween: 5,
                                 ),
-                                borderRadius: 0,
                                 banners: bannerModels,
                               ),
                             );
@@ -191,18 +197,19 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
 
                       //Content 2
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (context, state) {
+                        builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
                             return Container(
                               width: size.width,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: marginAll,
                               ),
                               color: Colors.white,
                               child: Text(
                                 state.blogPost.content!.substring(
-                                    state.blogPost.content!.indexOf('\n') + 1,
-                                    state.blogPost.content!.length),
+                                  state.blogPost.content!.indexOf('\n') + 1,
+                                  state.blogPost.content!.length,
+                                ),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
@@ -219,19 +226,22 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
 
                       // Post by / Date
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (context, state) {
+                        builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
                             return Container(
                               width: size.width,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: marginAll, vertical: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: marginAll,
+                                vertical: 20,
+                              ),
                               color: Colors.white,
                               child: Text(
                                 'Posted by ${state.blogPost.postBy} | ${state.blogPost.postDate}',
                                 style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    height: 2.4),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  height: 2.4,
+                                ),
                               ),
                             );
                           }
@@ -243,16 +253,18 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
 
                       //Tag
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (context, state) {
+                        builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
                             return Container(
                               width: size.width,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: marginAll, vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: marginAll,
+                                vertical: 10,
+                              ),
                               color: Colors.white,
                               child: ListTag(
                                 tags: state.blogPost.tag!,
-                                clickTag: (p0) => (),
+                                clickTag: (final p0) => (),
                               ),
                             );
                           }
@@ -265,11 +277,11 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                       //Footer
                       const FooterWidget(
                         email: 'support@openui.design',
-                      )
+                      ),
                     ],
                   );
                 },
-              )
+              ),
             ],
           ),
         ),

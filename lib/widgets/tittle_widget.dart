@@ -14,11 +14,9 @@ class TittleWidget extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Container(
       color: const Color.fromARGB(255, 255, 255, 255),
-      height: 75.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // const SizedBox(height: 15),
           //Thach 14:00 7/3 Add letterSpasing for Text
           Text(
             text,
@@ -27,7 +25,7 @@ class TittleWidget extends StatelessWidget {
                 .titleLarge!
                 .copyWith(letterSpacing: 4),
           ),
-
+          const SizedBox(height: 2),
           //Thach 14:00 7/3 Change img become Dividercustom
           const DividerCustom(),
         ],
