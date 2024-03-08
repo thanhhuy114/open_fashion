@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/footer.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/product_detail_bloc.dart';
 import '../cubit/pick_color/color_cubit.dart';
 import '../cubit/pick_favorie/favorite_cubit.dart';
@@ -64,6 +65,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: const AppBarCustom(),
+        drawer: const MenuDrawer(),
         body: BlocBuilder<ProductDetailBloc, ProductDetailState>(
           builder: (final context, final state) {
             switch (state) {

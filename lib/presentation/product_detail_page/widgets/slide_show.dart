@@ -1,11 +1,12 @@
+// ignore_for_file: avoid_bool_literals_in_conditional_expressions
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import '../../../models/product_detail_response_models.dart';
 import '../../../widgets/my_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'rhombus_indicator.dart';
 
 class SlideShowProductDetail extends StatefulWidget {
   const SlideShowProductDetail({
@@ -33,7 +34,6 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
         effect: const WormEffect(
           paintStyle: PaintingStyle.stroke,
           radius: BorderSide.strokeAlignOutside,
-          type: WormType.thinUnderground,
           activeDotColor: Colors.grey,
           dotHeight: 10,
           dotWidth: 10,
@@ -46,7 +46,6 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
         effect: const WormEffect(
           paintStyle: PaintingStyle.stroke,
           radius: BorderSide.strokeAlignOutside,
-          type: WormType.thinUnderground,
           activeDotColor: Colors.grey,
           dotHeight: 10,
           dotWidth: 10,
@@ -178,7 +177,31 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
           ],
         ),
         const SizedBox(height: 13),
-        if (widget.checkCategory) const SizedBox() else buildIndicator(),
+        if (widget.checkCategory)
+          const SizedBox()
+        else
+          SizedBox(
+            height: 15,
+            width: double.infinity,
+            child: Center(
+              child: ListView.builder(
+                itemCount: widget.image.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (final context, final index) {
+                  return Container(
+                    margin: const EdgeInsets.all(2),
+                    height: 10,
+                    width: 10,
+                    child: RhombusIndicator(
+                      color: Colors.amber,
+                      checkIndex: activeIndex == index ? true : false,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         if (widget.checkCategory)
           SizedBox(
             width: MediaQuery.of(context).size.width,

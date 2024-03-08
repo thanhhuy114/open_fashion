@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../../../widgets/my_color.dart';
 import '../../../widgets/tittle_widget.dart';
 import '../../payment_page/views/payment.dart';
@@ -56,6 +57,7 @@ class CompleteCheckoutPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: const AppBarCustom(),
+        drawer: const MenuDrawer(),
         body: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
           builder: (final context, final state) {
             switch (state) {

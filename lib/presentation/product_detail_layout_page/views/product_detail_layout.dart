@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/footer.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/product_detail_layout_bloc.dart';
 import '../../product_detail_page/cubit/pick_color/color_cubit.dart';
 import '../../product_detail_page/cubit/pick_favorie/favorite_cubit.dart';
@@ -231,6 +232,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
             }
           },
         ),
+        drawer: const MenuDrawer(),
       ),
     );
   }

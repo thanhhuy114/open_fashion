@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../../complete_checkout_page/widgets/button_custom.dart';
 import '../bloc/our_story_bloc.dart';
 
@@ -13,6 +14,7 @@ class OurStoryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const AppBarCustom(),
+      drawer: const MenuDrawer(),
       body: BlocProvider(
         create: (final context) => OurStoryBloc()..add(OurStoryLoadedEvent()),
         child: BlocBuilder<OurStoryBloc, OurStoryState>(
@@ -73,7 +75,9 @@ class OurStoryPage extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: Text(state.ourStoryModel!.ourStory!.signUp!),
+                            child: Text(
+                              state.ourStoryModel!.ourStory!.signUp!,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
