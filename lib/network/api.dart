@@ -3,6 +3,7 @@
 import '../models/blog_post.dart';
 import '../models/drawer_response_model.dart';
 import '../models/checkout_response_model.dart';
+import '../models/our_story_response_model.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
@@ -176,6 +177,17 @@ class Api {
     try {
       final response = await http.getRequest(EndPoints.completeCheckout);
       final result = CompleteCheckoutResponeModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
+
+   static Future<OurStoryResponseModel> getOurStory() async {
+    try {
+      final response = await http.getRequest(EndPoints.ourStory);
+      final result = OurStoryResponseModel.fromJson(response!);
       return result;
     } catch (e) {
       log('load faild');
