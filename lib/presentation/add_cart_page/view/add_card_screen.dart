@@ -4,18 +4,15 @@
   content: Add new cart screen
 */
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/appbar_custom_widget.dart';
-import '../../../widgets/button.dart';
+import '../widgets/button.dart';
 import '../../../widgets/tittle_widget.dart';
 import '../bloc/bloc/card_list_bloc.dart';
 import '../bloc/card_form/card_form_bloc.dart';
 import 'card_form.dart';
-import 'card_item.dart';
 import 'card_list.dart';
 
 class AddCarDProviderScreen extends StatelessWidget {

@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/appbar_custom_widget.dart';
-import '../../../widgets/button.dart';
+import '../widgets/button.dart';
 import '../../../widgets/tittle_widget.dart';
 import '../bloc/add_address_form/add_address_bloc.dart';
 import 'add_address_form.dart';
