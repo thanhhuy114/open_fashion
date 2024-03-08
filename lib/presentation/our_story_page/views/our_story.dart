@@ -74,18 +74,20 @@ class OurStoryPage extends StatelessWidget {
                             style: TextStyle(fontSize: 20, letterSpacing: 4),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: Text(
-                              state.ourStoryModel!.ourStory!.signUp!,
-                            ),
-                          ),
-                          Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 145,
                             ),
                             child: Image.asset(
                               'assets/images/3.png',
                               height: 10,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            child: Align(
+                              child: Text(
+                                state.ourStoryModel!.ourStory!.signUp!,
+                              ),
                             ),
                           ),
                         ],
