@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/models/product_detail_response_models.dart';
-import 'package:open_fashion/presentation/product_detail_page/cubit/pick_color/color_cubit.dart';
-import 'package:open_fashion/widgets/my_color.dart';
+import '../../../models/product_detail_response_models.dart';
+import '../cubit/pick_color/color_cubit.dart';
+import '../../../widgets/my_color.dart';
 
 class ChooseColor extends StatefulWidget {
   const ChooseColor({super.key, required this.productDetailModel});
@@ -12,7 +12,7 @@ class ChooseColor extends StatefulWidget {
 }
 
 class _ChooseColorState extends State<ChooseColor> {
-  Color getColor(int id) {
+  Color getColor(final int id) {
     if (id == 1) {
       return Colors.black;
     } else if (id == 2) {
@@ -23,9 +23,9 @@ class _ChooseColorState extends State<ChooseColor> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BlocBuilder<ColorCubit, int>(
-      builder: (context, state) {
+      builder: (final context, final state) {
         return Expanded(
           child: Row(
             children: [
@@ -38,7 +38,7 @@ class _ChooseColorState extends State<ChooseColor> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: widget.productDetailModel.color!.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (final context, final index) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 6),
                         child: GestureDetector(
@@ -49,19 +49,20 @@ class _ChooseColorState extends State<ChooseColor> {
                             height: 24,
                             width: 24,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                border:
-                                    context.read<ColorCubit>().state == index
-                                        ? Border.all(color: Colors.grey)
-                                        : Border.all(color: Colors.white)),
+                              borderRadius: BorderRadius.circular(50),
+                              border: context.read<ColorCubit>().state == index
+                                  ? Border.all(color: Colors.grey)
+                                  : Border.all(color: Colors.white),
+                            ),
                             child: ClipOval(
                               child: Container(
                                 decoration: BoxDecoration(
                                   border:
                                       Border.all(color: Colors.white, width: 2),
                                   borderRadius: BorderRadius.circular(50),
-                                  color: getColor(widget
-                                      .productDetailModel.color![index].id!),
+                                  color: getColor(
+                                    widget.productDetailModel.color![index].id!,
+                                  ),
                                 ),
                               ),
                             ),

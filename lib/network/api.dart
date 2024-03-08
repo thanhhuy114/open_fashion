@@ -1,5 +1,8 @@
+// ignore_for_file: only_throw_errors
+
 import '../models/blog_post.dart';
 import '../models/drawer_response_model.dart';
+import '../models/checkout_response_model.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
@@ -151,17 +154,28 @@ class Api {
   //     return null;
   //   }
   // }
+
   /*
     Create by: VieHao
     Date: 
     Content: 
   */
-
   static Future<ProductDetailLayoutResponseModel>
       getProductDetailLayout() async {
     try {
       final response = await http.getRequest(EndPoints.productDetailLayout);
       final result = ProductDetailLayoutResponseModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
+
+  static Future<CompleteCheckoutResponeModel> getCheckout() async {
+    try {
+      final response = await http.getRequest(EndPoints.completeCheckout);
+      final result = CompleteCheckoutResponeModel.fromJson(response!);
       return result;
     } catch (e) {
       log('load faild');

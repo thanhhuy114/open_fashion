@@ -20,4 +20,6 @@ class EndPoints {
   static const String productDetail = '/product_detail.json';
   static const String productDetailLayout = '/product_detail_layout2.json';
   static const String drawer = '/drawer.json';
+  static const String completeCheckout = '/complete_checkout.json';
+
 }

@@ -8,6 +8,10 @@ sealed class ProductDetailState extends Equatable {
 
 final class ProductDetailInitial extends ProductDetailState {}
 
+final class ProductDetailLoading extends ProductDetailState {
+  const ProductDetailLoading();
+}
+
 final class ProductDetailLoaded extends ProductDetailState {
   const ProductDetailLoaded({this.productDetailModel});
   final ProductDetailModel? productDetailModel;
@@ -15,4 +19,9 @@ final class ProductDetailLoaded extends ProductDetailState {
   List<Object> get props => [productDetailModel!];
 }
 
-final class ProductDetailError extends ProductDetailState {}
+final class ProductDetailError extends ProductDetailState {
+  const ProductDetailError({this.errorMessage});
+  final String? errorMessage;
+  @override
+  List<Object> get props => [errorMessage!];
+}
