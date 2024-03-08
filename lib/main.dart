@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'presentation/checkout_layout_page/view/checkout_layout_screen.dart';
 import 'presentation/checkout_page/view/checkout_screen.dart';
+import 'presentation/contact_us_page/view/contact_us_screen.dart';
 import 'presentation/home_page/view/home_page_screen.dart';
 import 'widgets/text_theme_custom.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: TextThemeCustom(),
       ),
-      home:const HomePageScreen(),
+      home:const ContactUsScreen(),
     );
   }
 }
