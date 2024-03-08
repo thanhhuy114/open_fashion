@@ -59,7 +59,7 @@ class CompleteCheckoutPage extends StatelessWidget {
         body: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
           builder: (final context, final state) {
             switch (state) {
-              case CompleteCheckoutInitial():
+              case CompleteCheckoutLoading():
                 return const Scaffold(
                   body: Center(
                     child: CircularProgressIndicator(),

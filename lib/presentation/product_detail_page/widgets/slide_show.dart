@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../../../models/product_detail_response_models.dart';
 import '../../../widgets/my_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -19,6 +21,7 @@ class SlideShowProductDetail extends StatefulWidget {
 
 class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
   int activeIndex = 0;
+  int activeIndexFull = 0;
 
   final CarouselController _controller = CarouselController();
   Widget buildImage({final String? urlImage}) => CachedNetworkImage(
@@ -36,6 +39,19 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
           dotWidth: 10,
         ),
         activeIndex: activeIndex,
+        count: widget.image.length,
+      );
+
+  Widget buildIndicatorFull() => AnimatedSmoothIndicator(
+        effect: const WormEffect(
+          paintStyle: PaintingStyle.stroke,
+          radius: BorderSide.strokeAlignOutside,
+          type: WormType.thinUnderground,
+          activeDotColor: Colors.grey,
+          dotHeight: 10,
+          dotWidth: 10,
+        ),
+        activeIndex: activeIndexFull,
         count: widget.image.length,
       );
   @override
@@ -75,55 +91,71 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
                   showDialog(
                     context: context,
                     builder: (final context) {
-                      return AnimatedBuilder(
-                        animation: ModalRoute.of(context)!.animation!,
-                        builder:
-                            (final BuildContext context, final Widget? child) {
-                          return Transform.scale(
-                            scale: ModalRoute.of(context)!.animation!.value,
-                            child: Stack(
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height,
-                                  child: CarouselSlider.builder(
-                                    carouselController: CarouselController(),
-                                    disableGesture:
-                                        EditableText.debugDeterministicCursor,
-                                    itemCount: widget.image.length,
-                                    itemBuilder: (
-                                      final _,
-                                      final index,
-                                      final realIndex,
-                                    ) {
-                                      return buildImage(
-                                        urlImage: widget.image[index].url,
-                                      );
-                                    },
-                                    options: CarouselOptions(
-                                      viewportFraction: 1.0,
-                                      height: double.infinity,
-                                      onPageChanged:
-                                          (final index, final reason) {
-                                        setState(() {
-                                          activeIndex = index;
-                                        });
-                                      },
+                      return StatefulBuilder(
+                        builder: (final context, final setState) {
+                          return AnimatedBuilder(
+                            animation: ModalRoute.of(context)!.animation!,
+                            builder: (
+                              final BuildContext context,
+                              final Widget? child,
+                            ) {
+                              return Transform.scale(
+                                scale: ModalRoute.of(context)!.animation!.value,
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      child: CarouselSlider.builder(
+                                        carouselController:
+                                            CarouselController(),
+                                        disableGesture: EditableText
+                                            .debugDeterministicCursor,
+                                        itemCount: widget.image.length,
+                                        itemBuilder: (
+                                          final _,
+                                          final index,
+                                          final realIndex,
+                                        ) {
+                                          return buildImage(
+                                            urlImage: widget.image[index].url,
+                                          );
+                                        },
+                                        options: CarouselOptions(
+                                          viewportFraction: 1.0,
+                                          height: double.infinity,
+                                          onPageChanged:
+                                              (final index, final reason) {
+                                            setState(() {
+                                              activeIndexFull = index;
+                                            });
+                                          },
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: IconButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(Icons.close),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: buildIndicatorFull(),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Positioned(
-                                  top: 0,
-                                  right: 0,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: const Icon(Icons.close),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              );
+                            },
                           );
                         },
                       );
