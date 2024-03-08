@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ItemReminder extends StatelessWidget {
-  const ItemReminder(
-      {super.key, required this.image, required this.txtReminder});
+  const ItemReminder({
+    super.key,
+    required this.image,
+    required this.txtReminder,
+  });
   final String image;
   final String txtReminder;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
@@ -15,7 +18,7 @@ class ItemReminder extends StatelessWidget {
             image,
           ),
           const SizedBox(width: 10),
-          Text(txtReminder)
+          Text(txtReminder),
         ],
       ),
     );

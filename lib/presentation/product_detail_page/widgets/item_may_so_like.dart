@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/models/product_detail_response_models.dart';
-import 'package:open_fashion/presentation/product_detail_page/cubit/pick_favorie/favorite_cubit.dart';
-import 'package:open_fashion/widgets/my_color.dart';
+import '../../../models/product_detail_response_models.dart';
+import '../cubit/pick_favorie/favorite_cubit.dart';
+import '../../../widgets/my_color.dart';
 
 class ItemMaySoLike extends StatefulWidget {
   const ItemMaySoLike({super.key, required this.categoryModel});
@@ -17,11 +17,11 @@ class _ItemMaySoLikeState extends State<ItemMaySoLike> {
   @override
   void initState() {
     super.initState();
-    checkFavorite = widget.categoryModel.isFavorite!;
+    checkFavorite = widget.categoryModel.isFavorite;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       children: [
         Stack(
@@ -33,17 +33,18 @@ class _ItemMaySoLikeState extends State<ItemMaySoLike> {
               bottom: 10,
               right: 10,
               child: IconButton(
-                  onPressed: () {
-                    checkFavorite = !checkFavorite!;
+                onPressed: () {
+                  checkFavorite = !checkFavorite!;
 
-                    context.read<FavoriteCubit>().onTap(onT: checkFavorite!);
-                  },
-                  icon: context.read<FavoriteCubit>().state
-                      ? const Icon(
-                          Icons.favorite_border_rounded,
-                          color: Colors.red,
-                        )
-                      : const Icon(Icons.favorite_border_rounded)),
+                  context.read<FavoriteCubit>().onTap(onT: checkFavorite);
+                },
+                icon: context.read<FavoriteCubit>().state
+                    ? const Icon(
+                        Icons.favorite_border_rounded,
+                        color: Colors.red,
+                      )
+                    : const Icon(Icons.favorite_border_rounded),
+              ),
             ),
           ],
         ),
@@ -62,7 +63,7 @@ class _ItemMaySoLikeState extends State<ItemMaySoLike> {
             ),
             const SizedBox(height: 20),
           ],
-        )
+        ),
       ],
     );
   }

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/presentation/product_detail_page/cubit/pick_favorie/favorite_cubit.dart';
+import '../cubit/pick_favorie/favorite_cubit.dart';
 
 class ButtonBasket extends StatefulWidget {
   const ButtonBasket({super.key});
@@ -20,7 +20,7 @@ class _ButtonBasketState extends State<ButtonBasket> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       color: Colors.black,
       height: 56,
@@ -47,21 +47,22 @@ class _ButtonBasketState extends State<ButtonBasket> {
               ],
             ),
             BlocBuilder<FavoriteCubit, bool>(
-              builder: (context, state) {
+              builder: (final context, final state) {
                 return IconButton(
-                    onPressed: () {
-                      setState(() {
-                        checkFavorite = !checkFavorite;
-                      });
-                    },
-                    icon: checkFavorite
-                        ? const Icon(Icons.favorite_sharp, color: Colors.red)
-                        : const Icon(
-                            Icons.favorite_sharp,
-                            color: Colors.white,
-                          ));
+                  onPressed: () {
+                    setState(() {
+                      checkFavorite = !checkFavorite;
+                    });
+                  },
+                  icon: checkFavorite
+                      ? const Icon(Icons.favorite_sharp, color: Colors.red)
+                      : const Icon(
+                          Icons.favorite_sharp,
+                          color: Colors.white,
+                        ),
+                );
               },
-            )
+            ),
           ],
         ),
       ),

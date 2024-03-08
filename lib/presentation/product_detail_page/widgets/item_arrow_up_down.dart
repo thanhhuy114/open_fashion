@@ -3,7 +3,11 @@
 import 'package:flutter/material.dart';
 
 class ItemPolicy extends StatefulWidget {
-  ItemPolicy({super.key, required this.checkArrow, required this.name, required this.icon});
+  ItemPolicy(
+      {super.key,
+      required this.checkArrow,
+      required this.name,
+      required this.icon});
   Function checkArrow;
   final String name;
   Icon icon;
@@ -14,18 +18,18 @@ class ItemPolicy extends StatefulWidget {
 class _ItemPolicyState extends State<ItemPolicy> {
   bool check = false;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-          widget.icon,
+            widget.icon,
             const SizedBox(width: 10),
             Text(
               widget.name,
               style: const TextStyle(fontWeight: FontWeight.w500),
-            )
+            ),
           ],
         ),
         IconButton(
@@ -38,7 +42,7 @@ class _ItemPolicyState extends State<ItemPolicy> {
           icon: check
               ? const Icon(Icons.keyboard_arrow_up_rounded)
               : const Icon(Icons.keyboard_arrow_down_rounded),
-        )
+        ),
       ],
     );
   }

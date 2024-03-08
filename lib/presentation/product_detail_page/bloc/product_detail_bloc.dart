@@ -1,27 +1,26 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:open_fashion/models/product_detail_response_models.dart';
-import 'package:open_fashion/network/api.dart';
-
+import '../../../models/product_detail_response_models.dart';
+import '../../../network/api.dart';
 part 'product_detail_event.dart';
 part 'product_detail_state.dart';
 
 class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
-  ProductDetailBloc() : super(ProductDetailInitial()) {
+  ProductDetailBloc() : super(const ProductDetailLoading()) {
     on<ProductDetailLoadedEvent>(_onProductDetailEvent);
   }
 
   FutureOr<void> _onProductDetailEvent(
-      ProductDetailLoadedEvent event, Emitter<ProductDetailState> emit) async {
+    final ProductDetailLoadedEvent event,
+    final Emitter<ProductDetailState> emit,
+  ) async {
+    emit(const ProductDetailLoading());
     try {
       final productDetailModel = await Api.getProductDetail();
-      log(productDetailModel.data!.runtimeType.toString());
       emit(ProductDetailLoaded(productDetailModel: productDetailModel.data));
     } catch (e) {
-      emit(ProductDetailError());
+      emit(ProductDetailError(errorMessage: e.toString()));
     }
   }
 }
