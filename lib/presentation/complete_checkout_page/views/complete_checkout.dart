@@ -260,7 +260,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                 );
                               },
                               icon: const Icon(
-                                Icons.shopping_bag,
+                                Icons.shopping_bag_outlined,
                                 color: Colors.white,
                               ),
                             ),
