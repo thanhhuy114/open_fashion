@@ -8,7 +8,7 @@ part 'home_page_event.dart';
 part 'home_page_state.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
-  HomePageBloc() : super(HomePageInitial()) {
+  HomePageBloc() : super(HomePageLoading()) {
     on<LoadHomePage>(_onHomePage);
   }
   final Api api = Api();
@@ -16,7 +16,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     final LoadHomePage event,
     final Emitter<HomePageState> emit,
   ) async {
-    emit(HomePageInitial());
+    emit(HomePageLoading());
     try {
       final data = await api.getMenuArrival();
       emit(

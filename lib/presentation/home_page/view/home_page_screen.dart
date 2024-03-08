@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/menu_arrival_response_model.dart';
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_bloc.dart';
 import '../widgets/Home_page_trending.dart';
@@ -38,7 +40,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
       ],
       child: BlocBuilder<HomePageBloc, HomePageState>(
         builder: (final context, final state) {
-          if (state is HomePageInitial) {
+          if (state is HomePageLoading) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
@@ -57,15 +59,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
             jfu = state.jfu;
             fu = state.fu;
             return Scaffold(
-              appBar: const PreferredSize(
-                preferredSize: Size.fromHeight(kToolbarHeight),
-                child: AppBarWidget(),
-              ),
-              drawer: Drawer(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                ),
-              ),
+              appBar: const AppBarCustom(),
+              drawer: const MenuDrawer(),
               body: SingleChildScrollView(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -91,9 +86,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       const SizedBox(
                         height: 35,
                       ),
-                      HomePageJustForYou(
-                        jfu: jfu,
-                      ),
+                      HomePageJustForYou(jfu: jfu,),
+                      const SizedBox(height: 35,),
                       const HomePageTrending(),
                       const SizedBox(
                         height: 20,

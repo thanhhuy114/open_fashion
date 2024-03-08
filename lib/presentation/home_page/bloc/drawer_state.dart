@@ -7,7 +7,7 @@ sealed class DrawerState extends Equatable {
   List<Object> get props => [];
 }
 
-final class DrawerInitial extends DrawerState {}
+final class DrawerLoading extends DrawerState {}
 class DrawerLoaded extends DrawerState{
   DrawerLoaded({this.drawerData=const<DrawerModel>[]});
   final List<DrawerModel> drawerData;

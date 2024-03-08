@@ -57,15 +57,15 @@ class RhombusClipper extends CustomClipper<Path> {
 }
 
 class Rhombus extends StatelessWidget {
-  const Rhombus({super.key});
-
+  const Rhombus({super.key, required this.color});
+  final Color? color;
   @override
   Widget build(final BuildContext context) {
     return RhombusContainer(
       child: Container(
         width: 6,
         height: 6,
-        color: Colors.orange[700],
+        color: color,
         child: const Text(''),
         ),
       );

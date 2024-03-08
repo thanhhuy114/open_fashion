@@ -13,7 +13,7 @@ class HomePageFooter extends StatelessWidget {
       create: (final context) => FooterBloc()..add(LoadFooter()),
       child: BlocBuilder<FooterBloc, FooterState>(
         builder: (final context, final state) {
-          if (state is FooterInitial) {
+          if (state is FooterLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -36,14 +36,9 @@ class HomePageFooter extends StatelessWidget {
                       const SizedBox(
                         width: 35,
                       ),
-                      Container(
-                        color: Colors.black,
-                        child: const FaIcon(
-                          FontAwesomeIcons.instagram,
-                          color: Colors.white,
-                          size: 19.2,
-                        ),
-                      ),
+                      SizedBox(
+                        width: 32,
+                        child: Image.asset('assets/icons/Instagram.jpg'),),
                       const SizedBox(
                         width: 35,
                       ),

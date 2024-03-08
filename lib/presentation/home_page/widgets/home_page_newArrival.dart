@@ -54,6 +54,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
           margin: const EdgeInsets.only(left: 50),
           height: 50,
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: itemTab.length,
             itemBuilder: (final context, final index) {
@@ -83,10 +84,11 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width + 200,
           child: GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 1,
-              mainAxisSpacing: 5,
+              mainAxisSpacing: 30,
               childAspectRatio: 0.75,
             ),
             itemCount: items.length,
@@ -145,7 +147,7 @@ class ItemTab extends StatelessWidget {
                 color: isSelected ? Colors.black : Colors.grey[400],),
           ),
           if (isSelected)
-            const Rhombus(),
+            Rhombus(color: Colors.orange[700],),
         ],
       ),
     );

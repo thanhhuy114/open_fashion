@@ -44,7 +44,7 @@ class ItemProduct extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  r'$' '${productItem.price!}',
+                  r'$' '${productItem.price!.toInt()}',
                   style: const TextStyle(
                     color: MyColor.primaryColor,
                     fontSize: 17,
