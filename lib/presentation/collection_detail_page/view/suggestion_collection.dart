@@ -7,6 +7,11 @@ import 'suggestion_collection_item.dart';
   Create by: Thach
   Date: 6/3 17:00
   Content: Phân gợi ý xem về các collection
+  
+  Modifi:Thach
+  Date: 11/3 10:26
+  Content 
+    line 47 image: collections[index].collectionImage ?? '', collectionName: collections[index].collectionName ?? ''
  */
 class SuggestionCollection extends StatelessWidget {
   const SuggestionCollection({super.key, required this.collections});
@@ -39,8 +44,10 @@ class SuggestionCollection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: collections.length,
               itemBuilder: (context, index) => SuggestionCollectionItem(
-                image: collections[index].collectionImage!,
-                collectionName: collections[index].collectionName!,
+                // image: collections[index].collectionImage!,
+                // collectionName: collections[index].collectionName!
+                image: collections[index].collectionImage ?? '',
+                collectionName: collections[index].collectionName ?? '',
               ),
             ),
           ),

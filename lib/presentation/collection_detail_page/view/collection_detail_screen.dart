@@ -2,6 +2,11 @@
   Create by: Thach
   Date: 13:00 6/3
   Content: Collectiondetail Screen
+
+  Modify: Thach 
+  Date: 10:21 11/3
+  Content: line 107 Thêm kiểm trả null
+  line 150 Kiểm tra item null thì []
  */
 
 import 'package:flutter/material.dart';
@@ -49,8 +54,8 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              state.colletion.collectionName!
-                                  .replaceAll(' collection', ''),
+                              (state.colletion.collectionName ?? '')
+                                  .replaceAll('collection', ''),
                               style: const TextStyle(
                                 fontSize: 42,
                                 fontFamily: 'BodoniModa',
@@ -104,19 +109,28 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                 BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
                   builder: (context, state) {
                     if (state is CollectionDetailLoaded) {
-                      return Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        width: size.width,
-                        height: size.width / (3 / 4),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                              state.colletion.collectionImage!,
-                            ),
-                          ),
-                        ),
-                      );
+                      return state.colletion.collectionImage == null
+                          ? Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              width: size.width,
+                              height: size.width / (3 / 4),
+                              child: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              width: size.width,
+                              height: size.width / (3 / 4),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    state.colletion.collectionImage!,
+                                  ),
+                                ),
+                              ),
+                            );
                     }
                     return Container(
                       margin: const EdgeInsets.only(top: 10),
@@ -134,7 +148,7 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                   builder: (context, state) {
                     if (state is CollectionDetailLoaded) {
                       return CollectionItemRowList(
-                        items: state.colletion.items!,
+                        items: state.colletion.items ?? [],
                       );
                     }
                     return Container(

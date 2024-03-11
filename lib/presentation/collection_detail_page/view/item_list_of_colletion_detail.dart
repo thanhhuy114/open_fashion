@@ -1,13 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../../../models/collections_response_model.dart';
 
 /*
   Create by: Thach
   Date: 6/3 16:15
   Conntent: Danh sách các sản phẩm của bộ sưu tập
+  
+  Modify: Thach
+  Date: 11/3 10:24
+  Content: 
+    line 33
+    line 71
+    line 83
  */
 
 // Item of collection
@@ -26,28 +30,36 @@ class ItemOfCollectionWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: sizeItem.width,
-            height: sizeItem.height - 20,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(item.image!),
-              ),
-            ),
-            child: Stack(
-              children: [
-                Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: Image.asset(
-                    'assets/icons/Heart.png',
-                    width: 20,
+          item.image == null
+              ? SizedBox(
+                  width: sizeItem.width,
+                  height: sizeItem.height - 20,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : Container(
+                  width: sizeItem.width,
+                  height: sizeItem.height - 20,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(item.image!),
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        bottom: 10,
+                        right: 10,
+                        child: Image.asset(
+                          'assets/icons/Heart.png',
+                          width: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 5),
             padding: const EdgeInsets.only(left: 5),
@@ -55,9 +67,9 @@ class ItemOfCollectionWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  item.name!.length > 20
-                      ? '${item.name!.substring(0, 26)}...'
-                      : item.name!,
+                  (item.name ?? '').length > 20
+                      ? '${item.name!.substring(0, 20)}...'
+                      : item.name ?? '',
                   style: const TextStyle(
                     height: 1.5,
                     fontSize: 15,
@@ -66,9 +78,9 @@ class ItemOfCollectionWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  item.description!.length > 20
+                  (item.description ?? '').length > 20
                       ? '${item.description!.substring(0, 20)}...'
-                      : item.description!,
+                      : item.description ?? '',
                   style: const TextStyle(
                     fontSize: 14,
                     height: 1.5,
@@ -77,7 +89,7 @@ class ItemOfCollectionWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${item.price}\$',
+                  '${item.price ?? 0}\$',
                   style: const TextStyle(
                     fontSize: 16,
                     height: 2,
