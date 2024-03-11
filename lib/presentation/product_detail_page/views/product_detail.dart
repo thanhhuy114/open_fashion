@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_positional_boolean_parameters
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
@@ -102,7 +101,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      state.productDetailModel!.name!
+                                      state.productDetailModel!.productItem!
+                                          .name!
                                           .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 19,
@@ -114,7 +114,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  state.productDetailModel!.description!,
+                                  state.productDetailModel!.productItem!
+                                      .description!,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -123,7 +124,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 const SizedBox(height: 6),
                                 Text(
                                   r'$'
-                                  '${state.productDetailModel!.price!.toStringAsFixed(0)}',
+                                  '${state.productDetailModel!.productItem!.price!.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -154,7 +155,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       const SizedBox(height: 10),
                       BlocProvider(
                         create: (final context) => FavoriteCubit(),
-                        child: const ButtonBasket(),
+                        child: ButtonBasket(
+                          productItem: state.productDetailModel!.productItem!,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),

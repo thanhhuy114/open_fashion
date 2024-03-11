@@ -2,23 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../models/checkout_response_model.dart';
+import '../../cart_page/views/cart.dart';
 import '../cubit/pick_favorie/favorite_cubit.dart';
 
 class ButtonBasket extends StatefulWidget {
-  const ButtonBasket({super.key});
-
+  const ButtonBasket({super.key, required this.productItem});
+  final ProductItem productItem;
   @override
   State<ButtonBasket> createState() => _ButtonBasketState();
 }
 
 class _ButtonBasketState extends State<ButtonBasket> {
   bool checkFavorite = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(final BuildContext context) {
     return Container(
@@ -30,17 +26,33 @@ class _ButtonBasketState extends State<ButtonBasket> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Row(
+            Row(
               children: [
-                Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 28,
+                GestureDetector(
+                  onTap: () {
+                    final List<ProductItem> products = [];
+                    setState(() {
+                      products.add(widget.productItem);
+                      products.add(widget.productItem);
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (final context) =>
+                            CartPage(products: products),
+                      ),
+                    );
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 28,
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
+                const Text(
                   'ADD TO BASKET',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -55,7 +67,10 @@ class _ButtonBasketState extends State<ButtonBasket> {
                     });
                   },
                   icon: checkFavorite
-                      ? const Icon(Icons.favorite_sharp, color: Colors.red)
+                      ? const Icon(
+                          Icons.favorite_sharp,
+                          color: Colors.red,
+                        )
                       : const Icon(
                           Icons.favorite_sharp,
                           color: Colors.white,
