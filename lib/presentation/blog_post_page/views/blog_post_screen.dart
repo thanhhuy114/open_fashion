@@ -96,8 +96,8 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                   builder: (context, state) {
                     if (state is BlogPostLoaded) {
                       return Container(
+                        alignment: Alignment.centerLeft,
                         padding: EdgeInsets.symmetric(
-                          vertical: 20,
                           horizontal: marginAll,
                         ),
                         child: Text(
