@@ -53,7 +53,7 @@ ItemOfCollectionModel _$ItemOfCollectionModelFromJson(
       name: json['name'] as String?,
       image: json['image'] as String?,
       description: json['description'] as String?,
-      price: json['price'] as double?,
+      price: (json['price'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ItemOfCollectionModelToJson(

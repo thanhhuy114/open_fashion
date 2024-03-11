@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_positional_boolean_parameters
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
@@ -92,7 +94,8 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      state.productDetailLayoutModel!.name!
+                                      state.productDetailLayoutModel!
+                                          .productItem!.name!
                                           .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 19,
@@ -104,7 +107,8 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  state.productDetailLayoutModel!.description!,
+                                  state.productDetailLayoutModel!.productItem!
+                                      .description!,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -113,7 +117,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 const SizedBox(height: 6),
                                 Text(
                                   r'$'
-                                  '${state.productDetailLayoutModel!.price!.toStringAsFixed(0)}',
+                                  '${state.productDetailLayoutModel!.productItem!.price!.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -139,7 +143,10 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const ButtonBasket(),
+                      ButtonBasket(
+                        productItem:
+                            state.productDetailLayoutModel!.productItem!,
+                      ),
                       Container(
                         padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
                         height: MediaQuery.of(context).size.height,

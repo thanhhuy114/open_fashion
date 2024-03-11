@@ -28,9 +28,9 @@ Map<String, dynamic> _$ProductDetailLayoutResponseModelToJson(
 ProductDetailLayoutModel _$ProductDetailLayoutModelFromJson(
         Map<String, dynamic> json) =>
     ProductDetailLayoutModel(
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      productItem: json['product_item'] == null
+          ? null
+          : ProductItem.fromJson(json['product_item'] as Map<String, dynamic>),
       ringSize: (json['ring_size'] as List<dynamic>?)
           ?.map((e) => SizeModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -53,9 +53,7 @@ ProductDetailLayoutModel _$ProductDetailLayoutModelFromJson(
 Map<String, dynamic> _$ProductDetailLayoutModelToJson(
         ProductDetailLayoutModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'description': instance.description,
-      'price': instance.price,
+      'product_item': instance.productItem,
       'ring_size': instance.ringSize,
       'gallery': instance.gallery,
       'image': instance.image,

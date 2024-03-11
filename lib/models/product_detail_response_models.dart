@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+
+import 'checkout_response_model.dart';
 part 'product_detail_response_models.g.dart';
 
 @JsonSerializable()
@@ -16,9 +18,7 @@ class ProductDetailResponseModel {
 @JsonSerializable()
 class ProductDetailModel {
   ProductDetailModel({
-    this.name,
-    this.description,
-    this.price,
+    this.productItem,
     this.color,
     this.size,
     this.material,
@@ -28,9 +28,8 @@ class ProductDetailModel {
   });
   factory ProductDetailModel.fromJson(final Map<String, dynamic> json) =>
       _$ProductDetailModelFromJson(json);
-  String? name;
-  String? description;
-  double? price;
+  @JsonKey(name: 'product_item')
+  ProductItem? productItem;
   List<ColorModel>? color;
   List<SizeModel>? size;
   String? material;
