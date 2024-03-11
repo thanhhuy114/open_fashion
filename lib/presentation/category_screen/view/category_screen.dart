@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_bottom.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_filter.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_gridview.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_listview.dart';
 
 import '../../../models/category_status_filer_manager.dart';
+import '../../../widgets/appbar_custom_widget.dart';
 import '../bloc/category_bloc.dart';
+import '../widgets/category_bottom.dart';
+import '../widgets/category_filter.dart';
+import '../widgets/category_gridview.dart';
+import '../widgets/category_listview.dart';
 
 class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({super.key});
+  const CategoryScreen({Key? key});
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
@@ -21,12 +22,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (final context) =>
-              CategoryBloc()..add(const CategoryLoadEvent()),
+          create: (context) => CategoryBloc()..add(const CategoryLoadEvent()),
         ),
       ],
       child: Scaffold(
-        appBar: AppBar(title: const Text('Cate Screen')),
+        appBar: const AppBarCustom(),
         body: CustomScrollView(
           slivers: [
             SliverPadding(
@@ -58,10 +58,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ],
                 ),
               ),
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Container(),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'presentation/home_page/view/home_page_screen.dart';
+import 'presentation/page_not_found_page/view/page_not_found_screen.dart';
 import 'presentation/product_detail_layout_page/views/product_detail_layout.dart';
 import 'presentation/blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import 'presentation/category_screen/view/category_screen.dart';
@@ -30,8 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
             .copyWith(background: Colors.white),
       ),
-      home: const BlocGridPageProvider(),
-
+      home: const PageNotFoundScreen(),
     );
   }
 }

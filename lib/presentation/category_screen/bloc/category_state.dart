@@ -21,3 +21,5 @@ class CategoryLoaded extends CategoryState {
 }
 
 class CategoryLoadingFail extends CategoryState {}
+
+class CategoryNull extends CategoryState {}
