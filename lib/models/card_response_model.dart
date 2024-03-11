@@ -5,7 +5,7 @@ part 'card_response_model.g.dart';
 
 @JsonSerializable()
 class CardResponseModel extends Equatable {
-  CardResponseModel({
+  const CardResponseModel({
     required this.code,
     required this.message,
     required this.data,
@@ -27,11 +27,11 @@ class CardResponseModel extends Equatable {
 
   @override
   String toString() {
-    return "$code, $message, $data, ";
+    return '$code, $message, $data, ';
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         code,
         message,
         data,
@@ -74,7 +74,7 @@ class CardModel extends Equatable {
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         nameOnCard,
         cardNumber,
         expMonth,

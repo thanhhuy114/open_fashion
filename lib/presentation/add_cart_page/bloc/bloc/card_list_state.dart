@@ -4,7 +4,7 @@ abstract class CardListState extends Equatable {
   const CardListState();
 
   @override
-  List<Object> props() => [];
+  List<Object> get props => [];
 }
 
 class CardListInitial extends CardListState {}
