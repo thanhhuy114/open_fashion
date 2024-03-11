@@ -53,8 +53,8 @@ class CheckOutScreen extends StatelessWidget {
               context.read<CounterCubit>().state,
             );
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: AppBarCustom(),
+              drawer:  MenuDrawer(),
               body: Container(
                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                 alignment: Alignment.center,

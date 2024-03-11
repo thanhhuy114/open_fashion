@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
+import '../../add_address_page/view/add_address_screen.dart';
+import '../../add_cart_page/view/add_card_screen.dart';
 import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
 import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
 import '../../complete_checkout_page/cubit/total/total_cubit.dart';
@@ -52,8 +54,8 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
           }
           if (state is CompleteCheckoutLoaded) {
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: AppBarCustom(),
+              drawer:  MenuDrawer(),
               body: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                 child: Column(
@@ -123,7 +125,9 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   children: [
                                     const SizedBox(),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                       
+                                      },
                                       icon: const Icon(
                                         Icons.arrow_forward_ios_outlined,
                                         size: 18,
@@ -150,7 +154,9 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                     'Add shipping address',
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (final context) => const AddAddressScreen(),));
+                                    },
                                     icon: const Icon(
                                       Icons.add,
                                     ),
@@ -187,7 +193,9 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   'Pickup at store                             FREE',
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    
+                                  },
                                   icon: const Icon(
                                     Icons.keyboard_arrow_down_outlined,
                                   ),
@@ -219,7 +227,9 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                             children: [
                               const Text('select payment method'),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (final context) => const AddCardScreen(),));
+                                },
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down_outlined,
                                 ),

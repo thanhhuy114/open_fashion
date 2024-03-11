@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/menu_arrival_response_model.dart';
+import '../../blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import 'RhombusContainer.dart';
 import 'home_page_product.dart';
 
@@ -100,7 +101,11 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
           ),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            setState(() {
+              Navigator.push(context, MaterialPageRoute(builder: (final context) => const BlocGridPageProvider(),));
+            });
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -128,9 +133,10 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
 }
 
 class ItemTab extends StatelessWidget {
-  const ItemTab({super.key, required this.name, required this.isSelected});
+  ItemTab({super.key, required this.name, required this.isSelected, this.color});
   final String name;
   final bool isSelected;
+  Color? color;
 
   @override
   Widget build(final BuildContext context) {
@@ -144,7 +150,7 @@ class ItemTab extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
                 letterSpacing: 1,
-                color: isSelected ? Colors.black : Colors.grey[400],),
+                color: isSelected? color==null?Colors.black:Colors.white : Colors.grey[400],),
           ),
           if (isSelected)
             Rhombus(color: Colors.orange[700],),

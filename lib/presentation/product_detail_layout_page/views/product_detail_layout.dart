@@ -62,7 +62,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const AppBarCustom(),
+        appBar: AppBarCustom(),
         body: BlocBuilder<ProductDetailLayoutBloc, ProductDetailLayoutState>(
           builder: (final context, final state) {
             switch (state) {
@@ -232,7 +232,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
             }
           },
         ),
-        drawer: const MenuDrawer(),
+        drawer: MenuDrawer(),
       ),
     );
   }

@@ -31,8 +31,8 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
     return BlocProvider(
       create: (final context) => BlogPostBloc()..add(LoadBlogPostEvent()),
       child: Scaffold(
-        appBar: const AppBarCustom(),
-        drawer: const MenuDrawer(),
+        appBar: AppBarCustom(),
+        drawer:  MenuDrawer(),
         body: BlocListener<BlogPostBloc, BlogPostState>(
           listener: (final context, final state) {
             if (state is BlogPostLoadFailure) {

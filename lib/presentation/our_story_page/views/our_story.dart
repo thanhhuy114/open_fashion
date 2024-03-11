@@ -13,8 +13,8 @@ class OurStoryPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const AppBarCustom(),
-      drawer: const MenuDrawer(),
+      appBar: AppBarCustom(),
+      drawer:  MenuDrawer(),
       body: BlocProvider(
         create: (final context) => OurStoryBloc()..add(OurStoryLoadedEvent()),
         child: BlocBuilder<OurStoryBloc, OurStoryState>(
@@ -101,6 +101,7 @@ class OurStoryPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 75,),
                     ],
                   ),
                 );

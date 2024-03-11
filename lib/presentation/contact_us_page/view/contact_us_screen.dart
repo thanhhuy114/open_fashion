@@ -39,8 +39,8 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
           if (state is ContactUsLoaded) {
             final ContactUsModel data = state.contactus;
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: AppBarCustom(),
+              drawer:  MenuDrawer(),
               body: SingleChildScrollView(
                 child: Column(
                   children: [

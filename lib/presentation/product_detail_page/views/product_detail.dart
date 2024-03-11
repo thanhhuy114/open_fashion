@@ -64,8 +64,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const AppBarCustom(),
-        drawer: const MenuDrawer(),
+        appBar:AppBarCustom(),
+        drawer:  MenuDrawer(),
         body: BlocBuilder<ProductDetailBloc, ProductDetailState>(
           builder: (final context, final state) {
             switch (state) {

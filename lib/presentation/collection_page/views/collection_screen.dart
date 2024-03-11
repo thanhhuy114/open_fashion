@@ -14,6 +14,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../../collection_detail_page/view/collection_detail_screen.dart';
 import '../bloc/collection_bloc/collection_bloc.dart';
 import 'collection_item_screen.dart';
@@ -27,20 +29,21 @@ class CollectionScreen extends StatefulWidget {
 
 class _CollectionScreenState extends State<CollectionScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(),
+        appBar: AppBarCustom(color: Colors.black,),
+        drawer:  MenuDrawer(color: Colors.black,),
         body: BlocProvider(
-          create: (context) => CollectionBloc()..add(LoadCollectionEvent()),
+          create: (final context) => CollectionBloc()..add(LoadCollectionEvent()),
           child: BlocConsumer<CollectionBloc, CollectionState>(
-            listener: (context, state) {
+            listener: (final context, final state) {
               if (state.status == CollectionStatus.failure) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Something wrong!')));
+                    const SnackBar(content: Text('Something wrong!')),);
               }
             },
-            builder: (context, state) {
+            builder: (final context, final state) {
               if (state.status == CollectionStatus.success) {
                 //add singlechidScollview
                 return SingleChildScrollView(
@@ -51,7 +54,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
                       ),
                       Text(
                         state.collections[0].collectionName!.substring(0,
-                            state.collections[0].collectionName!.indexOf(' ')),
+                            state.collections[0].collectionName!.indexOf(' '),),
                         style: const TextStyle(
                           fontFamily: 'BodoniModa',
                           fontSize: 46,
@@ -72,13 +75,13 @@ class _CollectionScreenState extends State<CollectionScreen> {
                       Column(
                         children: List.generate(
                           state.collections.length,
-                          (index) => GestureDetector(
+                          (final index) => GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 PageRouteBuilder(
                                   pageBuilder:
-                                      (context, animation, secondaryAnimation) {
+                                      (final context, final animation, final secondaryAnimation) {
                                     return CollectionDetailScreen(
                                       collection: state.collections[index],
                                       moreCollection: state.collections,
@@ -109,6 +112,6 @@ class _CollectionScreenState extends State<CollectionScreen> {
               );
             },
           ),
-        ));
+        ),);
   }
 }

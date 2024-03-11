@@ -4,9 +4,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageCollection extends StatelessWidget {
+import '../../collection_page/views/collection_screen.dart';
+
+class HomePageCollection extends StatefulWidget {
   const HomePageCollection({super.key});
 
+  @override
+  State<HomePageCollection> createState() => _HomePageCollectionState();
+}
+
+class _HomePageCollectionState extends State<HomePageCollection> {
   @override
   Widget build(final BuildContext context) {
     return Column(
@@ -22,56 +29,65 @@ class HomePageCollection extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Stack(
-          children: [
-            Image.network(
-              width: MediaQuery.of(context).size.width,
-              height: 244.79,
-              fit: BoxFit.cover,
-              'https://s3-alpha-sig.figma.com/img/7b23/ee27/2bd6b4e6adadc2d3b1f340be62f9ef67?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NU9Ew~PsRbpALFO~1qv~A00BaOXlB73F4CAIDI1cZGdYztcFmdt4v81dMbJDpf9C19X5Za0-F8FYJGpBzwyEw5WJB8E0hE8-c3lFc4~lHljAi19MdBJOuDhjpvjjYa4JZMQBuoGilc7E7igI71tPxVbYaOTWJtLvLeG~jlFV-VNZPzDDUMNdDQE5Tn4aWUQRAQItTQc7OK71cltYIt5jokNWjRGc5YDIQQT32XAac5kEvfZolwq8ZcD-t6gnrsJSfAP3ZXlo4kyGHma6IBlE6swWRVh1byBu8TOnHl2t9J0RCSAK1qdCybC6YfVf63~QYVOs5v8Zqgi~oxpEM9URpw__',
-            ),
-            Positioned(
-              top: 22.49,
-              left: 220.93,
-              child: Text(
-                '10',
-                style: GoogleFonts.bodoniModa(
-                  fontWeight: FontWeight.w800,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 162.7,
-                  letterSpacing: -31.5,
-                  color: const Color.fromRGBO(0, 0, 0, 0.5),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              Navigator.push(context, MaterialPageRoute(builder: (final context) => const CollectionScreen(),));
+            });
+          },
+          child: Container(
+            child: Stack(
+              children: [
+                Image.network(
+                  width: MediaQuery.of(context).size.width,
+                  height: 244.79,
+                  fit: BoxFit.cover,
+                  'https://s3-alpha-sig.figma.com/img/7b23/ee27/2bd6b4e6adadc2d3b1f340be62f9ef67?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NU9Ew~PsRbpALFO~1qv~A00BaOXlB73F4CAIDI1cZGdYztcFmdt4v81dMbJDpf9C19X5Za0-F8FYJGpBzwyEw5WJB8E0hE8-c3lFc4~lHljAi19MdBJOuDhjpvjjYa4JZMQBuoGilc7E7igI71tPxVbYaOTWJtLvLeG~jlFV-VNZPzDDUMNdDQE5Tn4aWUQRAQItTQc7OK71cltYIt5jokNWjRGc5YDIQQT32XAac5kEvfZolwq8ZcD-t6gnrsJSfAP3ZXlo4kyGHma6IBlE6swWRVh1byBu8TOnHl2t9J0RCSAK1qdCybC6YfVf63~QYVOs5v8Zqgi~oxpEM9URpw__',
                 ),
-              ),
-            ),
-            Positioned(
-              top: 99.28,
-              left: 230.21,
-              child: Text(
-                'October',
-                style: GoogleFonts.bodoniModa(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 41.86,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.white,
+                Positioned(
+                  top: 22.49,
+                  left: 220.93,
+                  child: Text(
+                    '10',
+                    style: GoogleFonts.bodoniModa(
+                      fontWeight: FontWeight.w800,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 162.7,
+                      letterSpacing: -31.5,
+                      color: const Color.fromRGBO(0, 0, 0, 0.5),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Positioned(
-              top: 143.12,
-              left: 220.21,
-              child: Text(
-                'COLLECTION',
-                style: GoogleFonts.tenorSans(
-                  fontWeight: FontWeight.w400,
-                  height: 2.09,
-                  letterSpacing: 6.06,
-                  fontSize: 12.93,
-                  color: Colors.white,
+                Positioned(
+                  top: 99.28,
+                  left: 230.21,
+                  child: Text(
+                    'October',
+                    style: GoogleFonts.bodoniModa(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 41.86,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  top: 143.12,
+                  left: 220.21,
+                  child: Text(
+                    'COLLECTION',
+                    style: GoogleFonts.tenorSans(
+                      fontWeight: FontWeight.w400,
+                      height: 2.09,
+                      letterSpacing: 6.06,
+                      fontSize: 12.93,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 40, 0, 30),
