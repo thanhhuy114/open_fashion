@@ -17,9 +17,9 @@ class CardList extends StatelessWidget {
             items: state.cards
                 .map(
                   (e) => CardItem(
-                    cardNumber: e.cardNumber!,
-                    expDate: '${e.expMonth}/${e.expDate}',
-                    cardName: e.nameOnCard!,
+                    cardNumber: e.cardNumber ?? '',
+                    expDate: '${e.expMonth ?? ''}/${e.expDate ?? ''}',
+                    cardName: e.nameOnCard ?? '',
                   ),
                 )
                 .toList(),

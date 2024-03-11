@@ -9,9 +9,10 @@
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/presentation/blog_post_page/bloc/bloc/blog_post_bloc.dart';
-import 'package:open_fashion/presentation/blog_post_page/widgets/tag.dart';
-import 'package:open_fashion/widgets/footer.dart';
+
+import '../../../widgets/footer.dart';
+import '../bloc/bloc/blog_post_bloc.dart';
+import '../widgets/tag.dart';
 
 class BLogPostScreen extends StatefulWidget {
   const BLogPostScreen({super.key});
@@ -58,22 +59,28 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                 flexibleSpace: BlocBuilder<BlogPostBloc, BlogPostState>(
                   builder: (context, state) {
                     if (state is BlogPostLoaded) {
-                      return Container(
-                        height: size.width * 2 / 3 + 10,
-                        width: size.width,
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(
-                            136,
-                            136,
-                            136,
-                            1,
-                          ),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(state.blogPost.mainPicture!),
-                          ),
-                        ),
-                      );
+                      return state.blogPost.mainPicture == null
+                          ? SizedBox(
+                              height: size.width * 2 / 3 + 10,
+                              width: size.width,
+                            )
+                          : Container(
+                              height: size.width * 2 / 3 + 10,
+                              width: size.width,
+                              decoration: BoxDecoration(
+                                color: const Color.fromRGBO(
+                                  136,
+                                  136,
+                                  136,
+                                  1,
+                                ),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      NetworkImage(state.blogPost.mainPicture!),
+                                ),
+                              ),
+                            );
                     }
                     return const Center(child: CircularProgressIndicator());
                   },
@@ -90,9 +97,11 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                     if (state is BlogPostLoaded) {
                       return Container(
                         padding: EdgeInsets.symmetric(
-                            vertical: 20, horizontal: marginAll),
+                          vertical: 20,
+                          horizontal: marginAll,
+                        ),
                         child: Text(
-                          state.blogPost.titlePost!.toUpperCase(),
+                          (state.blogPost.titlePost ?? ' ').toUpperCase(),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -120,14 +129,15 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                                   EdgeInsets.symmetric(horizontal: marginAll),
                               color: Colors.white,
                               child: Text(
-                                state.blogPost.content!.substring(
+                                (state.blogPost.content ?? '').substring(
                                   0,
                                   state.blogPost.content!.indexOf('\n'),
                                 ),
                                 style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    height: 2.4),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  height: 2.4,
+                                ),
                               ),
                             );
                           }
@@ -145,10 +155,11 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                       BlocBuilder<BlogPostBloc, BlogPostState>(
                         builder: (context, state) {
                           if (state is BlogPostLoaded) {
+                            int lenght = state.blogPost.imageArray != null
+                                ? state.blogPost.imageArray!.length
+                                : 0;
                             final List<BannerModel> bannerModels = [];
-                            for (int index = 0;
-                                index < state.blogPost.imageArray!.length;
-                                index++) {
+                            for (int index = 0; index < lenght; index++) {
                               bannerModels.add(
                                 BannerModel(
                                   imagePath: state.blogPost.imageArray![index],
@@ -159,7 +170,9 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                             return Container(
                               width: size.width,
                               padding: EdgeInsets.symmetric(
-                                  horizontal: marginAll, vertical: 20),
+                                horizontal: marginAll,
+                                vertical: 20,
+                              ),
                               color: Colors.white,
                               child: BannerCarousel.fullScreen(
                                 height: 500,
@@ -200,9 +213,9 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                               ),
                               color: Colors.white,
                               child: Text(
-                                state.blogPost.content!.substring(
-                                    state.blogPost.content!.indexOf('\n') + 1,
-                                    state.blogPost.content!.length),
+                                (state.blogPost.content ?? '').substring(
+                                  state.blogPost.content!.indexOf('\n'),
+                                ),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
@@ -224,14 +237,17 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                             return Container(
                               width: size.width,
                               padding: EdgeInsets.symmetric(
-                                  horizontal: marginAll, vertical: 20),
+                                horizontal: marginAll,
+                                vertical: 20,
+                              ),
                               color: Colors.white,
                               child: Text(
-                                'Posted by ${state.blogPost.postBy} | ${state.blogPost.postDate}',
+                                'Posted by ${state.blogPost.postBy ?? ''} | ${state.blogPost.postDate ?? ''}',
                                 style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    height: 2.4),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  height: 2.4,
+                                ),
                               ),
                             );
                           }
@@ -248,10 +264,12 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                             return Container(
                               width: size.width,
                               padding: EdgeInsets.symmetric(
-                                  horizontal: marginAll, vertical: 10),
+                                horizontal: marginAll,
+                                vertical: 10,
+                              ),
                               color: Colors.white,
                               child: ListTag(
-                                tags: state.blogPost.tag!,
+                                tags: state.blogPost.tag ?? [],
                                 clickTag: (p0) => (),
                               ),
                             );
