@@ -24,5 +24,5 @@ class CollectionState extends Equatable {
   }
 
   @override
-  List<Object> props() => [collections, status, hasReachedMax];
+  List<Object> get props => [collections, status, hasReachedMax];
 }

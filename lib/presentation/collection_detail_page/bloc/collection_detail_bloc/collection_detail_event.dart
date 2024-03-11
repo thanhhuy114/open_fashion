@@ -10,7 +10,7 @@ class LoadCollectionDetailEvent extends CollectionDetailEvent {
   LoadCollectionDetailEvent({this.collection});
 
   @override
-  List<Object?> props() {
+  List<Object?> get props {
     throw UnimplementedError();
   }
 }

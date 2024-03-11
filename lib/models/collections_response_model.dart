@@ -36,7 +36,7 @@ class CollectionsResponseModel extends Equatable {
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         code,
         message,
         data,
@@ -77,7 +77,7 @@ class CollectionDetailModel extends Equatable {
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         id,
         collectionName,
         collectionImage,
@@ -121,7 +121,7 @@ class ItemOfCollectionModel extends Equatable {
   }
 
   @override
-  List<Object?> props() => [
+  List<Object?> get props => [
         id,
         name,
         image,
