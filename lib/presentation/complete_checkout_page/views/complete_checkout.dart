@@ -182,9 +182,13 @@ class CompleteCheckoutPage extends StatelessWidget {
                               itemCount: state
                                   .checkoutModel!.checkout!.product!.length,
                               itemBuilder: (final context, final index) {
-                                return ItemProduct(
-                                  productItem: state
-                                      .checkoutModel!.checkout!.product![index],
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                  child: ItemProduct(
+                                    productItem: state.checkoutModel!.checkout!
+                                        .product![index],
+                                  ),
                                 );
                               },
                             ),
