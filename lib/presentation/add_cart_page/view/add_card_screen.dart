@@ -35,7 +35,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom(),
+      appBar: AppBarCustom(),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(

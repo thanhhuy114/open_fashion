@@ -27,7 +27,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
-      appBar: const AppBarCustom(),
+      appBar: AppBarCustom(),
       body: Column(
         children: [
           Expanded(

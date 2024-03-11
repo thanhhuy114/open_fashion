@@ -56,8 +56,8 @@ class CompleteCheckoutPage extends StatelessWidget {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const AppBarCustom(),
-        drawer: const MenuDrawer(),
+        appBar: AppBarCustom(),
+        drawer:  MenuDrawer(),
         body: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
           builder: (final context, final state) {
             switch (state) {
