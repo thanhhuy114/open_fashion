@@ -74,12 +74,12 @@ class _CardFormState extends State<CardForm> {
           TextField(
             controller: cardNumber,
             onChanged: (value) {
+              cardNumber.text = formatVisaCardNumber(value);
               context.read<CardFormBloc>().add(
                     CheckCardNumberTextField(
-                      text: value,
+                      text: value.replaceAll(' ', ''),
                     ),
                   );
-              cardNumber.text = formatVisaCardNumber(value);
             },
             // ignore: use_named_constants
             keyboardType: const TextInputType.numberWithOptions(),

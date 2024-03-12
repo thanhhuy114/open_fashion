@@ -24,18 +24,6 @@ class _CardListState extends State<CardList> {
         if (state is CardListLoaded) {
           return Column(
             children: [
-              // CarouselSlider(
-              //   items: state.cards
-              //       .map(
-              //         (e) => CardItem(
-              //           cardNumber: e.cardNumber!,
-              //           expDate: '${e.expMonth}/${e.expDate}',
-              //           cardName: e.nameOnCard!,
-              //         ),
-              //       )
-              //       .toList(),
-              //   options: CarouselOptions(viewportFraction: 0.9),
-              // ),
               SizedBox(
                 height: 200,
                 child: PageView.builder(
