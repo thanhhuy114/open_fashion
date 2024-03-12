@@ -30,18 +30,18 @@ class _ButtonBasketState extends State<ButtonBasket> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    final List<ProductItem> products = [];
-                    setState(() {
-                      products.add(widget.productItem);
-                      products.add(widget.productItem);
-                    });
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (final context) =>
-                            CartPage(products: products),
-                      ),
-                    );
+                    // final List<ProductItem> products = [];
+                    // setState(() {
+                    //   products.add(widget.productItem);
+                    //   products.add(widget.productItem);
+                    // });
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (final context) =>
+                    //         CartPage(products: products),
+                    //   ),
+                    // );
                   },
                   child: const Icon(
                     Icons.add,

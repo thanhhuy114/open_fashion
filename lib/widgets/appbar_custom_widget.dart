@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../presentation/cart_page/views/cart.dart';
+
 class AppBarCustom extends StatefulWidget implements PreferredSizeWidget {
   AppBarCustom({super.key, this.color});
   Color? color;
@@ -51,12 +53,20 @@ class _AppBarCustomState extends State<AppBarCustom> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),
-          child: Image.asset(
-            'assets/images/shopping bag.png',
-            fit: BoxFit.cover,
-            height: 24,
-            width: 24,
-            color: widget.color != null ? Colors.white : null,
+          child: GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (final context) => const CartPage(products: []),
+              ),
+            ),
+            child: Image.asset(
+              'assets/images/shopping bag.png',
+              fit: BoxFit.cover,
+              height: 24,
+              width: 24,
+              color: widget.color != null ? Colors.white : null,
+            ),
           ),
         ),
       ],

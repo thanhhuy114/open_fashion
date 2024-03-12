@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import '../models/blog_post.dart';
+import '../models/cart_response_model.dart';
 import '../models/collections_response_model.dart';
 import '../models/contact_us_response_model.dart';
 import '../models/drawer_response_model.dart';
@@ -189,18 +190,19 @@ class Api {
       return null;
     }
   }
+
   /*
     Create by Thuan
     Data: 08/03
     Content: Lấy data cho contactus
   */
-  Future<ContactUsResponseModel?> getContactUs() async{
-    try{
+  Future<ContactUsResponseModel?> getContactUs() async {
+    try {
       final res = await http.getRequest(EndPoints.contactUs);
       final result = ContactUsResponseModel.fromJson(res!);
       handleExceptionCase(result.code);
       return result;
-    }catch(e){
+    } catch (e) {
       return null;
     }
   }
@@ -258,10 +260,21 @@ class Api {
     }
   }
 
-   static Future<OurStoryResponseModel> getOurStory() async {
+  static Future<OurStoryResponseModel> getOurStory() async {
     try {
       final response = await http.getRequest(EndPoints.ourStory);
       final result = OurStoryResponseModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
+
+  static Future<CartResponseModel> getCart() async {
+    try {
+      final response = await http.getRequest(EndPoints.cart);
+      final result = CartResponseModel.fromJson(response!);
       return result;
     } catch (e) {
       log('load faild');
