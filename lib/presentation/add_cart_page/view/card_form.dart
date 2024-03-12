@@ -17,6 +17,20 @@ class CardForm extends StatefulWidget {
 }
 
 class _CardFormState extends State<CardForm> {
+  TextEditingController cardNumber = TextEditingController();
+
+  String formatVisaCardNumber(String cardNumber) {
+    cardNumber = cardNumber.replaceAll(RegExp(r'\D+'), '');
+    final formattedNumber = StringBuffer();
+    for (int i = 0; i < cardNumber.length; i++) {
+      if (i > 0 && i % 4 == 0) {
+        formattedNumber.write(' ');
+      }
+      formattedNumber.write(cardNumber[i]);
+    }
+    return formattedNumber.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -58,11 +72,15 @@ class _CardFormState extends State<CardForm> {
 
           //Number of cart textfield
           TextField(
-            onChanged: (value) => context.read<CardFormBloc>().add(
-                  CheckCardNumberTextField(
-                    text: value,
-                  ),
-                ),
+            controller: cardNumber,
+            onChanged: (value) {
+              context.read<CardFormBloc>().add(
+                    CheckCardNumberTextField(
+                      text: value,
+                    ),
+                  );
+              cardNumber.text = formatVisaCardNumber(value);
+            },
             // ignore: use_named_constants
             keyboardType: const TextInputType.numberWithOptions(),
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
