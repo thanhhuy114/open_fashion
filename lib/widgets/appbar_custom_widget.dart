@@ -1,5 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppBarCustom extends StatefulWidget implements PreferredSizeWidget {
   AppBarCustom({super.key, this.color});
@@ -25,7 +26,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
         child: Image.asset(
           'assets/images/logo.png',
           fit: BoxFit.cover,
-          color: widget.color!=null?Colors.white:null,
+          color: widget.color != null ? Colors.white : null,
         ),
       ),
       leading: IconButton(
@@ -37,7 +38,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
           height: 25,
           width: 24,
           fit: BoxFit.cover,
-          color: widget.color!=null?Colors.white:null,
+          color: widget.color != null ? Colors.white : null,
         ),
       ),
       actions: [
@@ -46,7 +47,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
           fit: BoxFit.cover,
           height: 24,
           width: 24,
-          color: widget.color!=null?Colors.white:null,
+          color: widget.color != null ? Colors.white : null,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),
@@ -55,7 +56,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
             fit: BoxFit.cover,
             height: 24,
             width: 24,
-            color: widget.color!=null?Colors.white:null,
+            color: widget.color != null ? Colors.white : null,
           ),
         ),
       ],

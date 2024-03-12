@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/menu_arrival_response_model.dart';
 import '../../blog_grid_page/bloc/bloc_grid_page_provider.dart';
+import '../../product_detail_page/views/product_detail.dart';
 import 'RhombusContainer.dart';
 import 'home_page_product.dart';
 
@@ -29,7 +30,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
       filterItems = widget.menu
           .where((final element) => element.name == itemTab[0])
           .toList();
-      for(final e in filterItems){
+      for (final e in filterItems) {
         items.addAll(e.items);
       }
     });
@@ -76,7 +77,9 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
                   });
                 },
                 child: ItemTab(
-                    name: itemTab[index], isSelected: selectedIndex == index,),
+                  name: itemTab[index],
+                  isSelected: selectedIndex == index,
+                ),
               );
             },
           ),
@@ -94,8 +97,18 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
             ),
             itemCount: items.length,
             itemBuilder: (final context, final index) {
-              return HomePageProduct(
-                pro: items[index],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (final context) => const ProductDetailPage(),
+                    ),
+                  );
+                },
+                child: HomePageProduct(
+                  pro: items[index],
+                ),
               );
             },
           ),
@@ -103,7 +116,12 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
         GestureDetector(
           onTap: () {
             setState(() {
-              Navigator.push(context, MaterialPageRoute(builder: (final context) => const BlocGridPageProvider(),));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (final context) => const BlocGridPageProvider(),
+                ),
+              );
             });
           },
           child: Row(
@@ -133,7 +151,12 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
 }
 
 class ItemTab extends StatelessWidget {
-  ItemTab({super.key, required this.name, required this.isSelected, this.color});
+  ItemTab({
+    super.key,
+    required this.name,
+    required this.isSelected,
+    this.color,
+  });
   final String name;
   final bool isSelected;
   Color? color;
@@ -147,13 +170,20 @@ class ItemTab extends StatelessWidget {
           Text(
             name,
             style: GoogleFonts.tenorSans(
-                fontWeight: FontWeight.w400,
-                fontSize: 14,
-                letterSpacing: 1,
-                color: isSelected? color==null?Colors.black:Colors.white : Colors.grey[400],),
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+              letterSpacing: 1,
+              color: isSelected
+                  ? color == null
+                      ? Colors.black
+                      : Colors.white
+                  : Colors.grey[400],
+            ),
           ),
           if (isSelected)
-            Rhombus(color: Colors.orange[700],),
+            Rhombus(
+              color: Colors.orange[700],
+            ),
         ],
       ),
     );
