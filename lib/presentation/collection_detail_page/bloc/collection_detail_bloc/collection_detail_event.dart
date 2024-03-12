@@ -5,9 +5,8 @@ abstract class CollectionDetailEvent extends Equatable {
 }
 
 class LoadCollectionDetailEvent extends CollectionDetailEvent {
+  const LoadCollectionDetailEvent({this.collection});
   final CollectionDetailModel? collection;
-
-  LoadCollectionDetailEvent({this.collection});
 
   @override
   List<Object?> get props {

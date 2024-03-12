@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 part 'collections_response_model.g.dart';
 
 /* 
@@ -16,23 +15,23 @@ class CollectionsResponseModel extends Equatable {
     required this.data,
   });
 
+  factory CollectionsResponseModel.fromJson(final Map<String, dynamic> json) =>
+      _$CollectionsResponseModelFromJson(json);
+
   final int? code;
-  static const String codeKey = "code";
+  static const String codeKey = 'code';
 
   final String? message;
-  static const String messageKey = "message";
+  static const String messageKey = 'message';
 
   final List<CollectionDetailModel>? data;
-  static const String dataKey = "data";
-
-  factory CollectionsResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$CollectionsResponseModelFromJson(json);
+  static const String dataKey = 'data';
 
   Map<String, dynamic> toJson() => _$CollectionsResponseModelToJson(this);
 
   @override
   String toString() {
-    return "$code, $message, $data, ";
+    return '$code, $message, $data, ';
   }
 
   @override
@@ -45,35 +44,35 @@ class CollectionsResponseModel extends Equatable {
 
 @JsonSerializable()
 class CollectionDetailModel extends Equatable {
-  CollectionDetailModel({
+  const CollectionDetailModel({
     required this.id,
     required this.collectionName,
     required this.collectionImage,
     required this.items,
   });
 
+  factory CollectionDetailModel.fromJson(final Map<String, dynamic> json) =>
+      _$CollectionDetailModelFromJson(json);
+
   final String? id;
-  static const String idKey = "id";
+  static const String idKey = 'id';
 
   @JsonKey(name: 'collection_name')
   final String? collectionName;
-  static const String collectionNameKey = "collection_name";
+  static const String collectionNameKey = 'collection_name';
 
   @JsonKey(name: 'collection_image')
   final String? collectionImage;
-  static const String collectionImageKey = "collection_image";
+  static const String collectionImageKey = 'collection_image';
 
   final List<ItemOfCollectionModel>? items;
-  static const String itemsKey = "items";
-
-  factory CollectionDetailModel.fromJson(Map<String, dynamic> json) =>
-      _$CollectionDetailModelFromJson(json);
+  static const String itemsKey = 'items';
 
   Map<String, dynamic> toJson() => _$CollectionDetailModelToJson(this);
 
   @override
   String toString() {
-    return "$id, $collectionName, $collectionImage, $items, ";
+    return '$id, $collectionName, $collectionImage, $items, ';
   }
 
   @override
@@ -95,29 +94,29 @@ class ItemOfCollectionModel extends Equatable {
     required this.price,
   });
 
+  factory ItemOfCollectionModel.fromJson(final Map<String, dynamic> json) =>
+      _$ItemOfCollectionModelFromJson(json);
+
   final int? id;
-  static const String idKey = "id";
+  static const String idKey = 'id';
 
   final String? name;
-  static const String nameKey = "name";
+  static const String nameKey = 'name';
 
   final String? image;
-  static const String imageKey = "image";
+  static const String imageKey = 'image';
 
   final String? description;
-  static const String descriptionKey = "description";
+  static const String descriptionKey = 'description';
 
   final double? price;
-  static const String priceKey = "price";
-
-  factory ItemOfCollectionModel.fromJson(Map<String, dynamic> json) =>
-      _$ItemOfCollectionModelFromJson(json);
+  static const String priceKey = 'price';
 
   Map<String, dynamic> toJson() => _$ItemOfCollectionModelToJson(this);
 
   @override
   String toString() {
-    return "$id, $name, $image, $description, $price, ";
+    return '$id, $name, $image, $description, $price, ';
   }
 
   @override

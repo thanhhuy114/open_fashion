@@ -13,9 +13,8 @@ class CollectionDetailLoading extends CollectionDetailState {
 }
 
 class CollectionDetailLoaded extends CollectionDetailState {
-  final CollectionDetailModel colletion;
-
   const CollectionDetailLoaded({required this.colletion});
+  final CollectionDetailModel colletion;
 
   @override
   List<Object?> get props {
