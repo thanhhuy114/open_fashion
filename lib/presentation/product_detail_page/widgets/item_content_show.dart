@@ -28,7 +28,9 @@ class ItemContentShow extends StatelessWidget {
               content,
               style: const TextStyle(color: Colors.grey),
             ),
-            const Divider(),
+            const SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
