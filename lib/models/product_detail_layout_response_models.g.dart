@@ -41,7 +41,7 @@ ProductDetailLayoutModel _$ProductDetailLayoutModelFromJson(
           .toList(),
       carePolicy:
           CarePolicyModel.fromJson(json['care_policy'] as Map<String, dynamic>),
-      isFavorite: json['isFavorite'] as bool,
+      isFavorite: json['is_favorite'] as bool,
       categories: (json['categories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -55,6 +55,6 @@ Map<String, dynamic> _$ProductDetailLayoutModelToJson(
       'gallery': instance.gallery,
       'image': instance.image,
       'care_policy': instance.carePolicy,
-      'isFavorite': instance.isFavorite,
+      'is_favorite': instance.isFavorite,
       'categories': instance.categories,
     };
