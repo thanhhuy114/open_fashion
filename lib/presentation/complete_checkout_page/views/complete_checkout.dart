@@ -32,7 +32,7 @@ class CompleteCheckoutPage extends StatelessWidget {
     double total = 0;
 
     for (final product in products) {
-      total += quantity * product.price!;
+      total += quantity * product.price;
     }
     return total;
   }
@@ -57,7 +57,7 @@ class CompleteCheckoutPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBarCustom(),
-        drawer:  MenuDrawer(),
+        drawer: MenuDrawer(),
         body: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
           builder: (final context, final state) {
             switch (state) {
@@ -69,7 +69,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                 );
               case CompleteCheckoutLoaded():
                 total = calculateInitialTotal(
-                  state.checkoutModel!.checkout!.product!,
+                  state.checkoutModel.checkout.product,
                   context.read<CounterCubit>().state,
                 );
                 return SizedBox(
@@ -93,8 +93,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          state.checkoutModel!.checkout!
-                                              .address!,
+                                          state.checkoutModel.checkout.address,
                                           style: const TextStyle(
                                             fontSize: 18.5,
                                             fontWeight: FontWeight.w600,
@@ -102,16 +101,16 @@ class CompleteCheckoutPage extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          state.checkoutModel!.checkout!
-                                              .addressDetail!,
+                                          state.checkoutModel.checkout
+                                              .addressDetail,
                                           style: const TextStyle(
                                             height: 1.6,
                                             fontSize: 17,
                                           ),
                                         ),
                                         Text(
-                                          state.checkoutModel!.checkout!
-                                              .phoneNumber!,
+                                          state.checkoutModel.checkout
+                                              .phoneNumber,
                                           style: const TextStyle(
                                             height: 1.7,
                                             fontSize: 17,
@@ -155,7 +154,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                     'https://res.cloudinary.com/dc4nkguls/image/upload/v1709785886/OpenFashion/icons/ereyla5zjmlsqvrgwegs.png',
                                   ),
                                   Text(
-                                    'Master Card ending ####${getLastTwoDigits(state.checkoutModel!.checkout!.masterCard!)}',
+                                    'Master Card ending ####${getLastTwoDigits(state.checkoutModel.checkout.masterCard)}',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 17,
@@ -179,15 +178,15 @@ class CompleteCheckoutPage extends StatelessWidget {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: state
-                                  .checkoutModel!.checkout!.product!.length,
+                              itemCount:
+                                  state.checkoutModel.checkout.product.length,
                               itemBuilder: (final context, final index) {
                                 return Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(16, 0, 16, 16),
                                   child: ItemProduct(
-                                    productItem: state.checkoutModel!.checkout!
-                                        .product![index],
+                                    productItem: state
+                                        .checkoutModel.checkout.product[index],
                                   ),
                                 );
                               },
