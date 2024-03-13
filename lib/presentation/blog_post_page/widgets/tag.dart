@@ -12,14 +12,14 @@ class ListTag extends StatefulWidget {
 class _ListTagState extends State<ListTag> {
   bool isClicked = false;
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return SizedBox(
       width: size.width,
       child: Wrap(
         spacing: 8.0,
         runSpacing: 8.0,
-        children: widget.tags.map((tag) {
+        children: widget.tags.map((final tag) {
           return GestureDetector(
             onTap: () {
               widget.clickTag(tag);
@@ -41,9 +41,10 @@ class _ListTagState extends State<ListTag> {
               child: Text(
                 '#$tag',
                 style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(136, 136, 136, 1)),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromRGBO(136, 136, 136, 1),
+                ),
               ),
             ),
           );

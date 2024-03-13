@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
  */
 class ShowValidator extends StatelessWidget {
   const ShowValidator({super.key, this.validate = '', required this.isValid});
-  final validate;
+  final String validate;
   final bool isValid;
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(final BuildContext context) {
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 20,
       child: Text(

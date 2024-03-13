@@ -16,7 +16,7 @@ class CardItem extends StatelessWidget {
   final Color backgroundColor;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 190,
@@ -66,7 +66,6 @@ class CardItem extends StatelessWidget {
 
               //Number of card
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     cardNumber,
