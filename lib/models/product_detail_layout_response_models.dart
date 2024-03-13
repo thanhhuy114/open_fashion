@@ -38,6 +38,7 @@ class ProductDetailLayoutModel {
   List<ImageModel> image;
   @JsonKey(name: 'care_policy')
   CarePolicyModel carePolicy;
+  @JsonKey(name: 'is_favorite')
   bool isFavorite;
   List<CategoryModel> categories;
 }
