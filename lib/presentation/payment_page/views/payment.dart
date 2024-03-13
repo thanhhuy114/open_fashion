@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../home_page/view/home_page_screen.dart';
+
 class Payment extends StatefulWidget {
   const Payment({super.key});
 
@@ -153,7 +155,16 @@ class _PaymentState extends State<Payment> {
                               side: const BorderSide(color: Color(0xffdedede)),
                               minimumSize: const Size(double.infinity, 56),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (final context) =>
+                                      const HomePageScreen(),
+                                ),
+                                (final route) => false,
+                              );
+                            },
                             child: const Text(
                               'BACK TO HOME',
                               style: TextStyle(color: Colors.black),
