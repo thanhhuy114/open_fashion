@@ -32,7 +32,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
       create: (final context) => BlogPostBloc()..add(LoadBlogPostEvent()),
       child: Scaffold(
         appBar: AppBarCustom(),
-        drawer:  MenuDrawer(),
+        drawer: MenuDrawer(),
         body: BlocListener<BlogPostBloc, BlogPostState>(
           listener: (final context, final state) {
             if (state is BlogPostLoadFailure) {
@@ -115,42 +115,9 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                   return Column(
                     children: [
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (final context, final state) {
+                        builder: (final context, state) {
                           if (state is BlogPostLoaded) {
-                            return Container(
-                              width: size.width,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: marginAll,
-                              ),
-                              color: Colors.white,
-                              child: Text(
-                                state.blogPost.content!.substring(
-                                  0,
-                                  state.blogPost.content!.indexOf('\n'),
-                                ),
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  height: 2.4,
-                                ),
-                              ),
-                            );
-                          }
-                          return SizedBox(
-                            width: size.width,
-                            height: 100,
-                            child: const Center(
-                              child: CircularProgressIndicator.adaptive(),
-                            ),
-                          );
-                        },
-                      ),
-
-                      //slide image
-                      BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (final context, final state) {
-                          if (state is BlogPostLoaded) {
-                            final List<BannerModel> bannerModels = [];
+                            List<BannerModel> bannerModels = [];
                             for (int index = 0;
                                 index < state.blogPost.imageArray!.length;
                                 index++) {
@@ -161,115 +128,111 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                                 ),
                               );
                             }
-                            return Container(
-                              width: size.width,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: marginAll,
-                                vertical: 20,
-                              ),
-                              color: Colors.white,
-                              child: BannerCarousel.fullScreen(
-                                height: 500,
-                                activeColor: const Color.fromRGBO(
-                                  136,
-                                  136,
-                                  136,
-                                  1,
+                            return Column(
+                              children: [
+                                Container(
+                                  width: size.width,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: marginAll,
+                                  ),
+                                  color: Colors.white,
+                                  child: Text(
+                                    state.blogPost.content!.substring(
+                                      0,
+                                      state.blogPost.content!.indexOf('\n'),
+                                    ),
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      height: 2.4,
+                                    ),
+                                  ),
                                 ),
-                                customizedIndicators: const IndicatorModel(
-                                  width: 7,
-                                  height: 7,
-                                  spaceBetween: 5,
+                                // Slider image
+                                Container(
+                                  width: size.width,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: marginAll,
+                                    vertical: 20,
+                                  ),
+                                  color: Colors.white,
+                                  child: BannerCarousel.fullScreen(
+                                    height: 500,
+                                    activeColor: const Color.fromRGBO(
+                                      136,
+                                      136,
+                                      136,
+                                      1,
+                                    ),
+                                    customizedIndicators: const IndicatorModel(
+                                      width: 7,
+                                      height: 7,
+                                      spaceBetween: 5,
+                                    ),
+                                    banners: bannerModels,
+                                  ),
                                 ),
-                                banners: bannerModels,
-                              ),
+
+                                //Content 2
+                                Container(
+                                  width: size.width,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: marginAll,
+                                  ),
+                                  color: Colors.white,
+                                  child: Text(
+                                    state.blogPost.content!.substring(
+                                      state.blogPost.content!.indexOf('\n') + 1,
+                                      state.blogPost.content!.length,
+                                    ),
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      height: 2.4,
+                                    ),
+                                  ),
+                                ),
+
+                                //Create by
+                                Container(
+                                  width: size.width,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: marginAll,
+                                    vertical: 20,
+                                  ),
+                                  color: Colors.white,
+                                  child: Text(
+                                    'Posted by ${state.blogPost.postBy} | ${state.blogPost.postDate}',
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      height: 2.4,
+                                    ),
+                                  ),
+                                ),
+
+                                //Tag
+                                Container(
+                                  width: size.width,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: marginAll,
+                                    vertical: 10,
+                                  ),
+                                  color: Colors.white,
+                                  child: ListTag(
+                                    tags: state.blogPost.tag!,
+                                    clickTag: (final p0) => (),
+                                  ),
+                                ),
+                              ],
                             );
                           }
                           return SizedBox(
                             width: size.width,
-                            height: 500,
+                            height: size.height,
                             child: const Center(
                               child: CircularProgressIndicator.adaptive(),
                             ),
-                          );
-                        },
-                      ),
-
-                      //Content 2
-                      BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (final context, final state) {
-                          if (state is BlogPostLoaded) {
-                            return Container(
-                              width: size.width,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: marginAll,
-                              ),
-                              color: Colors.white,
-                              child: Text(
-                                state.blogPost.content!.substring(
-                                  state.blogPost.content!.indexOf('\n') + 1,
-                                  state.blogPost.content!.length,
-                                ),
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  height: 2.4,
-                                ),
-                              ),
-                            );
-                          }
-                          return const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          );
-                        },
-                      ),
-
-                      // Post by / Date
-                      BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (final context, final state) {
-                          if (state is BlogPostLoaded) {
-                            return Container(
-                              width: size.width,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: marginAll,
-                                vertical: 20,
-                              ),
-                              color: Colors.white,
-                              child: Text(
-                                'Posted by ${state.blogPost.postBy} | ${state.blogPost.postDate}',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  height: 2.4,
-                                ),
-                              ),
-                            );
-                          }
-                          return const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          );
-                        },
-                      ),
-
-                      //Tag
-                      BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (final context, final state) {
-                          if (state is BlogPostLoaded) {
-                            return Container(
-                              width: size.width,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: marginAll,
-                                vertical: 10,
-                              ),
-                              color: Colors.white,
-                              child: ListTag(
-                                tags: state.blogPost.tag!,
-                                clickTag: (final p0) => (),
-                              ),
-                            );
-                          }
-                          return const Center(
-                            child: CircularProgressIndicator.adaptive(),
                           );
                         },
                       ),
