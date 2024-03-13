@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
   Create by: Thach
   Date: 17:05 6/3
   Content: Item của phần gợi ý các collection
+
+  Modifi:Thach
+  Date: 11/3 10:27
+  Content
+    Line 29 Kiểm tra image rỗng
  */
 class SuggestionCollectionItem extends StatelessWidget {
   const SuggestionCollectionItem({
@@ -22,16 +27,24 @@ class SuggestionCollectionItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Image
-          Container(
-            width: 255,
-            height: 255 / (3 / 4),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(image),
-              ),
-            ),
-          ),
+          image.isEmpty
+              ? const SizedBox(
+                  width: 255,
+                  height: 255 / (3 / 4),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : Container(
+                  width: 255,
+                  height: 255 / (3 / 4),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(image),
+                    ),
+                  ),
+                ),
 
           //Collection Name
           Text(

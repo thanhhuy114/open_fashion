@@ -9,6 +9,12 @@ part 'card_form_state.dart';
 RegExp regexMonth = RegExp(r'^([1-9]|1[0-2])$');
 RegExp regexDate = RegExp(r'^\d{4}$');
 RegExp regexCvv = RegExp(r'^\d$');
+RegExp creditCardRegex = RegExp(r'^((4[0-9]{12}(?:[0-9]{3})?)|' // Visa
+    r'(5[1-5][0-9]{14})|' // MasterCard
+    r'(3[47][0-9]{13})|' // American Express
+    r'(6(?:011|5[0-9][0-9])[0-9]{12})|' // Discover
+    r'((?:2131|1800|35[0-9]{3})[0-9]{11}))$' // JCB
+    );
 
 class CardFormBloc extends Bloc<CardFormEvent, CardFormState> {
   CardFormBloc() : super(CardFormInitial()) {
@@ -64,7 +70,7 @@ class CardFormBloc extends Bloc<CardFormEvent, CardFormState> {
           cardNumberMessage: '*Please fill your card number',
         ),
       );
-    } else if (!regexOnlyNumber.hasMatch(event.text.trim())) {
+    } else if (!creditCardRegex.hasMatch(event.text.trim())) {
       //
       emit(
         state.copyWith(

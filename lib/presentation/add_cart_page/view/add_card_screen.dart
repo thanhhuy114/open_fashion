@@ -5,6 +5,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/appbar_custom_widget.dart';
@@ -58,7 +59,10 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     ),
 
                     //List Cart
-                    const CardList(),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: CardList(),
+                    ),
 
                     //Form
                     const CardForm(),
