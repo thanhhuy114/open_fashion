@@ -55,7 +55,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
           if (state is CompleteCheckoutLoaded) {
             return Scaffold(
               appBar: AppBarCustom(),
-              drawer:  MenuDrawer(),
+              drawer: MenuDrawer(),
               body: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                 child: Column(
@@ -91,7 +91,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      state.checkoutModel!.checkout!.address!,
+                                      state.checkoutModel.checkout.address,
                                       style: const TextStyle(
                                         fontSize: 18.5,
                                         fontWeight: FontWeight.w400,
@@ -99,16 +99,15 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                       ),
                                     ),
                                     Text(
-                                      state.checkoutModel!.checkout!
-                                          .addressDetail!,
+                                      state
+                                          .checkoutModel.checkout.addressDetail,
                                       style: const TextStyle(
                                         height: 1.6,
                                         fontSize: 17,
                                       ),
                                     ),
                                     Text(
-                                      state.checkoutModel!.checkout!
-                                          .phoneNumber!,
+                                      state.checkoutModel.checkout.phoneNumber,
                                       style: const TextStyle(
                                         height: 1.7,
                                         fontSize: 17,
@@ -125,9 +124,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   children: [
                                     const SizedBox(),
                                     IconButton(
-                                      onPressed: () {
-                                       
-                                      },
+                                      onPressed: () {},
                                       icon: const Icon(
                                         Icons.arrow_forward_ios_outlined,
                                         size: 18,
@@ -155,7 +152,13 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (final context) => const AddAddressScreen(),));
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (final context) =>
+                                              const AddAddressScreen(),
+                                        ),
+                                      );
                                     },
                                     icon: const Icon(
                                       Icons.add,
@@ -193,9 +196,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   'Pickup at store                             FREE',
                                 ),
                                 IconButton(
-                                  onPressed: () {
-                                    
-                                  },
+                                  onPressed: () {},
                                   icon: const Icon(
                                     Icons.keyboard_arrow_down_outlined,
                                   ),
@@ -228,7 +229,13 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                               const Text('select payment method'),
                               IconButton(
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (final context) => const AddCardScreen(),));
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (final context) =>
+                                          const AddCardScreen(),
+                                    ),
+                                  );
                                 },
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down_outlined,
@@ -290,7 +297,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
   ) {
     double total = 0;
     for (final product in products) {
-      total += quantity * product.price!;
+      total += quantity * product.price;
     }
     return total;
   }
