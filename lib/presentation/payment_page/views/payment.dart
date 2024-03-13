@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../home_page/view/home_page_screen.dart';
@@ -155,7 +154,7 @@ class _PaymentState extends State<Payment> {
                               side: const BorderSide(color: Color(0xffdedede)),
                               minimumSize: const Size(double.infinity, 56),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(

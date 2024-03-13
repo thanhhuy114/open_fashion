@@ -19,7 +19,7 @@ class AddCarDProviderScreen extends StatelessWidget {
   const AddCarDProviderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const Placeholder();
   }
 }
@@ -33,16 +33,16 @@ class AddCardScreen extends StatefulWidget {
 
 class _AddCardScreenState extends State<AddCardScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBarCustom(),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => CardFormBloc(),
+            create: (final context) => CardFormBloc(),
           ),
           BlocProvider(
-            create: (context) => CardListBloc()..add(LoadCardList()),
+            create: (final context) => CardListBloc()..add(LoadCardList()),
           ),
         ],
         child: Column(
@@ -76,7 +76,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
               height: 56,
               width: MediaQuery.of(context).size.width,
               onTap: () {},
-            )
+            ),
           ],
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/my_color.dart';
-import '../../checkout_layout_page/view/checkout_layout_screen.dart';
 import '../../checkout_page/view/checkout_screen.dart';
 import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
 import '../../complete_checkout_page/cubit/total/total_cubit.dart';
