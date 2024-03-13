@@ -32,14 +32,14 @@ class _CardFormState extends State<CardForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           //Name of cart Textfield
           TextField(
-            onChanged: (value) => context.read<CardFormBloc>().add(
+            onChanged: (final value) => context.read<CardFormBloc>().add(
                   CheckNameOnCardTextField(
                     text: value,
                   ),
@@ -62,7 +62,7 @@ class _CardFormState extends State<CardForm> {
             ),
           ),
           BlocBuilder<CardFormBloc, CardFormState>(
-            builder: (context, state) {
+            builder: (final context, final state) {
               return ShowValidator(
                 isValid: !state.isValidNameOnCard,
                 validate: state.nameOnCardMessage,
@@ -73,7 +73,7 @@ class _CardFormState extends State<CardForm> {
           //Number of cart textfield
           TextField(
             controller: cardNumber,
-            onChanged: (value) {
+            onChanged: (final value) {
               cardNumber.text = formatVisaCardNumber(value);
               context.read<CardFormBloc>().add(
                     CheckCardNumberTextField(
@@ -101,7 +101,7 @@ class _CardFormState extends State<CardForm> {
             ),
           ),
           BlocBuilder<CardFormBloc, CardFormState>(
-            builder: (context, state) {
+            builder: (final context, final state) {
               return ShowValidator(
                 isValid: !state.isValidCardNumber,
                 validate: state.cardNumberMessage,
@@ -116,11 +116,12 @@ class _CardFormState extends State<CardForm> {
                 child: Column(
                   children: [
                     TextField(
-                      onChanged: (value) => context.read<CardFormBloc>().add(
-                            CheckExpMonthTextField(
-                              text: value,
-                            ),
-                          ),
+                      onChanged: (final value) =>
+                          context.read<CardFormBloc>().add(
+                                CheckExpMonthTextField(
+                                  text: value,
+                                ),
+                              ),
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             color: Colors.black,
                           ),
@@ -141,7 +142,7 @@ class _CardFormState extends State<CardForm> {
                       keyboardType: const TextInputType.numberWithOptions(),
                     ),
                     BlocBuilder<CardFormBloc, CardFormState>(
-                      builder: (context, state) {
+                      builder: (final context, final state) {
                         return ShowValidator(
                           isValid: !state.isValidExpMonth,
                           validate: state.expMonthMessage,
@@ -158,11 +159,12 @@ class _CardFormState extends State<CardForm> {
                 child: Column(
                   children: [
                     TextField(
-                      onChanged: (value) => context.read<CardFormBloc>().add(
-                            CheckExpDateTextField(
-                              text: value,
-                            ),
-                          ),
+                      onChanged: (final value) =>
+                          context.read<CardFormBloc>().add(
+                                CheckExpDateTextField(
+                                  text: value,
+                                ),
+                              ),
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             color: Colors.black,
                           ),
@@ -183,7 +185,7 @@ class _CardFormState extends State<CardForm> {
                       keyboardType: const TextInputType.numberWithOptions(),
                     ),
                     BlocBuilder<CardFormBloc, CardFormState>(
-                      builder: (context, state) {
+                      builder: (final context, final state) {
                         return ShowValidator(
                           isValid: !state.isValidExpDate,
                           validate: state.expDateMessage,
@@ -198,7 +200,7 @@ class _CardFormState extends State<CardForm> {
 
           //CVv textfield
           TextField(
-            onChanged: (value) => context.read<CardFormBloc>().add(
+            onChanged: (final value) => context.read<CardFormBloc>().add(
                   CheckCVVTextField(text: value),
                 ),
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
@@ -221,7 +223,7 @@ class _CardFormState extends State<CardForm> {
             keyboardType: const TextInputType.numberWithOptions(),
           ),
           BlocBuilder<CardFormBloc, CardFormState>(
-            builder: (context, state) {
+            builder: (final context, final state) {
               return ShowValidator(
                 isValid: !state.isValidCvv,
                 validate: state.cvvMessage,

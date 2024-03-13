@@ -5,7 +5,7 @@ import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../add_address_page/view/add_address_screen.dart';
-import '../../add_cart_page/view/add_card_screen.dart';
+import '../../add_card_page/view/add_card_screen.dart';
 import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
 import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
 import '../../complete_checkout_page/cubit/total/total_cubit.dart';

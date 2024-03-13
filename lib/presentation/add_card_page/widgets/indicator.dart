@@ -11,7 +11,7 @@ class Indicatior extends StatelessWidget {
   final int total;
   final int active;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -34,8 +34,8 @@ class Indicatior extends StatelessWidget {
 }
 
 Widget dot({
-  Color color = Colors.white,
-  Color colorBorder = Colors.black,
+  final Color color = Colors.white,
+  final Color colorBorder = Colors.black,
 }) {
   return Transform.rotate(
     angle: pi / 4,

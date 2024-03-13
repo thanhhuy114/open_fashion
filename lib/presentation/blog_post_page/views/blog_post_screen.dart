@@ -115,7 +115,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                   return Column(
                     children: [
                       BlocBuilder<BlogPostBloc, BlogPostState>(
-                        builder: (final context, state) {
+                        builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
                             List<BannerModel> bannerModels = [];
                             for (int index = 0;
@@ -202,7 +202,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                                   ),
                                   color: Colors.white,
                                   child: Text(
-                                    'Posted by ${state.blogPost.postBy} | ${state.blogPost.postDate}',
+                                    '''Posted by ${state.blogPost.postBy} | ${state.blogPost.postDate}''',
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
