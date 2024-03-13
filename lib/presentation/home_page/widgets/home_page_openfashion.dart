@@ -116,7 +116,7 @@ class HomePageOpenFashion extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20.0,bottom: 20),
+            padding: const EdgeInsets.only(top: 20.0, bottom: 20),
             child: Image.asset('assets/img/noise.png'),
           ),
         ],

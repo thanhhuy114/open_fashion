@@ -60,7 +60,10 @@ class _HomePageJustForYouState extends State<HomePageJustForYou> {
                   children: List.generate(widget.jfu.length, (final index) {
                     return Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: Rhombus(color: currentPage==index? const Color.fromRGBO(136, 136, 136, 1):Colors.white),
+                      child: Rhombus(
+                          color: currentPage == index
+                              ? const Color.fromRGBO(136, 136, 136, 1)
+                              : Colors.white,),
                     );
                   }),
                 ),

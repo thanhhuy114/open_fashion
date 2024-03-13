@@ -67,7 +67,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           setState(() {
                             Navigator.push(
                                 context,
