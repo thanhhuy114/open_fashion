@@ -14,10 +14,10 @@ final class ProductDetailLayoutLoading extends ProductDetailLayoutState {
 }
 
 final class ProductDetailLayoutLoaded extends ProductDetailLayoutState {
-  const ProductDetailLayoutLoaded({this.productDetailLayoutModel});
-  final ProductDetailLayoutModel? productDetailLayoutModel;
+  const ProductDetailLayoutLoaded({required this.productDetailLayoutModel});
+  final ProductDetailLayoutModel productDetailLayoutModel;
   @override
-  List<Object> get props => [productDetailLayoutModel!];
+  List<Object> get props => [productDetailLayoutModel];
 }
 
 final class ProductDetailLayoutError extends ProductDetailLayoutState {
