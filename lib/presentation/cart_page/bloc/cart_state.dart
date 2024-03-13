@@ -10,10 +10,10 @@ sealed class CartState extends Equatable {
 final class CartLoadingState extends CartState {}
 
 final class CartLoadedState extends CartState {
-  const CartLoadedState({this.cartModel});
-  final CartModel? cartModel;
+  const CartLoadedState({required this.cartModel});
+  final CartModel cartModel;
   @override
-  List<Object> get props => [cartModel!];
+  List<Object> get props => [cartModel];
 }
 
 final class CartErrorState extends CartState {

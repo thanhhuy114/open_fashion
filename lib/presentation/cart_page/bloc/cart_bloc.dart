@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../models/cart_response_model.dart';
@@ -18,7 +19,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     emit(CartLoadingState());
     try {
       final cartData = await Api.getCart();
-      emit(CartLoadedState(cartModel: cartData.data));
+      if (cartData.data != null) {
+        emit(CartLoadedState(cartModel: cartData.data!));
+      } else {
+        log('data null');
+      }
     } catch (e) {
       emit(CartErrorState(errorMessage: e.toString()));
     }

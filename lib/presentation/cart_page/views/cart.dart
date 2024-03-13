@@ -24,7 +24,7 @@ class _CartPageState extends State<CartPage> {
     final int quantity,
   ) {
     for (final product in products) {
-      total += quantity * product.price!;
+      total += quantity * product.price;
     }
     return total;
   }
@@ -55,7 +55,7 @@ class _CartPageState extends State<CartPage> {
                     );
                   case CartLoadedState():
                     total = calculateInitialTotal(
-                      state.cartModel!.cartInfoModel!,
+                      state.cartModel.cartInfoModel,
                       context.read<CounterCubit>().state,
                     );
                     return Stack(
@@ -80,7 +80,7 @@ class _CartPageState extends State<CartPage> {
                                   style: TextStyle(fontSize: 18),
                                 ),
                                 Expanded(
-                                  child: state.cartModel!.cartInfoModel!.isEmpty
+                                  child: state.cartModel.cartInfoModel.isEmpty
                                       ? const Align(
                                           child: Expanded(
                                             child: Text(
@@ -93,7 +93,7 @@ class _CartPageState extends State<CartPage> {
                                           physics:
                                               const NeverScrollableScrollPhysics(),
                                           itemCount: state
-                                              .cartModel!.cartInfoModel!.length,
+                                              .cartModel.cartInfoModel.length,
                                           itemBuilder:
                                               (final context, final index) {
                                             return Padding(
@@ -101,8 +101,8 @@ class _CartPageState extends State<CartPage> {
                                                 bottom: 16,
                                               ),
                                               child: ItemProduct(
-                                                productItem: state.cartModel!
-                                                    .cartInfoModel![index],
+                                                productItem: state.cartModel
+                                                    .cartInfoModel[index],
                                               ),
                                             );
                                           },
@@ -118,7 +118,7 @@ class _CartPageState extends State<CartPage> {
                           right: 0,
                           child: Column(
                             children: [
-                              if (state.cartModel!.cartInfoModel!.isEmpty)
+                              if (state.cartModel.cartInfoModel.isEmpty)
                                 Container()
                               else
                                 Padding(
@@ -162,7 +162,7 @@ class _CartPageState extends State<CartPage> {
                                     ],
                                   ),
                                 ),
-                              if (state.cartModel!.cartInfoModel!.isEmpty)
+                              if (state.cartModel.cartInfoModel.isEmpty)
                                 ButtonCustom(
                                   message: 'CONTINUE SHOPPING',
                                   onTap: () {},
