@@ -242,9 +242,10 @@ class Api {
     try {
       final response = await http.getRequest(EndPoints.productDetailLayout);
       final result = ProductDetailLayoutResponseModel.fromJson(response!);
+      log(result.toString());
       return result;
     } catch (e) {
-      log('load faild');
+      log(e.toString());
       throw e.toString();
     }
   }
