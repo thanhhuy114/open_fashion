@@ -31,7 +31,7 @@ class OurStoryPage extends StatelessWidget {
                         children: [
                           const SizedBox(height: 14),
                           const Text(
-                            'CHECKOUT',
+                            'OUR STORY',
                             style: TextStyle(fontSize: 20, letterSpacing: 4),
                           ),
                           Padding(
