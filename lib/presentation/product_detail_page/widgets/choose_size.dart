@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/product_detail_response_models.dart';
 import '../cubit/pick_size/size_cubit.dart';
@@ -51,7 +50,7 @@ class _ChooseSizeState extends State<ChooseSize> {
                             width: 28,
                             child: Center(
                               child: Text(
-                                widget.sizeModel[index].size!,
+                                widget.sizeModel[index].size,
                                 style: TextStyle(
                                   color:
                                       context.read<SizeCubit>().state == index

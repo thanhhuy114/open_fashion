@@ -217,7 +217,7 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
                             height: 100,
                             child: Stack(
                               children: [
-                                Image.network(widget.image[index].url!),
+                                Image.network(widget.image[index].url),
                                 if (index == widget.image.length - 1)
                                   Positioned(
                                     bottom: 0,
