@@ -15,9 +15,9 @@ class CartResponseModel {
 
 @JsonSerializable()
 class CartModel {
-  CartModel({this.cartInfoModel});
+  CartModel({required this.cartInfoModel});
   factory CartModel.fromJson(final Map<String, dynamic> json) =>
       _$CartModelFromJson(json);
   @JsonKey(name: 'cart')
-  List<ProductItem>? cartInfoModel;
+  List<ProductItem> cartInfoModel;
 }

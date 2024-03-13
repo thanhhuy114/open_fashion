@@ -23,8 +23,8 @@ Map<String, dynamic> _$CartResponseModelToJson(CartResponseModel instance) =>
     };
 
 CartModel _$CartModelFromJson(Map<String, dynamic> json) => CartModel(
-      cartInfoModel: (json['cart'] as List<dynamic>?)
-          ?.map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
+      cartInfoModel: (json['cart'] as List<dynamic>)
+          .map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

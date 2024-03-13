@@ -14,29 +14,29 @@ class OurStoryResponseModel {
 
 @JsonSerializable()
 class OurStoryModel {
-  OurStoryModel({this.ourStory});
+  OurStoryModel({required this.ourStory});
   factory OurStoryModel.fromJson(final Map<String, dynamic> json) =>
       _$OurStoryModelFromJson(json);
   @JsonKey(name: 'our_story')
-  OurStoryInfoModel? ourStory;
+  OurStoryInfoModel ourStory;
 }
 
 @JsonSerializable()
 class OurStoryInfoModel {
   OurStoryInfoModel({
-    this.openMessage,
-    this.createMessage,
-    this.images,
-    this.signUp,
+   required this.openMessage,
+   required this.createMessage,
+   required this.images,
+   required this.signUp,
   });
   factory OurStoryInfoModel.fromJson(final Map<String, dynamic> json) =>
       _$OurStoryInfoModelFromJson(json);
  
   @JsonKey(name: 'open_message')
-  String? openMessage;
+  String openMessage;
   @JsonKey(name: 'create_message')
-  String? createMessage;
-  ImageModel? images;
+  String createMessage;
+  ImageModel images;
   @JsonKey(name: 'sign_up')
-  String? signUp;
+  String signUp;
 }
