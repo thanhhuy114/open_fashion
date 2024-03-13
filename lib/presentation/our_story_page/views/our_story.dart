@@ -14,7 +14,7 @@ class OurStoryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarCustom(),
-      drawer:  MenuDrawer(),
+      drawer: MenuDrawer(),
       body: BlocProvider(
         create: (final context) => OurStoryBloc()..add(OurStoryLoadedEvent()),
         child: BlocBuilder<OurStoryBloc, OurStoryState>(
@@ -51,12 +51,12 @@ class OurStoryPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              state.ourStoryModel!.ourStory!.openMessage!,
+                              state.ourStoryModel.ourStory.openMessage,
                               style: const TextStyle(fontSize: 16.5),
                             ),
                             const SizedBox(height: 20),
                             Text(
-                              state.ourStoryModel!.ourStory!.createMessage!,
+                              state.ourStoryModel.ourStory.createMessage,
                               style: const TextStyle(fontSize: 17),
                             ),
                           ],
@@ -64,7 +64,7 @@ class OurStoryPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 18),
                       Image.network(
-                        state.ourStoryModel!.ourStory!.images!.url!,
+                        state.ourStoryModel.ourStory.images.url,
                       ),
                       const SizedBox(height: 18),
                       Column(
@@ -86,7 +86,7 @@ class OurStoryPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 50),
                             child: Align(
                               child: Text(
-                                state.ourStoryModel!.ourStory!.signUp!,
+                                state.ourStoryModel.ourStory.signUp,
                               ),
                             ),
                           ),
@@ -101,7 +101,9 @@ class OurStoryPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 75,),
+                      const SizedBox(
+                        height: 75,
+                      ),
                     ],
                   ),
                 );

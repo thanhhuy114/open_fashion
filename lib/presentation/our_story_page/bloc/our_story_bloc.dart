@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../models/our_story_response_model.dart';
@@ -18,7 +19,11 @@ class OurStoryBloc extends Bloc<OurStoryEvent, OurStoryState> {
     emit(OurStoryLoadingState());
     try {
       final ourStoryData = await Api.getOurStory();
-      emit(OurStoryLoadedState(ourStoryModel: ourStoryData.data));
+      if (ourStoryData.data != null) {
+        emit(OurStoryLoadedState(ourStoryModel: ourStoryData.data!));
+      } else {
+        log('data null');
+      }
     } catch (e) {
       emit(OurStoryErrorState(errorMessage: e.toString()));
     }
