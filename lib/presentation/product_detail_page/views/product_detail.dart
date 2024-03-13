@@ -231,6 +231,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               content: state.productDetailModel.care.carePolicy
                                   .shippingInfo,
                             ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 34, right: 16),
+                              child: Divider(height: 1),
+                            ),
                             ItemPolicy(
                               checkArrow: checkedCod,
                               name: 'COD Policy',
@@ -241,6 +245,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               name: 'Estimated to be delivered on',
                               content: state
                                   .productDetailModel.care.carePolicy.codPolicy,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 34, right: 16),
+                              child: Divider(height: 1),
                             ),
                             ItemPolicy(
                               checkArrow: checkedRePolicy,
