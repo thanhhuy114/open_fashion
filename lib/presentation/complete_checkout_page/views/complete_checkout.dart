@@ -2,6 +2,7 @@
 
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
@@ -153,11 +154,14 @@ class CompleteCheckoutPage extends StatelessWidget {
                                   Image.network(
                                     'https://res.cloudinary.com/dc4nkguls/image/upload/v1709785886/OpenFashion/icons/ereyla5zjmlsqvrgwegs.png',
                                   ),
-                                  Text(
-                                    'Master Card ending ####${getLastTwoDigits(state.checkoutModel.checkout.masterCard)}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 17,
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      'Master Card ending ####${getLastTwoDigits(state.checkoutModel.checkout.masterCard)}',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17,
+                                      ),
                                     ),
                                   ),
                                   IconButton(
@@ -215,7 +219,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                     builder: (final context, final state) {
                                       return Text(
                                         r'$'
-                                        '${context.read<TotalCubit>().state}',
+                                        '${context.read<TotalCubit>().state.toInt()}',
                                         style: const TextStyle(
                                           fontSize: 17,
                                           color: MyColor.primaryColor,
