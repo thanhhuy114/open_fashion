@@ -74,9 +74,12 @@ class CheckOutScreen extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.checkoutModel.checkout.product.length,
                       itemBuilder: (final context, final index) {
-                        return ItemProduct(
-                          productItem:
-                              state.checkoutModel.checkout.product[index],
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: ItemProduct(
+                            productItem:
+                                state.checkoutModel.checkout.product[index],
+                          ),
                         );
                       },
                     ),

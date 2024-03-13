@@ -9,6 +9,7 @@ import '../../add_cart_page/view/add_card_screen.dart';
 import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
 import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
 import '../../complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../complete_checkout_page/views/complete_checkout.dart';
 import '../../complete_checkout_page/widgets/button_custom.dart';
 
 class CheckOutLayOutScreen extends StatefulWidget {
@@ -276,7 +277,14 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
               ),
               bottomSheet: ButtonCustom(
                 message: 'PLACE ORDER',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (final context) => CompleteCheckoutPage(),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.shopping_bag_outlined,
                   color: Colors.white,
