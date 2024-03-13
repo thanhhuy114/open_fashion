@@ -12,49 +12,46 @@ class ItemProduct extends StatelessWidget {
   final ProductItem productItem;
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Image.network(
-              productItem.image!.url!,
-            ),
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Image.network(
+            productItem.image.url,
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  productItem.name!.toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          flex: 7,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                productItem.name.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                 ),
-                const SizedBox(height: 3),
-                Text(productItem.description!),
-                const SizedBox(height: 8),
-                BlocProvider(
-                  create: (final context) => CounterCubit(),
-                  child: QuanlityUpDown(price: productItem.price!),
+              ),
+              const SizedBox(height: 3),
+              Text(productItem.description),
+              const SizedBox(height: 8),
+              BlocProvider(
+                create: (final context) => CounterCubit(),
+                child: QuanlityUpDown(price: productItem.price),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                r'$' '${productItem.price.toInt()}',
+                style: const TextStyle(
+                  color: MyColor.primaryColor,
+                  fontSize: 17,
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  r'$' '${productItem.price!.toInt()}',
-                  style: const TextStyle(
-                    color: MyColor.primaryColor,
-                    fontSize: 17,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

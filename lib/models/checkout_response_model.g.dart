@@ -28,10 +28,8 @@ Map<String, dynamic> _$CompleteCheckoutResponeModelToJson(
 CompleteCheckoutModel _$CompleteCheckoutModelFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutModel(
-      checkout: json['checkout'] == null
-          ? null
-          : CompleteCheckoutModelInfo.fromJson(
-              json['checkout'] as Map<String, dynamic>),
+      checkout: CompleteCheckoutModelInfo.fromJson(
+          json['checkout'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CompleteCheckoutModelToJson(
@@ -43,12 +41,12 @@ Map<String, dynamic> _$CompleteCheckoutModelToJson(
 CompleteCheckoutModelInfo _$CompleteCheckoutModelInfoFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutModelInfo(
-      address: json['address'] as String?,
-      addressDetail: json['address_detail'] as String?,
-      phoneNumber: json['phone_number'] as String?,
-      masterCard: json['master_card'] as String?,
-      product: (json['product'] as List<dynamic>?)
-          ?.map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
+      address: json['address'] as String,
+      addressDetail: json['address_detail'] as String,
+      phoneNumber: json['phone_number'] as String,
+      masterCard: json['master_card'] as String,
+      product: (json['product'] as List<dynamic>)
+          .map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -63,12 +61,10 @@ Map<String, dynamic> _$CompleteCheckoutModelInfoToJson(
     };
 
 ProductItem _$ProductItemFromJson(Map<String, dynamic> json) => ProductItem(
-      image: json['image'] == null
-          ? null
-          : ImageModel.fromJson(json['image'] as Map<String, dynamic>),
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      image: ImageModel.fromJson(json['image'] as Map<String, dynamic>),
+      name: json['name'] as String,
+      description: json['description'] as String,
+      price: (json['price'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$ProductItemToJson(ProductItem instance) =>

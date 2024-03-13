@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/drawer_response_model.dart';
@@ -27,7 +27,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Drawer(
-          backgroundColor: widget.color??Colors.white,
+          backgroundColor: widget.color ?? Colors.white,
           child: BlocBuilder<DrawerBloc, DrawerState>(
             builder: (final context, final state) {
               if (state is DrawerLoading) {
@@ -64,7 +64,11 @@ class _MenuDrawerState extends State<MenuDrawer> {
                         },
                         child: Text(
                           'x',
-                          style: TextStyle(color: widget.color!=null?Colors.white:Colors.black, fontSize: 24),
+                          style: TextStyle(
+                              color: widget.color != null
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 24),
                         ),
                       ),
                     ),
@@ -77,7 +81,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
                             children: [
                               SizedBox(
                                 width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height/2-350,
+                                height: MediaQuery.of(context).size.height / 2 -
+                                    350,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: itemTab.length,
@@ -132,7 +137,13 @@ class _MenuDrawerState extends State<MenuDrawer> {
                               const SizedBox(
                                 width: 20,
                               ),
-                              Text('(786) 713-8616', style: TextStyle(color: widget.color!=null?Colors.white:Colors.black),),
+                              Text(
+                                '(786) 713-8616',
+                                style: TextStyle(
+                                    color: widget.color != null
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
                             ],
                           ),
                           const SizedBox(
@@ -147,7 +158,11 @@ class _MenuDrawerState extends State<MenuDrawer> {
                               const SizedBox(
                                 width: 20,
                               ),
-                             Text('Store locator', style: TextStyle(color: widget.color!=null?Colors.white:Colors.black)),
+                              Text('Store locator',
+                                  style: TextStyle(
+                                      color: widget.color != null
+                                          ? Colors.white
+                                          : Colors.black)),
                             ],
                           ),
                           const SizedBox(
@@ -227,7 +242,10 @@ class _ItemNameState extends State<ItemName> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.data, style: TextStyle(color: widget.color!=null?Colors.white:Colors.black)),
+              Text(widget.data,
+                  style: TextStyle(
+                      color:
+                          widget.color != null ? Colors.white : Colors.black)),
               IconButton(
                 onPressed: () {
                   setState(() {
@@ -251,10 +269,19 @@ class _ItemNameState extends State<ItemName> {
                 itemCount: widget.items.length,
                 itemBuilder: (final context, final index) {
                   return ListTile(
-                    title: Text(widget.items[index].item, style: TextStyle(color: widget.color!=null?Colors.white:Colors.black)),
+                    title: Text(widget.items[index].item,
+                        style: TextStyle(
+                            color: widget.color != null
+                                ? Colors.white
+                                : Colors.black)),
                     onTap: () {
                       setState(() {
-                        Navigator.push(context, MaterialPageRoute(builder: (final context) => const CategoryScreen(),));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (final context) =>
+                                  const CategoryScreen(),
+                            ));
                       });
                     },
                   );
@@ -265,6 +292,7 @@ class _ItemNameState extends State<ItemName> {
       ),
     );
   }
+
   double calculateListViewHeight() {
     const itemHeight = 55.0; // Chiều cao trung bình của mỗi phần tử ListTile
     final itemCount = widget.items.length;

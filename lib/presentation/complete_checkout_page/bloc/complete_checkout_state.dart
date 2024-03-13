@@ -14,10 +14,10 @@ final class CompleteCheckoutLoading extends CompleteCheckoutState {
 }
 
 final class CompleteCheckoutLoaded extends CompleteCheckoutState {
-  const CompleteCheckoutLoaded({this.checkoutModel});
-  final CompleteCheckoutModel? checkoutModel;
+  const CompleteCheckoutLoaded({required this.checkoutModel});
+  final CompleteCheckoutModel checkoutModel;
   @override
-  List<Object> get props => [checkoutModel!];
+  List<Object> get props => [checkoutModel];
 }
 
 final class CompleteCheckoutError extends CompleteCheckoutState {

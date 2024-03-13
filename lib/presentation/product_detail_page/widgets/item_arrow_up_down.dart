@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 
 class ItemPolicy extends StatefulWidget {
-  ItemPolicy(
-      {super.key,
-      required this.checkArrow,
-      required this.name,
-      required this.icon});
+  ItemPolicy({
+    super.key,
+    required this.checkArrow,
+    required this.name,
+    required this.icon,
+  });
   Function checkArrow;
   final String name;
   Icon icon;

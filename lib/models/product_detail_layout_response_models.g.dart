@@ -28,34 +28,29 @@ Map<String, dynamic> _$ProductDetailLayoutResponseModelToJson(
 ProductDetailLayoutModel _$ProductDetailLayoutModelFromJson(
         Map<String, dynamic> json) =>
     ProductDetailLayoutModel(
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      ringSize: (json['ring_size'] as List<dynamic>?)
-          ?.map((e) => SizeModel.fromJson(e as Map<String, dynamic>))
+      productItem:
+          ProductItem.fromJson(json['product_item'] as Map<String, dynamic>),
+      ringSize: (json['ring_size'] as List<dynamic>)
+          .map((e) => SizeModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      gallery: (json['gallery'] as List<dynamic>?)
-          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      gallery: (json['gallery'] as List<dynamic>)
+          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      image: (json['image'] as List<dynamic>?)
-          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      image: (json['image'] as List<dynamic>)
+          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      carePolicy: json['care_policy'] == null
-          ? null
-          : CarePolicyModel.fromJson(
-              json['care_policy'] as Map<String, dynamic>),
-      isFavorite: json['isFavorite'] as bool?,
-      categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
+      carePolicy:
+          CarePolicyModel.fromJson(json['care_policy'] as Map<String, dynamic>),
+      isFavorite: json['isFavorite'] as bool,
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$ProductDetailLayoutModelToJson(
         ProductDetailLayoutModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'description': instance.description,
-      'price': instance.price,
+      'product_item': instance.productItem,
       'ring_size': instance.ringSize,
       'gallery': instance.gallery,
       'image': instance.image,

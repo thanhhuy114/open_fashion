@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+
+import 'checkout_response_model.dart';
 part 'product_detail_response_models.g.dart';
 
 @JsonSerializable()
@@ -16,111 +18,112 @@ class ProductDetailResponseModel {
 @JsonSerializable()
 class ProductDetailModel {
   ProductDetailModel({
-    this.name,
-    this.description,
-    this.price,
-    this.color,
-    this.size,
-    this.material,
-    this.care,
-    this.isFavorite,
-    this.categories,
+    required this.productItem,
+    required this.color,
+    required this.size,
+    required this.material,
+    required this.care,
+    required this.isFavorite,
+    required this.categories,
   });
   factory ProductDetailModel.fromJson(final Map<String, dynamic> json) =>
       _$ProductDetailModelFromJson(json);
-  String? name;
-  String? description;
-  double? price;
-  List<ColorModel>? color;
-  List<SizeModel>? size;
-  String? material;
-  CareModel? care;
+  @JsonKey(name: 'product_item')
+  ProductItem productItem;
+  List<ColorModel> color;
+  List<SizeModel> size;
+  String material;
+  CareModel care;
   @JsonKey(name: 'is_favorite')
-  bool? isFavorite;
-  List<CategoryModel>? categories;
+  bool isFavorite;
+  List<CategoryModel> categories;
 }
 
 @JsonSerializable()
 class ColorModel {
-  ColorModel({this.id, this.name, this.image});
+  ColorModel({required this.id, required this.name, required this.image});
   factory ColorModel.fromJson(final Map<String, dynamic> json) =>
       _$ColorModelFromJson(json);
-  int? id;
-  String? name;
-  List<ImageModel>? image;
+  int id;
+  String name;
+  List<ImageModel> image;
 }
 
 @JsonSerializable()
 class SizeModel {
-  SizeModel({this.size});
+  SizeModel({required this.size});
   factory SizeModel.fromJson(final Map<String, dynamic> json) =>
       _$SizeModelFromJson(json);
-  String? size;
+  String size;
 }
 
 @JsonSerializable()
 class ImageModel {
-  ImageModel({this.url});
+  ImageModel({required this.url});
   factory ImageModel.fromJson(final Map<String, dynamic> json) =>
       _$ImageModelFromJson(json);
-  String? url;
+  String url;
 }
 
 @JsonSerializable()
 class CareModel {
   CareModel({
-    this.cleaning,
-    this.doNotUse,
-    this.doNot,
-    this.dryCleanWith,
-    this.ironAtMaxTemperature,
-    this.carePolicy,
+    required this.cleaning,
+    required this.doNotUse,
+    required this.doNot,
+    required this.dryCleanWith,
+    required this.ironAtMaxTemperature,
+    required this.carePolicy,
   });
 
   factory CareModel.fromJson(final Map<String, dynamic> json) =>
       _$CareModelFromJson(json);
-  String? cleaning;
+  String cleaning;
   @JsonKey(name: 'do_not_use')
-  String? doNotUse;
+  String doNotUse;
   @JsonKey(name: 'do_not')
-  String? doNot;
+  String doNot;
   @JsonKey(name: 'dry_clean_with')
-  String? dryCleanWith;
+  String dryCleanWith;
   @JsonKey(name: 'iron_at_max_temperature')
-  String? ironAtMaxTemperature;
+  String ironAtMaxTemperature;
   @JsonKey(name: 'care_policy')
-  CarePolicyModel? carePolicy;
+  CarePolicyModel carePolicy;
 }
 
 @JsonSerializable()
 class CarePolicyModel {
-  CarePolicyModel({this.shippingInfo, this.codPolicy, this.returnPolicy});
+  CarePolicyModel({
+    required this.shippingInfo,
+    required this.codPolicy,
+    required this.returnPolicy,
+  });
   factory CarePolicyModel.fromJson(final Map<String, dynamic> json) =>
       _$CarePolicyModelFromJson(json);
   @JsonKey(name: 'shipping_info')
-  String? shippingInfo;
+  String shippingInfo;
   @JsonKey(name: 'COD_policy')
-  String? codPolicy;
+  String codPolicy;
   @JsonKey(name: 'return_policy')
-  String? returnPolicy;
+  String returnPolicy;
 }
 
 @JsonSerializable()
 class CategoryModel {
   CategoryModel({
-    this.name,
-    this.description,
-    this.price,
-    this.image,
-    this.isFavorite,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
+    required this.isFavorite,
   });
 
   factory CategoryModel.fromJson(final Map<String, dynamic> json) =>
       _$CategoryModelFromJson(json);
-  final String? name;
-  final String? description;
-  final double? price;
-  final String? image;
+  final String name;
+  final String description;
+  final double price;
+  final String image;
   @JsonKey(name: 'is_favorite')
-  final bool? isFavorite;
+  final bool isFavorite;
 }

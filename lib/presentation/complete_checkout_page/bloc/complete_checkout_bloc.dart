@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -21,7 +22,11 @@ class CompleteCheckoutBloc
     emit(const CompleteCheckoutLoading());
     try {
       final checkoutData = await Api.getCheckout();
-      emit(CompleteCheckoutLoaded(checkoutModel: checkoutData.data));
+      if (checkoutData.data != null) {
+        emit(CompleteCheckoutLoaded(checkoutModel: checkoutData.data!));
+      } else {
+        log('data null');
+      }
     } catch (e) {
       emit(CompleteCheckoutError(errorMessage: e.toString()));
     }

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'checkout_response_model.dart';
 import 'product_detail_response_models.dart';
 part 'product_detail_layout_response_models.g.dart';
 
@@ -18,28 +19,25 @@ class ProductDetailLayoutResponseModel {
 @JsonSerializable()
 class ProductDetailLayoutModel {
   ProductDetailLayoutModel({
-    this.name,
-    this.description,
-    this.price,
-    this.ringSize,
-    this.gallery,
-    this.image,
-    this.carePolicy,
-    this.isFavorite,
-    this.categories,
+   required this.productItem,
+   required this.ringSize,
+   required this.gallery,
+   required this.image,
+   required this.carePolicy,
+   required this.isFavorite,
+   required this.categories,
   });
 
   factory ProductDetailLayoutModel.fromJson(final Map<String, dynamic> json) =>
       _$ProductDetailLayoutModelFromJson(json);
-  String? name;
-  String? description;
-  double? price;
+  @JsonKey(name: 'product_item')
+  ProductItem productItem;
   @JsonKey(name: 'ring_size')
-  List<SizeModel>? ringSize;
-  List<ImageModel>? gallery;
-  List<ImageModel>? image;
+  List<SizeModel> ringSize;
+  List<ImageModel> gallery;
+  List<ImageModel> image;
   @JsonKey(name: 'care_policy')
-  CarePolicyModel? carePolicy;
-  bool? isFavorite;
-  List<CategoryModel>? categories;
+  CarePolicyModel carePolicy;
+  bool isFavorite;
+  List<CategoryModel> categories;
 }

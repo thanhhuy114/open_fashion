@@ -26,30 +26,25 @@ Map<String, dynamic> _$ProductDetailResponseModelToJson(
 
 ProductDetailModel _$ProductDetailModelFromJson(Map<String, dynamic> json) =>
     ProductDetailModel(
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      color: (json['color'] as List<dynamic>?)
-          ?.map((e) => ColorModel.fromJson(e as Map<String, dynamic>))
+      productItem:
+          ProductItem.fromJson(json['product_item'] as Map<String, dynamic>),
+      color: (json['color'] as List<dynamic>)
+          .map((e) => ColorModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      size: (json['size'] as List<dynamic>?)
-          ?.map((e) => SizeModel.fromJson(e as Map<String, dynamic>))
+      size: (json['size'] as List<dynamic>)
+          .map((e) => SizeModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      material: json['material'] as String?,
-      care: json['care'] == null
-          ? null
-          : CareModel.fromJson(json['care'] as Map<String, dynamic>),
-      isFavorite: json['is_favorite'] as bool?,
-      categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
+      material: json['material'] as String,
+      care: CareModel.fromJson(json['care'] as Map<String, dynamic>),
+      isFavorite: json['is_favorite'] as bool,
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$ProductDetailModelToJson(ProductDetailModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'description': instance.description,
-      'price': instance.price,
+      'product_item': instance.productItem,
       'color': instance.color,
       'size': instance.size,
       'material': instance.material,
@@ -59,10 +54,10 @@ Map<String, dynamic> _$ProductDetailModelToJson(ProductDetailModel instance) =>
     };
 
 ColorModel _$ColorModelFromJson(Map<String, dynamic> json) => ColorModel(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
-      image: (json['image'] as List<dynamic>?)
-          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      id: json['id'] as int,
+      name: json['name'] as String,
+      image: (json['image'] as List<dynamic>)
+          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -74,7 +69,7 @@ Map<String, dynamic> _$ColorModelToJson(ColorModel instance) =>
     };
 
 SizeModel _$SizeModelFromJson(Map<String, dynamic> json) => SizeModel(
-      size: json['size'] as String?,
+      size: json['size'] as String,
     );
 
 Map<String, dynamic> _$SizeModelToJson(SizeModel instance) => <String, dynamic>{
@@ -82,7 +77,7 @@ Map<String, dynamic> _$SizeModelToJson(SizeModel instance) => <String, dynamic>{
     };
 
 ImageModel _$ImageModelFromJson(Map<String, dynamic> json) => ImageModel(
-      url: json['url'] as String?,
+      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$ImageModelToJson(ImageModel instance) =>
@@ -91,15 +86,13 @@ Map<String, dynamic> _$ImageModelToJson(ImageModel instance) =>
     };
 
 CareModel _$CareModelFromJson(Map<String, dynamic> json) => CareModel(
-      cleaning: json['cleaning'] as String?,
-      doNotUse: json['do_not_use'] as String?,
-      doNot: json['do_not'] as String?,
-      dryCleanWith: json['dry_clean_with'] as String?,
-      ironAtMaxTemperature: json['iron_at_max_temperature'] as String?,
-      carePolicy: json['care_policy'] == null
-          ? null
-          : CarePolicyModel.fromJson(
-              json['care_policy'] as Map<String, dynamic>),
+      cleaning: json['cleaning'] as String,
+      doNotUse: json['do_not_use'] as String,
+      doNot: json['do_not'] as String,
+      dryCleanWith: json['dry_clean_with'] as String,
+      ironAtMaxTemperature: json['iron_at_max_temperature'] as String,
+      carePolicy:
+          CarePolicyModel.fromJson(json['care_policy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CareModelToJson(CareModel instance) => <String, dynamic>{
@@ -113,9 +106,9 @@ Map<String, dynamic> _$CareModelToJson(CareModel instance) => <String, dynamic>{
 
 CarePolicyModel _$CarePolicyModelFromJson(Map<String, dynamic> json) =>
     CarePolicyModel(
-      shippingInfo: json['shipping_info'] as String?,
-      codPolicy: json['COD_policy'] as String?,
-      returnPolicy: json['return_policy'] as String?,
+      shippingInfo: json['shipping_info'] as String,
+      codPolicy: json['COD_policy'] as String,
+      returnPolicy: json['return_policy'] as String,
     );
 
 Map<String, dynamic> _$CarePolicyModelToJson(CarePolicyModel instance) =>
@@ -127,11 +120,11 @@ Map<String, dynamic> _$CarePolicyModelToJson(CarePolicyModel instance) =>
 
 CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
     CategoryModel(
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      image: json['image'] as String?,
-      isFavorite: json['is_favorite'] as bool?,
+      name: json['name'] as String,
+      description: json['description'] as String,
+      price: (json['price'] as num).toDouble(),
+      image: json['image'] as String,
+      isFavorite: json['is_favorite'] as bool,
     );
 
 Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>

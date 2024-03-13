@@ -27,7 +27,7 @@ class _ItemMaySoLikeState extends State<ItemMaySoLike> {
         Stack(
           children: [
             Positioned(
-              child: Image.network(widget.categoryModel.image!),
+              child: Image.network(widget.categoryModel.image),
             ),
             BlocBuilder<FavoriteCubit, bool>(
               builder: (final context, final state) {
@@ -55,13 +55,13 @@ class _ItemMaySoLikeState extends State<ItemMaySoLike> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            Text(widget.categoryModel.name!),
+            Text(widget.categoryModel.name),
             Text(
-              widget.categoryModel.description!,
+              widget.categoryModel.description,
               style: const TextStyle(color: Colors.grey),
             ),
             Text(
-              r'$' '${widget.categoryModel.price!.toStringAsFixed(0)}',
+              r'$' '${widget.categoryModel.price.toStringAsFixed(0)}',
               style: const TextStyle(color: MyColor.primaryColor, fontSize: 18),
             ),
             const SizedBox(height: 20),

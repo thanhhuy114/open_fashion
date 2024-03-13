@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_positional_boolean_parameters
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
@@ -64,8 +63,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar:AppBarCustom(),
-        drawer:  MenuDrawer(),
+        appBar: AppBarCustom(),
+        drawer: MenuDrawer(),
         body: BlocBuilder<ProductDetailBloc, ProductDetailState>(
           builder: (final context, final state) {
             switch (state) {
@@ -87,9 +86,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               builder: (final context, final stateColor) {
                                 return SlideShowProductDetail(
                                   image: state
-                                      .productDetailModel!
-                                      .color![context.read<ColorCubit>().state]
-                                      .image!,
+                                      .productDetailModel
+                                      .color[context.read<ColorCubit>().state]
+                                      .image,
                                   checkCategory: false,
                                 );
                               },
@@ -102,7 +101,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      state.productDetailModel!.name!
+                                      state.productDetailModel.productItem.name
                                           .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 19,
@@ -114,7 +113,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  state.productDetailModel!.description!,
+                                  state.productDetailModel.productItem
+                                      .description,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -123,7 +123,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 const SizedBox(height: 6),
                                 Text(
                                   r'$'
-                                  '${state.productDetailModel!.price!.toStringAsFixed(0)}',
+                                  '${state.productDetailModel.productItem.price.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -139,10 +139,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 children: [
                                   ChooseColor(
                                     productDetailModel:
-                                        state.productDetailModel!,
+                                        state.productDetailModel,
                                   ),
                                   ChooseSize(
-                                    sizeModel: state.productDetailModel!.size!,
+                                    sizeModel: state.productDetailModel.size,
                                     titleSize: 'Size',
                                   ),
                                 ],
@@ -154,7 +154,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       const SizedBox(height: 10),
                       BlocProvider(
                         create: (final context) => FavoriteCubit(),
-                        child: const ButtonBasket(),
+                        child: ButtonBasket(
+                          productItem: state.productDetailModel.productItem,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
@@ -168,7 +170,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              state.productDetailModel!.material!,
+                              state.productDetailModel.material,
                               style: const TextStyle(letterSpacing: 1),
                             ),
                             const SizedBox(height: 20),
@@ -178,7 +180,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              state.productDetailModel!.care!.cleaning!,
+                              state.productDetailModel.care.cleaning,
                               style: const TextStyle(letterSpacing: 1),
                             ),
                             const SizedBox(height: 15),
@@ -186,25 +188,24 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               image:
                                   'https://res.cloudinary.com/dc4nkguls/image/upload/v1709634244/OpenFashion/icons/gggpxdqplzgxna188jgr.png',
                               txtReminder:
-                                  state.productDetailModel!.care!.doNotUse!,
+                                  state.productDetailModel.care.doNotUse,
                             ),
                             ItemReminder(
                               image:
                                   'https://res.cloudinary.com/dc4nkguls/image/upload/v1709634244/OpenFashion/icons/mcojiy7vvj8ztphkggde.png',
-                              txtReminder:
-                                  state.productDetailModel!.care!.doNot!,
+                              txtReminder: state.productDetailModel.care.doNot,
                             ),
                             ItemReminder(
                               image:
                                   'https://res.cloudinary.com/dc4nkguls/image/upload/v1709634244/OpenFashion/icons/yre4zg8pd1asaaxdybr1.png',
                               txtReminder:
-                                  state.productDetailModel!.care!.dryCleanWith!,
+                                  state.productDetailModel.care.dryCleanWith,
                             ),
                             ItemReminder(
                               image:
                                   'https://res.cloudinary.com/dc4nkguls/image/upload/v1709634245/OpenFashion/icons/jqyaewofjlqj3thkn9xa.png',
-                              txtReminder: state.productDetailModel!.care!
-                                  .ironAtMaxTemperature!,
+                              txtReminder: state
+                                  .productDetailModel.care.ironAtMaxTemperature,
                             ),
                           ],
                         ),
@@ -227,8 +228,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ItemContentShow(
                               checked: checkShipping,
                               name: 'Estimated to be delivered on',
-                              content: state.productDetailModel!.care!
-                                  .carePolicy!.shippingInfo!,
+                              content: state.productDetailModel.care.carePolicy
+                                  .shippingInfo,
                             ),
                             ItemPolicy(
                               checkArrow: checkedCod,
@@ -238,8 +239,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ItemContentShow(
                               checked: checkCod,
                               name: 'Estimated to be delivered on',
-                              content: state.productDetailModel!.care!
-                                  .carePolicy!.codPolicy!,
+                              content: state
+                                  .productDetailModel.care.carePolicy.codPolicy,
                             ),
                             ItemPolicy(
                               checkArrow: checkedRePolicy,
@@ -249,14 +250,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ItemContentShow(
                               checked: checkRePolicy,
                               name: 'Estimated to be delivered on',
-                              content: state.productDetailModel!.care!
-                                  .carePolicy!.returnPolicy!,
+                              content: state.productDetailModel.care.carePolicy
+                                  .returnPolicy,
                             ),
                           ],
                         ),
                       ),
                       MaySoLike(
-                        category: state.productDetailModel!.categories!,
+                        category: state.productDetailModel.categories,
                       ),
                       const FooterWidget(),
                     ],
