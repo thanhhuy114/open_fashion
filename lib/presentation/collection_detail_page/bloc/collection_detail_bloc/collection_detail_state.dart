@@ -7,7 +7,6 @@ abstract class CollectionDetailState extends Equatable {
 class CollectionDetailLoading extends CollectionDetailState {
   @override
   List<Object?> get props {
-    // TODO: implement props
     throw UnimplementedError();
   }
 }
@@ -18,7 +17,6 @@ class CollectionDetailLoaded extends CollectionDetailState {
 
   @override
   List<Object?> get props {
-    // TODO: implement props
     throw UnimplementedError();
   }
 }
@@ -26,7 +24,6 @@ class CollectionDetailLoaded extends CollectionDetailState {
 class CollectionDetailFailure extends CollectionDetailState {
   @override
   List<Object?> get props {
-    // TODO: implement props
     throw UnimplementedError();
   }
 }

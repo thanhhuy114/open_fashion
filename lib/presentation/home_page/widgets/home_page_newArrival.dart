@@ -100,7 +100,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
             itemCount: items.length,
             itemBuilder: (final context, final index) {
               return GestureDetector(
-                onTap: () {
+                onTap: () async {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -116,7 +116,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
           ),
         ),
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             setState(() {
               Navigator.push(
                 context,
@@ -152,6 +152,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
   }
 }
 
+// ignore: must_be_immutable
 class ItemTab extends StatelessWidget {
   ItemTab({
     super.key,
