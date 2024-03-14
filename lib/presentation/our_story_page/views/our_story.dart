@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../../complete_checkout_page/widgets/button_custom.dart';
 import '../bloc/our_story_bloc.dart';
 
@@ -12,7 +13,8 @@ class OurStoryPage extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const AppBarCustom(),
+      appBar: AppBarCustom(),
+      drawer: MenuDrawer(),
       body: BlocProvider(
         create: (final context) => OurStoryBloc()..add(OurStoryLoadedEvent()),
         child: BlocBuilder<OurStoryBloc, OurStoryState>(
@@ -29,7 +31,7 @@ class OurStoryPage extends StatelessWidget {
                         children: [
                           const SizedBox(height: 14),
                           const Text(
-                            'CHECKOUT',
+                            'OUR STORY',
                             style: TextStyle(fontSize: 20, letterSpacing: 4),
                           ),
                           Padding(
@@ -49,12 +51,12 @@ class OurStoryPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              state.ourStoryModel!.ourStory!.openMessage!,
+                              state.ourStoryModel.ourStory.openMessage,
                               style: const TextStyle(fontSize: 16.5),
                             ),
                             const SizedBox(height: 20),
                             Text(
-                              state.ourStoryModel!.ourStory!.createMessage!,
+                              state.ourStoryModel.ourStory.createMessage,
                               style: const TextStyle(fontSize: 17),
                             ),
                           ],
@@ -62,7 +64,7 @@ class OurStoryPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 18),
                       Image.network(
-                        state.ourStoryModel!.ourStory!.images!.url!,
+                        state.ourStoryModel.ourStory.images.url,
                       ),
                       const SizedBox(height: 18),
                       Column(
@@ -72,16 +74,20 @@ class OurStoryPage extends StatelessWidget {
                             style: TextStyle(fontSize: 20, letterSpacing: 4),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: Text(state.ourStoryModel!.ourStory!.signUp!),
-                          ),
-                          Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 145,
                             ),
                             child: Image.asset(
                               'assets/images/3.png',
                               height: 10,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            child: Align(
+                              child: Text(
+                                state.ourStoryModel.ourStory.signUp,
+                              ),
                             ),
                           ),
                         ],
@@ -94,6 +100,9 @@ class OurStoryPage extends StatelessWidget {
                             hintStyle: TextStyle(fontSize: 15),
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 75,
                       ),
                     ],
                   ),

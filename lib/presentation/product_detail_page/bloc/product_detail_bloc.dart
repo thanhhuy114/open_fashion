@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../models/product_detail_response_models.dart';
@@ -18,7 +19,11 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
     emit(const ProductDetailLoading());
     try {
       final productDetailModel = await Api.getProductDetail();
-      emit(ProductDetailLoaded(productDetailModel: productDetailModel.data));
+      if (productDetailModel.data != null) {
+        emit(ProductDetailLoaded(productDetailModel: productDetailModel.data!));
+      } else {
+        log('data null');
+      }
     } catch (e) {
       emit(ProductDetailError(errorMessage: e.toString()));
     }

@@ -13,10 +13,10 @@ final class ProductDetailLoading extends ProductDetailState {
 }
 
 final class ProductDetailLoaded extends ProductDetailState {
-  const ProductDetailLoaded({this.productDetailModel});
-  final ProductDetailModel? productDetailModel;
+  const ProductDetailLoaded({required this.productDetailModel});
+  final ProductDetailModel productDetailModel;
   @override
-  List<Object> get props => [productDetailModel!];
+  List<Object> get props => [productDetailModel];
 }
 
 final class ProductDetailError extends ProductDetailState {

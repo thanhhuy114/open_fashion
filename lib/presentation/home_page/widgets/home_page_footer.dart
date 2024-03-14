@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/footer_response_model.dart';
+import '../../contact_us_page/view/contact_us_screen.dart';
+import '../../our_story_page/views/our_story.dart';
 import '../bloc/footer_bloc.dart';
 
 class HomePageFooter extends StatelessWidget {
@@ -38,7 +40,8 @@ class HomePageFooter extends StatelessWidget {
                       ),
                       SizedBox(
                         width: 32,
-                        child: Image.asset('assets/icons/Instagram.jpg'),),
+                        child: Image.asset('assets/icons/Instagram.jpg'),
+                      ),
                       const SizedBox(
                         width: 35,
                       ),
@@ -75,7 +78,14 @@ class HomePageFooter extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (final context) =>
+                                      const OurStoryPage(),
+                                ));
+                          },
                           child: Text(
                             'About',
                             style: GoogleFonts.tenorSans(
@@ -86,7 +96,14 @@ class HomePageFooter extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () async{
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (final context) =>
+                                      const ContactUsScreen(),
+                                ));
+                          },
                           child: Text(
                             'Contact',
                             style: GoogleFonts.tenorSans(

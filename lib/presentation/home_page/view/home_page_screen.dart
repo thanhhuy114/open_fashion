@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/menu_arrival_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
+import '../../blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_bloc.dart';
 import '../widgets/Home_page_trending.dart';
@@ -58,16 +59,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
             jfu = state.jfu;
             fu = state.fu;
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: AppBarCustom(),
+              drawer: MenuDrawer(),
               body: SingleChildScrollView(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          setState(() {});
+                        onTap: () async {
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (final context) =>
+                                      const BlocGridPageProvider(),
+                                ));
+                          });
                         },
                         child: const HomePageStack(),
                       ),
@@ -85,8 +93,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       const SizedBox(
                         height: 35,
                       ),
-                      HomePageJustForYou(jfu: jfu,),
-                      const SizedBox(height: 35,),
+                      HomePageJustForYou(
+                        jfu: jfu,
+                      ),
+                      const SizedBox(
+                        height: 35,
+                      ),
                       const HomePageTrending(),
                       const SizedBox(
                         height: 20,

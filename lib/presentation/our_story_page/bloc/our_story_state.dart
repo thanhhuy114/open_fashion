@@ -10,10 +10,10 @@ sealed class OurStoryState extends Equatable {
 final class OurStoryLoadingState extends OurStoryState {}
 
 final class OurStoryLoadedState extends OurStoryState {
-  const OurStoryLoadedState({this.ourStoryModel});
-  final OurStoryModel? ourStoryModel;
+  const OurStoryLoadedState({required this.ourStoryModel});
+  final OurStoryModel ourStoryModel;
   @override
-  List<Object> get props => [ourStoryModel!];
+  List<Object> get props => [ourStoryModel];
 }
 
 final class OurStoryErrorState extends OurStoryState {

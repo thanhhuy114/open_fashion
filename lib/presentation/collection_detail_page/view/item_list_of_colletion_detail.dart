@@ -1,13 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../../../models/collections_response_model.dart';
+import '../../product_detail_page/views/product_detail.dart';
 
 /*
   Create by: Thach
   Date: 6/3 16:15
   Conntent: Danh sách các sản phẩm của bộ sưu tập
+  
+  Modify: Thach
+  Date: 11/3 10:24
+  Content: 
+    line 33
+    line 71
+    line 83
  */
 
 // Item of collection
@@ -21,74 +26,90 @@ class ItemOfCollectionWidget extends StatelessWidget {
   final ItemOfCollectionModel item;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: sizeItem.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: sizeItem.width,
-            height: sizeItem.height - 20,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(item.image!),
+    return GestureDetector(
+      onTap: () => Navigator.push(context, PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return const ProductDetailPage();
+        },
+      )),
+      child: SizedBox(
+        width: sizeItem.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (item.image == null)
+              SizedBox(
+                width: sizeItem.width,
+                height: sizeItem.height - 20,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            else
+              Container(
+                width: sizeItem.width,
+                height: sizeItem.height - 20,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(item.image!),
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      bottom: 10,
+                      right: 10,
+                      child: Image.asset(
+                        'assets/icons/Heart.png',
+                        width: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            Container(
+              margin: const EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(left: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    (item.name ?? '').length > 20
+                        ? '${item.name!.substring(0, 20)}...'
+                        : item.name ?? '',
+                    style: const TextStyle(
+                      height: 1.5,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(252, 252, 252, 1),
+                    ),
+                  ),
+                  Text(
+                    (item.description ?? '').length > 20
+                        ? '${item.description!.substring(0, 20)}...'
+                        : item.description ?? '',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      height: 1.5,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(129, 129, 129, 1),
+                    ),
+                  ),
+                  Text(
+                    '${item.price ?? 0}\$',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      height: 2,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromRGBO(221, 133, 96, 1),
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: Stack(
-              children: [
-                Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: Image.asset(
-                    'assets/icons/Heart.png',
-                    width: 20,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 5),
-            padding: const EdgeInsets.only(left: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.name!.length > 20
-                      ? '${item.name!.substring(0, 26)}...'
-                      : item.name!,
-                  style: const TextStyle(
-                    height: 1.5,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(252, 252, 252, 1),
-                  ),
-                ),
-                Text(
-                  item.description!.length > 20
-                      ? '${item.description!.substring(0, 20)}...'
-                      : item.description!,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    height: 1.5,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(129, 129, 129, 1),
-                  ),
-                ),
-                Text(
-                  '${item.price}\$',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    height: 2,
-                    fontWeight: FontWeight.w600,
-                    color: Color.fromRGBO(221, 133, 96, 1),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

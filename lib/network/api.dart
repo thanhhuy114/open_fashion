@@ -1,8 +1,7 @@
 // ignore_for_file: only_throw_errors
-
 import 'dart:async';
-
 import '../models/blog_post.dart';
+import '../models/cart_response_model.dart';
 import '../models/collections_response_model.dart';
 import '../models/contact_us_response_model.dart';
 import '../models/drawer_response_model.dart';
@@ -257,9 +256,10 @@ class Api {
     try {
       final response = await http.getRequest(EndPoints.productDetailLayout);
       final result = ProductDetailLayoutResponseModel.fromJson(response!);
+      log(result.toString());
       return result;
     } catch (e) {
-      log('load faild');
+      log(e.toString());
       throw e.toString();
     }
   }
@@ -279,6 +279,17 @@ class Api {
     try {
       final response = await http.getRequest(EndPoints.ourStory);
       final result = OurStoryResponseModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
+
+  static Future<CartResponseModel> getCart() async {
+    try {
+      final response = await http.getRequest(EndPoints.cart);
+      final result = CartResponseModel.fromJson(response!);
       return result;
     } catch (e) {
       log('load faild');

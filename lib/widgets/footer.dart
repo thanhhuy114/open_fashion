@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/contact_us_page/view/contact_us_screen.dart';
+import '../presentation/our_story_page/views/our_story.dart';
+
 class FooterWidget extends StatelessWidget {
   const FooterWidget({
     super.key,
@@ -99,7 +102,14 @@ class FooterWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (final context) => const OurStoryPage(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'About',
                     style: TextStyle(
@@ -111,7 +121,14 @@ class FooterWidget extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (final context) => const ContactUsScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'Contact',
                     style: TextStyle(

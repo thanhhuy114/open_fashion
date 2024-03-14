@@ -12,7 +12,7 @@ class _CategoryFilterState extends State<CategoryFilter> {
   List<String> lstItem = ['New', 'Oldest'];
   String selectedItem = 'New';
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -20,7 +20,7 @@ class _CategoryFilterState extends State<CategoryFilter> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("4500 APPAREL"),
+            const Text('4500 APPAREL'),
             Row(
               children: [
                 Container(
@@ -30,20 +30,20 @@ class _CategoryFilterState extends State<CategoryFilter> {
                       boxShadow: [
                         BoxShadow(
                             blurRadius: 0.1,
-                            color: Colors.grey.withOpacity(0.5))
-                      ]),
+                            color: Colors.grey.withOpacity(0.5),),
+                      ],),
                   child: DropdownButton(
                     borderRadius: BorderRadius.circular(33),
                     alignment: Alignment.center,
                     padding: const EdgeInsets.only(right: 15),
                     underline: Container(),
-                    items: lstItem.map((e) {
+                    items: lstItem.map((final e) {
                       return DropdownMenuItem<String>(
                         value: e,
                         child: Text(e),
                       );
                     }).toList(),
-                    onChanged: (value) {
+                    onChanged: (final value) {
                       selectedItem = value!;
                       setState(() {});
                     },
@@ -55,7 +55,7 @@ class _CategoryFilterState extends State<CategoryFilter> {
                   pathIcon: 'assets/img/Filter.png',
                 ),
               ],
-            )
+            ),
           ],
         ),
         const TagFilter(tagName: 'Women'),
@@ -76,13 +76,12 @@ class _FilterButtonState extends State<FilterButton> {
   late String curentPathIcon;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     curentPathIcon = widget.pathIcon;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -102,7 +101,7 @@ class _FilterButtonState extends State<FilterButton> {
             minimumSize: MaterialStateProperty.all(const Size(5, 5)),
             shape: MaterialStateProperty.all(const CircleBorder()),
             side: MaterialStateProperty.all(
-                const BorderSide(color: Colors.transparent)),
+                const BorderSide(color: Colors.transparent),),
           ),
           onPressed: () {
             if (curentPathIcon == 'assets/img/Gridview.png') {
@@ -117,7 +116,7 @@ class _FilterButtonState extends State<FilterButton> {
             }
             setState(() {});
           },
-          child: Image.asset(curentPathIcon)),
+          child: Image.asset(curentPathIcon),),
     );
   }
 }

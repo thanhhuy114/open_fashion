@@ -49,12 +49,12 @@ class CheckOutScreen extends StatelessWidget {
           }
           if (state is CompleteCheckoutLoaded) {
             total = calculateInitialTotal(
-              state.checkoutModel!.checkout!.product!,
+              state.checkoutModel.checkout.product,
               context.read<CounterCubit>().state,
             );
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: AppBarCustom(),
+              drawer: MenuDrawer(),
               body: Container(
                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                 alignment: Alignment.center,
@@ -72,11 +72,14 @@ class CheckOutScreen extends StatelessWidget {
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: state.checkoutModel!.checkout!.product!.length,
+                      itemCount: state.checkoutModel.checkout.product.length,
                       itemBuilder: (final context, final index) {
-                        return ItemProduct(
-                          productItem:
-                              state.checkoutModel!.checkout!.product![index],
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: ItemProduct(
+                            productItem:
+                                state.checkoutModel.checkout.product[index],
+                          ),
                         );
                       },
                     ),
@@ -150,12 +153,13 @@ class CheckOutScreen extends StatelessWidget {
                 message: 'CHECKOUT',
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (final context) => CheckOutLayOutScreen(
-                          total: total,
-                        ),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (final context) => CheckOutLayOutScreen(
+                        total: total,
+                      ),
+                    ),
+                  );
                 },
                 icon: const Icon(
                   Icons.shopping_bag_outlined,
@@ -178,7 +182,7 @@ double calculateInitialTotal(
 ) {
   double total = 0;
   for (final product in products) {
-    total += quantity * product.price!;
+    total += quantity * product.price;
   }
   return total;
 }

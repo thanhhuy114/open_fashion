@@ -4,9 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
+import '../../add_address_page/view/add_address_screen.dart';
+import '../../add_card_page/view/add_card_screen.dart';
 import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
 import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
 import '../../complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../complete_checkout_page/views/complete_checkout.dart';
 import '../../complete_checkout_page/widgets/button_custom.dart';
 
 class CheckOutLayOutScreen extends StatefulWidget {
@@ -52,8 +55,8 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
           }
           if (state is CompleteCheckoutLoaded) {
             return Scaffold(
-              appBar: const AppBarCustom(),
-              drawer: const MenuDrawer(),
+              appBar: AppBarCustom(),
+              drawer: MenuDrawer(),
               body: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
                 child: Column(
@@ -89,7 +92,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      state.checkoutModel!.checkout!.address!,
+                                      state.checkoutModel.checkout.address,
                                       style: const TextStyle(
                                         fontSize: 18.5,
                                         fontWeight: FontWeight.w400,
@@ -97,16 +100,15 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                       ),
                                     ),
                                     Text(
-                                      state.checkoutModel!.checkout!
-                                          .addressDetail!,
+                                      state
+                                          .checkoutModel.checkout.addressDetail,
                                       style: const TextStyle(
                                         height: 1.6,
                                         fontSize: 17,
                                       ),
                                     ),
                                     Text(
-                                      state.checkoutModel!.checkout!
-                                          .phoneNumber!,
+                                      state.checkoutModel.checkout.phoneNumber,
                                       style: const TextStyle(
                                         height: 1.7,
                                         fontSize: 17,
@@ -150,7 +152,15 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                     'Add shipping address',
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (final context) =>
+                                              const AddAddressScreen(),
+                                        ),
+                                      );
+                                    },
                                     icon: const Icon(
                                       Icons.add,
                                     ),
@@ -219,7 +229,15 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                             children: [
                               const Text('select payment method'),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (final context) =>
+                                          const AddCardScreen(),
+                                    ),
+                                  );
+                                },
                                 icon: const Icon(
                                   Icons.keyboard_arrow_down_outlined,
                                 ),
@@ -259,7 +277,14 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
               ),
               bottomSheet: ButtonCustom(
                 message: 'PLACE ORDER',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (final context) => CompleteCheckoutPage(),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.shopping_bag_outlined,
                   color: Colors.white,
@@ -280,7 +305,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
   ) {
     double total = 0;
     for (final product in products) {
-      total += quantity * product.price!;
+      total += quantity * product.price;
     }
     return total;
   }

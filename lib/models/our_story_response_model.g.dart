@@ -26,10 +26,8 @@ Map<String, dynamic> _$OurStoryResponseModelToJson(
 
 OurStoryModel _$OurStoryModelFromJson(Map<String, dynamic> json) =>
     OurStoryModel(
-      ourStory: json['our_story'] == null
-          ? null
-          : OurStoryInfoModel.fromJson(
-              json['our_story'] as Map<String, dynamic>),
+      ourStory:
+          OurStoryInfoModel.fromJson(json['our_story'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OurStoryModelToJson(OurStoryModel instance) =>
@@ -39,12 +37,10 @@ Map<String, dynamic> _$OurStoryModelToJson(OurStoryModel instance) =>
 
 OurStoryInfoModel _$OurStoryInfoModelFromJson(Map<String, dynamic> json) =>
     OurStoryInfoModel(
-      openMessage: json['open_message'] as String?,
-      createMessage: json['create_message'] as String?,
-      images: json['images'] == null
-          ? null
-          : ImageModel.fromJson(json['images'] as Map<String, dynamic>),
-      signUp: json['sign_up'] as String?,
+      openMessage: json['open_message'] as String,
+      createMessage: json['create_message'] as String,
+      images: ImageModel.fromJson(json['images'] as Map<String, dynamic>),
+      signUp: json['sign_up'] as String,
     );
 
 Map<String, dynamic> _$OurStoryInfoModelToJson(OurStoryInfoModel instance) =>

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../models/product_detail_layout_response_models.dart';
@@ -19,11 +20,15 @@ class ProductDetailLayoutBloc
     emit(const ProductDetailLayoutLoading());
     try {
       final productDetailLayoutModel = await Api.getProductDetailLayout();
-      emit(
-        ProductDetailLayoutLoaded(
-          productDetailLayoutModel: productDetailLayoutModel.data,
-        ),
-      );
+      if (productDetailLayoutModel.data != null) {
+        emit(
+          ProductDetailLayoutLoaded(
+            productDetailLayoutModel: productDetailLayoutModel.data!,
+          ),
+        );
+      } else {
+        log('data null');
+      }
     } catch (e) {
       emit(ProductDetailLayoutError(errorMessage: e.toString()));
     }

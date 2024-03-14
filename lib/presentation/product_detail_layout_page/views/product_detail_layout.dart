@@ -1,7 +1,10 @@
+// ignore_for_file: avoid_positional_boolean_parameters
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/footer.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/product_detail_layout_bloc.dart';
 import '../../product_detail_page/cubit/pick_color/color_cubit.dart';
 import '../../product_detail_page/cubit/pick_favorie/favorite_cubit.dart';
@@ -61,11 +64,11 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const AppBarCustom(),
+        appBar: AppBarCustom(),
         body: BlocBuilder<ProductDetailLayoutBloc, ProductDetailLayoutState>(
           builder: (final context, final state) {
             switch (state) {
-              case ProductDetailLayoutInitial():
+              case ProductDetailLayoutLoading():
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
@@ -80,7 +83,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                         child: Column(
                           children: [
                             SlideShowProductDetail(
-                              image: state.productDetailLayoutModel!.image!,
+                              image: state.productDetailLayoutModel.image,
                               checkCategory: true,
                             ),
                             Column(
@@ -91,7 +94,8 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      state.productDetailLayoutModel!.name!
+                                      state.productDetailLayoutModel.productItem
+                                          .name
                                           .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 19,
@@ -103,7 +107,8 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  state.productDetailLayoutModel!.description!,
+                                  state.productDetailLayoutModel.productItem
+                                      .description,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -112,7 +117,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 const SizedBox(height: 6),
                                 Text(
                                   r'$'
-                                  '${state.productDetailLayoutModel!.price!.toStringAsFixed(0)}',
+                                  '${state.productDetailLayoutModel.productItem.price.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -127,8 +132,8 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                               child: Row(
                                 children: [
                                   ChooseSize(
-                                    sizeModel: state
-                                        .productDetailLayoutModel!.ringSize!,
+                                    sizeModel:
+                                        state.productDetailLayoutModel.ringSize,
                                     titleSize: 'Ring Size',
                                   ),
                                 ],
@@ -138,7 +143,9 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const ButtonBasket(),
+                      ButtonBasket(
+                        productItem: state.productDetailLayoutModel.productItem,
+                      ),
                       Container(
                         padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
                         height: MediaQuery.of(context).size.height,
@@ -156,13 +163,13 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                               child: ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: state
-                                    .productDetailLayoutModel!.gallery!.length,
+                                    .productDetailLayoutModel.gallery.length,
                                 itemBuilder: (final context, final index) {
                                   return Padding(
                                     padding: const EdgeInsets.only(bottom: 10),
                                     child: Image.network(
-                                      state.productDetailLayoutModel!
-                                          .gallery![index].url!,
+                                      state.productDetailLayoutModel
+                                          .gallery[index].url,
                                     ),
                                   );
                                 },
@@ -189,8 +196,12 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                             ItemContentShow(
                               checked: checkShipping,
                               name: 'Estimated to be delivered on',
-                              content: state.productDetailLayoutModel!
-                                  .carePolicy!.shippingInfo!,
+                              content: state.productDetailLayoutModel.carePolicy
+                                  .shippingInfo,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 34, right: 16),
+                              child: Divider(height: 1),
                             ),
                             ItemPolicy(
                               checkArrow: checkedCod,
@@ -200,8 +211,12 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                             ItemContentShow(
                               checked: checkCod,
                               name: 'Estimated to be delivered on',
-                              content: state.productDetailLayoutModel!
-                                  .carePolicy!.codPolicy!,
+                              content: state.productDetailLayoutModel.carePolicy
+                                  .codPolicy,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 34, right: 16),
+                              child: Divider(height: 1),
                             ),
                             ItemPolicy(
                               checkArrow: checkedRePolicy,
@@ -211,14 +226,14 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                             ItemContentShow(
                               checked: checkRePolicy,
                               name: 'Estimated to be delivered on',
-                              content: state.productDetailLayoutModel!
-                                  .carePolicy!.returnPolicy!,
+                              content: state.productDetailLayoutModel.carePolicy
+                                  .returnPolicy,
                             ),
                           ],
                         ),
                       ),
                       MaySoLike(
-                        category: state.productDetailLayoutModel!.categories!,
+                        category: state.productDetailLayoutModel.categories,
                       ),
                       const FooterWidget(),
                     ],
@@ -231,6 +246,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
             }
           },
         ),
+        drawer: MenuDrawer(),
       ),
     );
   }

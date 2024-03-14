@@ -27,9 +27,9 @@ class _BlogGirdPageState extends State<BlogGirdPage> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
-      drawer: const MenuDrawer(),
+      drawer:  MenuDrawer(),
       backgroundColor: Colors.white,
-      appBar: const AppBarCustom(),
+      appBar: AppBarCustom(),
       body: BlocBuilder<PostMenuBloc, PostMenuState>(
         builder: (final context, final state) {
           if (state is PostMenuStateSussess) {

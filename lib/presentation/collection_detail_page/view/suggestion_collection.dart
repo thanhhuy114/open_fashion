@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/collections_response_model.dart';
+import 'collection_detail_screen.dart';
 import 'suggestion_collection_item.dart';
 
 /* 
   Create by: Thach
   Date: 6/3 17:00
   Content: Phân gợi ý xem về các collection
+  
+  Modifi:Thach
+  Date: 11/3 10:26
+  Content 
+    line 47 image: collections[index].collectionImage ?? '', collectionName: collections[index].collectionName ?? ''
  */
 class SuggestionCollection extends StatelessWidget {
   const SuggestionCollection({super.key, required this.collections});
@@ -38,9 +44,22 @@ class SuggestionCollection extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: collections.length,
-              itemBuilder: (context, index) => SuggestionCollectionItem(
-                image: collections[index].collectionImage!,
-                collectionName: collections[index].collectionName!,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return CollectionDetailScreen(
+                      collection: collections[index],
+                      moreCollection: collections,
+                    );
+                  }),
+                ),
+                child: SuggestionCollectionItem(
+                  // image: collections[index].collectionImage!,
+                  // collectionName: collections[index].collectionName!
+                  image: collections[index].collectionImage ?? '',
+                  collectionName: collections[index].collectionName ?? '',
+                ),
               ),
             ),
           ),

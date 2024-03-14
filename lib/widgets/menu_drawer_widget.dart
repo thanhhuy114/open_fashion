@@ -1,15 +1,16 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/drawer_response_model.dart';
+import '../presentation/category_screen/view/category_screen.dart';
 import '../presentation/home_page/bloc/drawer_bloc.dart';
 import '../presentation/home_page/widgets/home_page_newArrival.dart';
 
 class MenuDrawer extends StatefulWidget {
-  const MenuDrawer({super.key});
-
+  MenuDrawer({super.key, this.color});
+  Color? color;
   @override
   State<MenuDrawer> createState() => _MenuDrawerState();
 }
@@ -26,7 +27,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Drawer(
-          backgroundColor: Colors.white,
+          backgroundColor: widget.color ?? Colors.white,
           child: BlocBuilder<DrawerBloc, DrawerState>(
             builder: (final context, final state) {
               if (state is DrawerLoading) {
@@ -61,9 +62,13 @@ class _MenuDrawerState extends State<MenuDrawer> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text(
+                        child: Text(
                           'x',
-                          style: TextStyle(color: Colors.black, fontSize: 24),
+                          style: TextStyle(
+                              color: widget.color != null
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 24),
                         ),
                       ),
                     ),
@@ -76,7 +81,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
                             children: [
                               SizedBox(
                                 width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height/2-350,
+                                height: MediaQuery.of(context).size.height / 2 -
+                                    350,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: itemTab.length,
@@ -96,6 +102,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                                       child: ItemTab(
                                         name: itemTab[index],
                                         isSelected: selectedIndex == index,
+                                        color: widget.color,
                                       ),
                                     );
                                   },
@@ -115,6 +122,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                                   return ItemName(
                                     data: filteredItems[index].name,
                                     items: filteredItems[index].items,
+                                    color: widget.color,
                                   );
                                 },
                               ),
@@ -129,7 +137,13 @@ class _MenuDrawerState extends State<MenuDrawer> {
                               const SizedBox(
                                 width: 20,
                               ),
-                              const Text('(786) 713-8616'),
+                              Text(
+                                '(786) 713-8616',
+                                style: TextStyle(
+                                    color: widget.color != null
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
                             ],
                           ),
                           const SizedBox(
@@ -144,7 +158,11 @@ class _MenuDrawerState extends State<MenuDrawer> {
                               const SizedBox(
                                 width: 20,
                               ),
-                              const Text('Store locator'),
+                              Text('Store locator',
+                                  style: TextStyle(
+                                      color: widget.color != null
+                                          ? Colors.white
+                                          : Colors.black)),
                             ],
                           ),
                           const SizedBox(
@@ -205,9 +223,10 @@ class _MenuDrawerState extends State<MenuDrawer> {
 }
 
 class ItemName extends StatefulWidget {
-  const ItemName({super.key, required this.data, required this.items});
+  ItemName({super.key, required this.data, required this.items, this.color});
   final String data;
   final List<ItemsDrawerModel> items;
+  Color? color;
 
   @override
   State<ItemName> createState() => _ItemNameState();
@@ -223,7 +242,10 @@ class _ItemNameState extends State<ItemName> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.data),
+              Text(widget.data,
+                  style: TextStyle(
+                      color:
+                          widget.color != null ? Colors.white : Colors.black)),
               IconButton(
                 onPressed: () {
                   setState(() {
@@ -247,9 +269,20 @@ class _ItemNameState extends State<ItemName> {
                 itemCount: widget.items.length,
                 itemBuilder: (final context, final index) {
                   return ListTile(
-                    title: Text(widget.items[index].item),
+                    title: Text(widget.items[index].item,
+                        style: TextStyle(
+                            color: widget.color != null
+                                ? Colors.white
+                                : Colors.black)),
                     onTap: () {
-                      //Navigator.of(context).pop();
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (final context) =>
+                                  const CategoryScreen(),
+                            ));
+                      });
                     },
                   );
                 },
@@ -259,6 +292,7 @@ class _ItemNameState extends State<ItemName> {
       ),
     );
   }
+
   double calculateListViewHeight() {
     const itemHeight = 55.0; // Chiều cao trung bình của mỗi phần tử ListTile
     final itemCount = widget.items.length;

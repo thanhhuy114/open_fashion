@@ -37,7 +37,7 @@ class _ChooseColorState extends State<ChooseColor> {
                   height: 24,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: widget.productDetailModel.color!.length,
+                    itemCount: widget.productDetailModel.color.length,
                     itemBuilder: (final context, final index) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 6),
@@ -61,7 +61,7 @@ class _ChooseColorState extends State<ChooseColor> {
                                       Border.all(color: Colors.white, width: 2),
                                   borderRadius: BorderRadius.circular(50),
                                   color: getColor(
-                                    widget.productDetailModel.color![index].id!,
+                                    widget.productDetailModel.color[index].id,
                                   ),
                                 ),
                               ),

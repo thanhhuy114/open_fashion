@@ -2,12 +2,19 @@
   Create by: Thach
   Date: 13:00 6/3
   Content: Collectiondetail Screen
+
+  Modify: Thach 
+  Date: 10:21 11/3
+  Content: line 107 Thêm kiểm trả null
+  line 150 Kiểm tra item null thì []
  */
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/collections_response_model.dart';
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/collection_detail_bloc/collection_detail_bloc.dart';
 import 'item_list_of_colletion_detail.dart';
 import 'suggestion_collection.dart';
@@ -26,22 +33,23 @@ class CollectionDetailScreen extends StatefulWidget {
 
 class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(),
+      appBar: AppBarCustom(color: Colors.black,),
+      drawer:  MenuDrawer(color: Colors.black,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: BlocProvider(
-            create: (context) => CollectionDetailBloc()
+            create: (final context) => CollectionDetailBloc()
               ..add(LoadCollectionDetailEvent(collection: widget.collection)),
             child: Column(
               children: [
                 //Collection Name
                 BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
-                  builder: (context, state) {
+                  builder: (final context, final state) {
                     if (state is CollectionDetailLoaded) {
                       return SizedBox(
                         width: size.width,
@@ -49,8 +57,8 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              state.colletion.collectionName!
-                                  .replaceAll(' collection', ''),
+                              (state.colletion.collectionName ?? '')
+                                  .replaceAll('collection', ''),
                               style: const TextStyle(
                                 fontSize: 42,
                                 fontFamily: 'BodoniModa',
@@ -60,13 +68,13 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                               ),
                             ),
                             const Text(
-                              "Collection",
+                              'Collection',
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400,
                                 color: Color.fromRGBO(252, 252, 252, 1),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       );
@@ -102,21 +110,30 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
 
                 //Picture of image
                 BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
-                  builder: (context, state) {
+                  builder: (final context, final state) {
                     if (state is CollectionDetailLoaded) {
-                      return Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        width: size.width,
-                        height: size.width / (3 / 4),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                              state.colletion.collectionImage!,
-                            ),
-                          ),
-                        ),
-                      );
+                      return state.colletion.collectionImage == null
+                          ? Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              width: size.width,
+                              height: size.width / (3 / 4),
+                              child: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              width: size.width,
+                              height: size.width / (3 / 4),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    state.colletion.collectionImage!,
+                                  ),
+                                ),
+                              ),
+                            );
                     }
                     return Container(
                       margin: const EdgeInsets.only(top: 10),
@@ -131,10 +148,10 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
 
                 //Item list
                 BlocBuilder<CollectionDetailBloc, CollectionDetailState>(
-                  builder: (context, state) {
+                  builder: (final context, final state) {
                     if (state is CollectionDetailLoaded) {
                       return CollectionItemRowList(
-                        items: state.colletion.items!,
+                        items: state.colletion.items ?? [],
                       );
                     }
                     return Container(
@@ -151,7 +168,7 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                 //More Collection
                 SuggestionCollection(
                   collections: widget.moreCollection,
-                )
+                ),
               ],
             ),
           ),

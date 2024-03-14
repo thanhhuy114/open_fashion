@@ -32,7 +32,7 @@ class BottomButtonCustom extends StatefulWidget {
 
 class _BottomButtonCustomState extends State<BottomButtonCustom> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
