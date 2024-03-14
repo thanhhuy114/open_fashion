@@ -1,7 +1,5 @@
 // ignore_for_file: only_throw_errors
-
 import 'dart:async';
-
 import '../models/blog_post.dart';
 import '../models/cart_response_model.dart';
 import '../models/collections_response_model.dart';
@@ -10,6 +8,8 @@ import '../models/drawer_response_model.dart';
 import '../models/checkout_response_model.dart';
 import '../models/card_response_model.dart';
 import '../models/our_story_response_model.dart';
+import '../models/recent_search_response_model.dart';
+import 'api_local_provider.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
@@ -203,6 +203,20 @@ class Api {
       handleExceptionCase(result.code);
       return result;
     } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<RecentSearchResponseModel?> getRecentSearch() async {
+    try {
+      final ApiLocalProvider http = ApiLocalProvider();
+
+      final response = await http.getRequest(EndPoints.recentSearch);
+      print(response);
+      final a = RecentSearchResponseModel.fromJson(response!);
+      return a;
+    } catch (e) {
+      log(e.toString());
       return null;
     }
   }

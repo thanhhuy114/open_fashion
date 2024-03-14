@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 // ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
-
 import '../presentation/cart_page/views/cart.dart';
+import '../presentation/srearch_page/bloc/search_page_provider.dart';
+import '../presentation/srearch_page/view/screach_page.dart';
 
 class AppBarCustom extends StatefulWidget implements PreferredSizeWidget {
   AppBarCustom({super.key, this.color});
@@ -44,12 +45,17 @@ class _AppBarCustomState extends State<AppBarCustom> {
         ),
       ),
       actions: [
-        Image.asset(
-          'assets/images/search.png',
-          fit: BoxFit.cover,
-          height: 24,
-          width: 24,
-          color: widget.color != null ? Colors.white : null,
+        GestureDetector(
+          onTap: () async => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (final _) => const SearchPageProvider()),
+          ),
+          child: Image.asset(
+            'assets/images/search.png',
+            fit: BoxFit.cover,
+            height: 24,
+            width: 24,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),
