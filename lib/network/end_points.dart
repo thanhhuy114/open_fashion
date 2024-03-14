@@ -26,7 +26,6 @@ class EndPoints {
   static const String collections = '/collections.json';
   static const String card = '/cards.json';
   static const String ourStory = '/our_story.json';
-
-
-  static const String contactUs='/contact_us.json';
+  static const String contactUs = '/contact_us.json';
+  static const String recentSearch = '/recent_search';
 }

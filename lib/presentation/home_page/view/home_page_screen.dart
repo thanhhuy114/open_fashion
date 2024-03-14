@@ -6,7 +6,6 @@ import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_bloc.dart';
 import '../widgets/Home_page_trending.dart';
-import '../widgets/app_bar.dart';
 import '../widgets/home_page_brand.dart';
 import '../widgets/home_page_collection.dart';
 import '../widgets/home_page_followus.dart';

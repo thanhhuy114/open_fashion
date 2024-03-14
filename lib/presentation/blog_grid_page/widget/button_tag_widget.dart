@@ -15,7 +15,7 @@ class TagButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return InkWell(
-      splashColor: Colors.transparent,
+      overlayColor: const MaterialStatePropertyAll(Colors.transparent),
       onTap: () => onTap(text),
       child: Container(
         decoration: BoxDecoration(
@@ -23,18 +23,10 @@ class TagButton extends StatelessWidget {
               ? const Color.fromARGB(255, 199, 197, 197)
               : const Color(0xFFf9f9f9),
           borderRadius: BorderRadius.circular(30),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: const Color.fromARGB(255, 201, 200, 200).withOpacity(0.5),
-          //     spreadRadius: 0.0001,
-          //     blurRadius: 1,
-          //     offset: const Offset(0, 1),
-          //   ),
-          // ],
         ),
         padding: const EdgeInsets.all(5),
         margin: const EdgeInsets.only(
-          left: 16,
+          left: 14,
           top: 10,
           bottom: 10,
         ),

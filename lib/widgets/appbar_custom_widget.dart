@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../presentation/srearch_page/bloc/search_page_provider.dart';
+import '../presentation/srearch_page/view/screach_page.dart';
 
 class AppBarCustom extends StatefulWidget implements PreferredSizeWidget {
   const AppBarCustom({super.key});
@@ -38,11 +42,17 @@ class _AppBarCustomState extends State<AppBarCustom> {
         ),
       ),
       actions: [
-        Image.asset(
-          'assets/images/search.png',
-          fit: BoxFit.cover,
-          height: 24,
-          width: 24,
+        GestureDetector(
+          onTap: () async => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (final _) => const SearchPageProvider()),
+          ),
+          child: Image.asset(
+            'assets/images/search.png',
+            fit: BoxFit.cover,
+            height: 24,
+            width: 24,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),

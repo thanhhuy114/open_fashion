@@ -9,6 +9,8 @@ import '../models/drawer_response_model.dart';
 import '../models/checkout_response_model.dart';
 import '../models/card_response_model.dart';
 import '../models/our_story_response_model.dart';
+import '../models/recent_search_response_model.dart';
+import 'api_local_provider.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
@@ -189,18 +191,33 @@ class Api {
       return null;
     }
   }
+
   /*
     Create by Thuan
     Data: 08/03
     Content: Lấy data cho contactus
   */
-  Future<ContactUsResponseModel?> getContactUs() async{
-    try{
+  Future<ContactUsResponseModel?> getContactUs() async {
+    try {
       final res = await http.getRequest(EndPoints.contactUs);
       final result = ContactUsResponseModel.fromJson(res!);
       handleExceptionCase(result.code);
       return result;
-    }catch(e){
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<RecentSearchResponseModel?> getRecentSearch() async {
+    try {
+      final ApiLocalProvider http = ApiLocalProvider();
+
+      final response = await http.getRequest(EndPoints.recentSearch);
+      print(response);
+      final a = RecentSearchResponseModel.fromJson(response!);
+      return a;
+    } catch (e) {
+      log(e.toString());
       return null;
     }
   }
@@ -258,7 +275,7 @@ class Api {
     }
   }
 
-   static Future<OurStoryResponseModel> getOurStory() async {
+  static Future<OurStoryResponseModel> getOurStory() async {
     try {
       final response = await http.getRequest(EndPoints.ourStory);
       final result = OurStoryResponseModel.fromJson(response!);
