@@ -25,13 +25,15 @@ class _CategoryFilterState extends State<CategoryFilter> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(33),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 0.1,
-                            color: Colors.grey.withOpacity(0.5),),
-                      ],),
+                    borderRadius: BorderRadius.circular(33),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 0.1,
+                        color: Colors.grey.withOpacity(0.5),
+                      ),
+                    ],
+                  ),
                   child: DropdownButton(
                     borderRadius: BorderRadius.circular(33),
                     alignment: Alignment.center,
@@ -96,27 +98,29 @@ class _FilterButtonState extends State<FilterButton> {
         ],
       ),
       child: OutlinedButton(
-          style: ButtonStyle(
-            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
-            minimumSize: MaterialStateProperty.all(const Size(5, 5)),
-            shape: MaterialStateProperty.all(const CircleBorder()),
-            side: MaterialStateProperty.all(
-                const BorderSide(color: Colors.transparent),),
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
+          minimumSize: MaterialStateProperty.all(const Size(5, 5)),
+          shape: MaterialStateProperty.all(const CircleBorder()),
+          side: MaterialStateProperty.all(
+            const BorderSide(color: Colors.transparent),
           ),
-          onPressed: () {
-            if (curentPathIcon == 'assets/img/Gridview.png') {
-              curentPathIcon = 'assets/img/Listview.png';
-              CategoryStatusFilterManager.setStatus(1);
-            } else if (curentPathIcon == 'assets/img/Listview.png') {
-              curentPathIcon = 'assets/img/Gridviewfull.png';
-              CategoryStatusFilterManager.setStatus(2);
-            } else if (curentPathIcon == 'assets/img/Gridviewfull.png') {
-              curentPathIcon = 'assets/img/Gridview.png';
-              CategoryStatusFilterManager.setStatus(3);
-            }
-            setState(() {});
-          },
-          child: Image.asset(curentPathIcon),),
+        ),
+        onPressed: () async {
+          if (curentPathIcon == 'assets/img/Gridview.png') {
+            curentPathIcon = 'assets/img/Listview.png';
+            CategoryStatusFilterManager.setStatus(1);
+          } else if (curentPathIcon == 'assets/img/Listview.png') {
+            curentPathIcon = 'assets/img/Gridviewfull.png';
+            CategoryStatusFilterManager.setStatus(2);
+          } else if (curentPathIcon == 'assets/img/Gridviewfull.png') {
+            curentPathIcon = 'assets/img/Gridview.png';
+            CategoryStatusFilterManager.setStatus(3);
+          }
+          setState(() {});
+        },
+        child: Image.asset(curentPathIcon),
+      ),
     );
   }
 }

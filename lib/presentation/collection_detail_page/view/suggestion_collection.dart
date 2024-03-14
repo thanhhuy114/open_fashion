@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 
 import '../../../models/collections_response_model.dart';
@@ -19,7 +21,7 @@ class SuggestionCollection extends StatelessWidget {
   final List<CollectionDetailModel> collections;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
       width: MediaQuery.of(context).size.width,
@@ -44,15 +46,17 @@ class SuggestionCollection extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: collections.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () => Navigator.push(
+              itemBuilder: (final context, final index) => GestureDetector(
+                onTap: () async => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) {
-                    return CollectionDetailScreen(
-                      collection: collections[index],
-                      moreCollection: collections,
-                    );
-                  }),
+                  MaterialPageRoute(
+                    builder: (final context) {
+                      return CollectionDetailScreen(
+                        collection: collections[index],
+                        moreCollection: collections,
+                      );
+                    },
+                  ),
                 ),
                 child: SuggestionCollectionItem(
                   // image: collections[index].collectionImage!,
@@ -75,8 +79,8 @@ class DividerCustom extends StatelessWidget {
   final Color color;
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width / 3,
       height: 50,
@@ -90,7 +94,7 @@ class DividerCustom extends StatelessWidget {
           CustomPaint(
             size: const Size(20, 20),
             painter: DiamondPainter(color: color),
-          )
+          ),
         ],
       ),
     );
@@ -102,7 +106,7 @@ class DiamondPainter extends CustomPainter {
   final Color color;
 
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(final Canvas canvas, final Size size) {
     final Paint paint = Paint()..color = color;
 
     final double centerX = size.width / 2;
@@ -129,7 +133,7 @@ class DiamondPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
+  bool shouldRepaint(final CustomPainter oldDelegate) {
     return false;
   }
 }

@@ -9,13 +9,13 @@ part 'drawer_state.dart';
 
 class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
   DrawerBloc() : super(DrawerLoading()) {
-    on<DrawerEvent>((event, emit) async{
+    on<DrawerEvent>((final event, final emit) async {
       final Api api = Api();
       emit(DrawerLoading());
-      try{
+      try {
         final data = await api.getDrawer();
         emit(DrawerLoaded(drawerData: data!.data!.drawer));
-      }catch(e){
+      } catch (e) {
         emit(DrawerError(error: e.toString()));
       }
     });

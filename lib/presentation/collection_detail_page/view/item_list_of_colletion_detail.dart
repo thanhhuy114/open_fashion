@@ -25,13 +25,17 @@ class ItemOfCollectionWidget extends StatelessWidget {
   final ItemSizeReponsive sizeItem;
   final ItemOfCollectionModel item;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) {
-          return const ProductDetailPage();
-        },
-      )),
+      onTap: () async => Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder:
+              (final context, final animation, final secondaryAnimation) {
+            return const ProductDetailPage();
+          },
+        ),
+      ),
       child: SizedBox(
         width: sizeItem.width,
         child: Column(
@@ -127,9 +131,10 @@ class ItemRowOfCollectionDetail extends StatelessWidget {
   final int idx;
   final bool isLastRow;
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    ItemSizeReponsive sizeItem = ItemSizeReponsive.findSizeItem(size.width);
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final ItemSizeReponsive sizeItem =
+        ItemSizeReponsive.findSizeItem(size.width);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,7 +144,7 @@ class ItemRowOfCollectionDetail extends StatelessWidget {
             : isLastRow
                 ? items.length % sizeItem.totalItemRow
                 : sizeItem.totalItemRow,
-        (index) => ItemOfCollectionWidget(
+        (final index) => ItemOfCollectionWidget(
           item: items[idx * sizeItem.totalItemRow + index],
           sizeItem: sizeItem,
         ),
@@ -153,16 +158,17 @@ class CollectionItemRowList extends StatelessWidget {
   const CollectionItemRowList({super.key, required this.items});
   final List<ItemOfCollectionModel> items;
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    ItemSizeReponsive sizeItem = ItemSizeReponsive.findSizeItem(size.width);
-    int itemCount = (items.length / sizeItem.totalItemRow).ceil();
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final ItemSizeReponsive sizeItem =
+        ItemSizeReponsive.findSizeItem(size.width);
+    final int itemCount = (items.length / sizeItem.totalItemRow).ceil();
     return Container(
       margin: const EdgeInsets.only(top: 20),
       child: Column(
         children: List.generate(
           itemCount,
-          (index) => ItemRowOfCollectionDetail(
+          (final index) => ItemRowOfCollectionDetail(
             isLastRow: itemCount - 1 == index, //Kiểm trả đến dòng cuối cùng
             idx: index,
             items: items,
@@ -185,19 +191,19 @@ class ItemSizeReponsive {
   final int totalItemRow;
 
   //Reponsitive Item of Collection Detail
-  static ItemSizeReponsive findSizeItem(double width) {
+  static ItemSizeReponsive findSizeItem(final double width) {
     //width is width of screen
-    double minSpace = 10; // Spase between item
+    const double minSpace = 10; // Spase between item
     double minWidthOfItem = 165; // Min width of item
     if (width > 800) {
       // large screen
       minWidthOfItem = 265; // Increase width of Item
     }
-    double minHeightOfItem = minWidthOfItem /
+    final double minHeightOfItem = minWidthOfItem /
         (3 / 4); // Height is determined according to the ratio 3:4
-    int totalItemRow = width ~/
+    final int totalItemRow = width ~/
         minWidthOfItem; // Calculating number of items displayed horizontally
-    double allWidthSpace = minSpace *
+    final double allWidthSpace = minSpace *
         (totalItemRow - 1); // Calculating total of space between items
     if (totalItemRow > 1) {
       // Number of items is more than one
@@ -206,13 +212,20 @@ class ItemSizeReponsive {
           allWidthSpace; // Spatial computation is remaining
       if (residualSpace > allWidthSpace) {
         residualSpace = (residualSpace - allWidthSpace - 40) / totalItemRow;
-        double widthItem = minWidthOfItem + residualSpace;
-        double heightItem = residualSpace / totalItemRow + minHeightOfItem;
+        final double widthItem = minWidthOfItem + residualSpace;
+        final double heightItem =
+            residualSpace / totalItemRow + minHeightOfItem;
         return ItemSizeReponsive(
-            width: widthItem, height: heightItem, totalItemRow: totalItemRow);
+          width: widthItem,
+          height: heightItem,
+          totalItemRow: totalItemRow,
+        );
       }
     }
     return ItemSizeReponsive(
-        width: minWidthOfItem, height: minHeightOfItem, totalItemRow: 1);
+      width: minWidthOfItem,
+      height: minHeightOfItem,
+      totalItemRow: 1,
+    );
   }
 }

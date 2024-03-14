@@ -65,10 +65,11 @@ class _MenuDrawerState extends State<MenuDrawer> {
                         child: Text(
                           'x',
                           style: TextStyle(
-                              color: widget.color != null
-                                  ? Colors.white
-                                  : Colors.black,
-                              fontSize: 24),
+                            color: widget.color != null
+                                ? Colors.white
+                                : Colors.black,
+                            fontSize: 24,
+                          ),
                         ),
                       ),
                     ),
@@ -140,9 +141,10 @@ class _MenuDrawerState extends State<MenuDrawer> {
                               Text(
                                 '(786) 713-8616',
                                 style: TextStyle(
-                                    color: widget.color != null
-                                        ? Colors.white
-                                        : Colors.black),
+                                  color: widget.color != null
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -158,11 +160,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
                               const SizedBox(
                                 width: 20,
                               ),
-                              Text('Store locator',
-                                  style: TextStyle(
-                                      color: widget.color != null
-                                          ? Colors.white
-                                          : Colors.black)),
+                              Text(
+                                'Store locator',
+                                style: TextStyle(
+                                  color: widget.color != null
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(
@@ -242,10 +247,12 @@ class _ItemNameState extends State<ItemName> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.data,
-                  style: TextStyle(
-                      color:
-                          widget.color != null ? Colors.white : Colors.black)),
+              Text(
+                widget.data,
+                style: TextStyle(
+                  color: widget.color != null ? Colors.white : Colors.black,
+                ),
+              ),
               IconButton(
                 onPressed: () {
                   setState(() {
@@ -269,19 +276,21 @@ class _ItemNameState extends State<ItemName> {
                 itemCount: widget.items.length,
                 itemBuilder: (final context, final index) {
                   return ListTile(
-                    title: Text(widget.items[index].item,
-                        style: TextStyle(
-                            color: widget.color != null
-                                ? Colors.white
-                                : Colors.black)),
+                    title: Text(
+                      widget.items[index].item,
+                      style: TextStyle(
+                        color:
+                            widget.color != null ? Colors.white : Colors.black,
+                      ),
+                    ),
                     onTap: () {
-                      setState(() {
+                      setState(() async {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (final context) =>
-                                  const CategoryScreen(),
-                            ));
+                          context,
+                          MaterialPageRoute(
+                            builder: (final context) => const CategoryScreen(),
+                          ),
+                        );
                       });
                     },
                   );

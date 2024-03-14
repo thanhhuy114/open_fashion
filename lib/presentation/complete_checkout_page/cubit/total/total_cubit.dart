@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TotalCubit extends Cubit<double> {
-  TotalCubit(final double initialTotal) : super(initialTotal);
+  TotalCubit(super.initialTotal);
 
   int _productCount = 0;
 

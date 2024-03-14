@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 class RhombusShape extends CustomPainter {
@@ -20,7 +21,6 @@ class RhombusShape extends CustomPainter {
 }
 
 class RhombusContainer extends StatelessWidget {
-
   const RhombusContainer({super.key, required this.child});
   final Widget child;
 
@@ -67,7 +67,7 @@ class Rhombus extends StatelessWidget {
         height: 6,
         color: color,
         child: const Text(''),
-        ),
-      );
+      ),
+    );
   }
 }

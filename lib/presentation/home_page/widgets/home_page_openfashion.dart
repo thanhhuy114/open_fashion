@@ -26,6 +26,7 @@ class HomePageOpenFashion extends StatelessWidget {
             height: 65.63,
             child: Text(
               textAlign: TextAlign.center,
+              // ignore: lines_longer_than_80_chars
               'Making a luxurious lifestyle accessible for a generous group of women is our daily drive.',
               style: GoogleFonts.tenorSans(
                 fontWeight: FontWeight.w400,

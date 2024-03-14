@@ -45,7 +45,7 @@ class Api {
       final data = await http.getRequest(EndPoints.category);
       return CategoryData.fromJson(data!);
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     return null;
   }
@@ -212,7 +212,7 @@ class Api {
       final ApiLocalProvider http = ApiLocalProvider();
 
       final response = await http.getRequest(EndPoints.recentSearch);
-      print(response);
+      log(response.toString());
       final a = RecentSearchResponseModel.fromJson(response!);
       return a;
     } catch (e) {

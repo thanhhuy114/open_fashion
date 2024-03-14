@@ -123,6 +123,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 const SizedBox(height: 6),
                                 Text(
                                   r'$'
+                                  // ignore: lines_longer_than_80_chars
                                   '${state.productDetailModel.productItem.price.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,

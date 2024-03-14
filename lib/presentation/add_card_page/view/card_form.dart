@@ -48,11 +48,7 @@ class _CardFormState extends State<CardForm> {
                   color: Colors.black,
                 ),
             decoration: const InputDecoration(
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.black,
-                ),
-              ),
+              focusedBorder: UnderlineInputBorder(),
               focusColor: Colors.amber,
               label: Text('Name On Card'),
               labelStyle: TextStyle(
@@ -87,11 +83,7 @@ class _CardFormState extends State<CardForm> {
                   color: Colors.black,
                 ),
             decoration: const InputDecoration(
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.black,
-                ),
-              ),
+              focusedBorder: UnderlineInputBorder(),
               focusColor: Colors.amber,
               label: Text('Card Number'),
               labelStyle: TextStyle(
@@ -126,11 +118,7 @@ class _CardFormState extends State<CardForm> {
                             color: Colors.black,
                           ),
                       decoration: const InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
+                        focusedBorder: UnderlineInputBorder(),
                         focusColor: Colors.amber,
                         label: Text('Exp Month'),
                         labelStyle: TextStyle(
@@ -169,11 +157,7 @@ class _CardFormState extends State<CardForm> {
                             color: Colors.black,
                           ),
                       decoration: const InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
+                        focusedBorder: UnderlineInputBorder(),
                         focusColor: Colors.amber,
                         label: Text('Exp Date'),
                         labelStyle: TextStyle(
@@ -207,11 +191,7 @@ class _CardFormState extends State<CardForm> {
                   color: Colors.black,
                 ),
             decoration: const InputDecoration(
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.black,
-                ),
-              ),
+              focusedBorder: UnderlineInputBorder(),
               focusColor: Colors.amber,
               label: Text('CVV'),
               labelStyle: TextStyle(

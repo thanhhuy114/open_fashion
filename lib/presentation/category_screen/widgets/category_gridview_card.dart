@@ -4,67 +4,85 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/category.dart';
+import '../../product_detail_page/views/product_detail.dart';
 
 class CategoryGridviewCard extends StatelessWidget {
-  const CategoryGridviewCard(
-      {required this.myCat, super.key, required this.status});
+  const CategoryGridviewCard({
+    required this.myCat,
+    super.key,
+    required this.status,
+  });
   final Cat myCat;
   final bool status;
   @override
   Widget build(final BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.4,
-      height: MediaQuery.of(context).size.height * 0.55,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  if (status == false) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => ImageDialog(src: myCat.image),
-                    );
-                  }
-                },
-                child: Image.network(myCat.image[0]!),
-              ),
-              const Positioned(
-                bottom: 0,
-                right: 0,
-                child: Icon(
-                  Icons.favorite_border_sharp,
-                  color: Colors.orange,
-                ),
-              )
-            ],
+    return InkWell(
+      onTap: () async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (final context) => const ProductDetailPage(),
           ),
-          Text(
-            myCat.name!,
-            style: const TextStyle(
+        );
+      },
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery.of(context).size.height * 0.55,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    if (status == false) {
+                      showDialog(
+                        context: context,
+                        builder: (final context) =>
+                            ImageDialog(src: myCat.image),
+                      );
+                    }
+                  },
+                  child: Image.network(myCat.image[0]!),
+                ),
+                const Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Icon(
+                    Icons.favorite_border_sharp,
+                    color: Colors.orange,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              myCat.name!,
+              style: const TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1),
                 fontSize: 12,
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
-            myCat.description!,
-            style: const TextStyle(
-                color: Color.fromRGBO(0, 0, 0, 1), fontSize: 12),
-          ),
-          Text(
-            '\$${myCat.price}',
-            style: const TextStyle(color: Colors.orange, fontSize: 15),
-          )
-        ],
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              myCat.description!,
+              style: const TextStyle(
+                color: Color.fromRGBO(0, 0, 0, 1),
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              '\$${myCat.price}',
+              style: const TextStyle(color: Colors.orange, fontSize: 15),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 class ImageDialog extends StatefulWidget {
-  const ImageDialog({required this.src, Key? key}) : super(key: key);
+  const ImageDialog({required this.src, super.key});
 
   final List<String?> src;
 
@@ -74,10 +92,10 @@ class ImageDialog extends StatefulWidget {
 
 class _ImageDialogState extends State<ImageDialog> {
   int _currentIndex = 0;
-  CarouselController _carouselController = CarouselController();
+  final CarouselController _carouselController = CarouselController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -85,24 +103,22 @@ class _ImageDialogState extends State<ImageDialog> {
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.center,
             child: CarouselSlider(
               carouselController: _carouselController,
               options: CarouselOptions(
                 viewportFraction: 0.7,
                 enableInfiniteScroll: false,
-                initialPage: 0,
                 height: MediaQuery.of(context).size.height,
                 scrollDirection: Axis.vertical,
-                onPageChanged: (index, reason) {
+                onPageChanged: (final index, final reason) {
                   setState(() {
                     _currentIndex = index;
                   });
                 },
               ),
-              items: widget.src.map((i) {
+              items: widget.src.map((final i) {
                 return Builder(
-                  builder: (BuildContext context) {
+                  builder: (final BuildContext context) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
@@ -138,11 +154,11 @@ class _ImageDialogState extends State<ImageDialog> {
               width: 30,
               child: ListView.builder(
                 itemCount: widget.src.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (final context, final index) {
                   return Transform.rotate(
                     angle: pi / 4,
                     child: Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       height: 10,
                       decoration: BoxDecoration(
                         color: index == _currentIndex

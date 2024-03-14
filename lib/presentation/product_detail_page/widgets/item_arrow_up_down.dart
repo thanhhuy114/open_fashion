@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, avoid_dynamic_calls
 
 import 'package:flutter/material.dart';
 

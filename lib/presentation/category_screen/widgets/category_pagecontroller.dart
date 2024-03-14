@@ -63,7 +63,7 @@ class _PageControlState extends State<PageControl> {
                         ),
                       ),
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         if (currentPage <
                             (state.lstCat.length / 10).ceil() - 1) {
                           setState(() {

@@ -6,4 +6,5 @@ sealed class DrawerEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-class LoadDrawer extends DrawerEvent{}
+
+class LoadDrawer extends DrawerEvent {}

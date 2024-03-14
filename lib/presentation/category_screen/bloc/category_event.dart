@@ -8,9 +8,8 @@ sealed class CategoryEvent {
 }
 
 class CategoryLoadEvent extends CategoryEvent {
-  final List<Cat> lstCat;
-
   const CategoryLoadEvent({this.lstCat = const <Cat>[]});
+  final List<Cat> lstCat;
 
   @override
   List<Object> get props => [lstCat];

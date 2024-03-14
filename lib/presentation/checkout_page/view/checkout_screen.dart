@@ -151,7 +151,7 @@ class CheckOutScreen extends StatelessWidget {
               ),
               bottomSheet: ButtonCustom(
                 message: 'CHECKOUT',
-                onTap: () {
+                onTap: () async {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

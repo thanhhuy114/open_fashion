@@ -231,7 +231,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                             const SizedBox(height: 20),
                             ButtonCustom(
                               message: 'CHECKOUT',
-                              onTap: () {
+                              onTap: () async {
                                 showDialog(
                                   context: context,
                                   builder: (final context) => Padding(

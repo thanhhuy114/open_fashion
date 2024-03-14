@@ -85,6 +85,7 @@ class _CartPageState extends State<CartPage> {
                                       ? const Align(
                                           child: Expanded(
                                             child: Text(
+                                              // ignore: lines_longer_than_80_chars
                                               'You have no items in your Shopping Bag.',
                                             ),
                                           ),
@@ -92,6 +93,7 @@ class _CartPageState extends State<CartPage> {
                                       : ListView.builder(
                                           shrinkWrap: true,
                                           physics:
+                                              // ignore: lines_longer_than_80_chars
                                               const NeverScrollableScrollPhysics(),
                                           itemCount: state
                                               .cartModel.cartInfoModel.length,
@@ -145,6 +147,7 @@ class _CartPageState extends State<CartPage> {
                                                 (final context, final state) {
                                               return Text(
                                                 r'$'
+                                                // ignore: lines_longer_than_80_chars
                                                 '${context.read<TotalCubit>().state.toInt()}',
                                                 style: const TextStyle(
                                                   fontSize: 17,
@@ -157,6 +160,7 @@ class _CartPageState extends State<CartPage> {
                                       ),
                                       const SizedBox(height: 16),
                                       const Text(
+                                        // ignore: lines_longer_than_80_chars
                                         '*shipping charges, taxes and discount codes are calculated at the time of accounting. ',
                                         style: TextStyle(fontSize: 16.5),
                                       ),
@@ -173,7 +177,7 @@ class _CartPageState extends State<CartPage> {
                               else
                                 ButtonCustom(
                                   message: 'BUY NOW',
-                                  onTap: () {
+                                  onTap: () async {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
