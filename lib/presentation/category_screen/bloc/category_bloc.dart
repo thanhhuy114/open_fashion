@@ -16,9 +16,11 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   }
 
   Future<FutureOr<void>> _onCategoryLoadEvent(
-      CategoryLoadEvent event, Emitter<CategoryState> emit) async {
+    final CategoryLoadEvent event,
+    final Emitter<CategoryState> emit,
+  ) async {
     emit(CategoryLoading());
-    List<Cat>? data = await Api.getCategoryResponse();
+    final List<Cat>? data = await Api.getCategoryResponse();
     emit(CategoryLoaded(lstCat: data!));
   }
 }

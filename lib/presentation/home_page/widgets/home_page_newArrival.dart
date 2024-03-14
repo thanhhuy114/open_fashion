@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/menu_arrival_response_model.dart';
+import '../../../widgets/tittle_widget.dart';
 import '../../blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import '../../product_detail_page/views/product_detail.dart';
 import 'RhombusContainer.dart';
@@ -42,18 +43,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
   Widget build(final BuildContext context) {
     return Column(
       children: [
-        Text(
-          'NEW ARRIVAL',
-          style: GoogleFonts.tenorSans(
-            fontWeight: FontWeight.w400,
-            fontSize: 18,
-            letterSpacing: 4,
-          ),
-        ),
-        Image.asset('assets/img/3.png'),
-        const SizedBox(
-          height: 10,
-        ),
+        const TittleWidget(text: 'NEW ARRIVAL'),
         Container(
           margin: const EdgeInsets.only(left: 50),
           height: 50,

@@ -12,7 +12,9 @@ class BlogPostBloc extends Bloc<BlogPostEvent, BlogPostState> {
   }
 
   Future _getBlogPost(
-      final LoadBlogPostEvent event, final Emitter<BlogPostState> emit) async {
+    final LoadBlogPostEvent event,
+    final Emitter<BlogPostState> emit,
+  ) async {
     final blogPost = await Api.getBlogPost();
     if (blogPost!.data != null) {
       emit(BlogPostLoaded(blogPost.data!));

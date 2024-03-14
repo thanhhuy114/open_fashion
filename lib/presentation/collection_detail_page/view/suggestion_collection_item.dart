@@ -19,7 +19,7 @@ class SuggestionCollectionItem extends StatelessWidget {
   final String image;
   final String collectionName;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       width: 255,
@@ -27,24 +27,25 @@ class SuggestionCollectionItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Image
-          image.isEmpty
-              ? const SizedBox(
-                  width: 255,
-                  height: 255 / (3 / 4),
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                )
-              : Container(
-                  width: 255,
-                  height: 255 / (3 / 4),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(image),
-                    ),
-                  ),
+          if (image.isEmpty)
+            const SizedBox(
+              width: 255,
+              height: 255 / (3 / 4),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
+          else
+            Container(
+              width: 255,
+              height: 255 / (3 / 4),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(image),
                 ),
+              ),
+            ),
 
           //Collection Name
           Text(

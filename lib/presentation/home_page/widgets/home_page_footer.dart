@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/footer_response_model.dart';
+import '../../blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import '../../contact_us_page/view/contact_us_screen.dart';
 import '../../our_story_page/views/our_story.dart';
 import '../bloc/footer_bloc.dart';
@@ -28,6 +29,7 @@ class HomePageFooter extends StatelessWidget {
           if (state is FooterLoaded) {
             final FooterModel? data = state.footer;
             return Container(
+              color: Colors.white,
               margin: const EdgeInsets.only(top: 20),
               child: Column(
                 children: [
@@ -60,6 +62,7 @@ class HomePageFooter extends StatelessWidget {
                         '\n'
                         '${data.phone}'
                         '\n'
+                        // ignore: lines_longer_than_80_chars
                         '${data.openTime} - ${data.closeTime} - ${data.daysPerWeek}',
                         style: GoogleFonts.tenorSans(
                           fontWeight: FontWeight.w400,
@@ -80,11 +83,12 @@ class HomePageFooter extends StatelessWidget {
                         TextButton(
                           onPressed: () async {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (final context) =>
-                                      const OurStoryPage(),
-                                ));
+                              context,
+                              MaterialPageRoute(
+                                builder: (final context) =>
+                                    const OurStoryPage(),
+                              ),
+                            );
                           },
                           child: Text(
                             'About',
@@ -96,13 +100,14 @@ class HomePageFooter extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () async{
+                          onPressed: () async {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (final context) =>
-                                      const ContactUsScreen(),
-                                ));
+                              context,
+                              MaterialPageRoute(
+                                builder: (final context) =>
+                                    const ContactUsScreen(),
+                              ),
+                            );
                           },
                           child: Text(
                             'Contact',
@@ -114,7 +119,15 @@ class HomePageFooter extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (final context) =>
+                                    const BlocGridPageProvider(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Blog',
                             style: GoogleFonts.tenorSans(

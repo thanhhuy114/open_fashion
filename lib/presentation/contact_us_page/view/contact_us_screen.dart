@@ -40,7 +40,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             final ContactUsModel data = state.contactus;
             return Scaffold(
               appBar: AppBarCustom(),
-              drawer:  MenuDrawer(),
+              drawer: MenuDrawer(),
               body: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -50,12 +50,20 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         children: [
                           const Text('CONTACT US'),
                           Image.asset('assets/img/3.png'),
-                          const SizedBox(height: 30,),
+                          const SizedBox(
+                            height: 30,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.asset('assets/img/Chat Message.png'),
                           ),
-                          Text(data.chat, style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),),
+                          Text(
+                            data.chat,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                          ),
                           ElevatedButton(
                             style: const ButtonStyle(
                               backgroundColor:
@@ -66,15 +74,27 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                             onPressed: () {},
                             child: const Text(
                               'CHAT WITH US',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
-                          const SizedBox(height: 30,),
+                          const SizedBox(
+                            height: 30,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.asset('assets/img/Add Message.png'),
                           ),
-                          Text(data.text, style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),),
+                          Text(
+                            data.text,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                          ),
                           ElevatedButton(
                             style: const ButtonStyle(
                               backgroundColor:
@@ -85,10 +105,16 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                             onPressed: () {},
                             child: const Text(
                               'TEXT US',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
-                          const SizedBox(height: 30,),
+                          const SizedBox(
+                            height: 30,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.asset('assets/img/Twitter-1.png'),
@@ -100,7 +126,8 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                 TextSpan(
                                   text: 'Facebook',
                                   style: const TextStyle(
-                                      decoration: TextDecoration.underline,),
+                                    decoration: TextDecoration.underline,
+                                  ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {},
                                 ),
@@ -108,13 +135,18 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                 TextSpan(
                                   text: 'Twitter',
                                   style: const TextStyle(
-                                      decoration: TextDecoration.underline,),
+                                    decoration: TextDecoration.underline,
+                                  ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {},
                                 ),
                                 TextSpan(text: ' ${data.email.end}'),
                               ],
-                            ),style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                            ),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
                           ),
                         ],
                       ),

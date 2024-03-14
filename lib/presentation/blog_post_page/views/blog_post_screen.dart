@@ -117,7 +117,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
                       BlocBuilder<BlogPostBloc, BlogPostState>(
                         builder: (final context, final state) {
                           if (state is BlogPostLoaded) {
-                            List<BannerModel> bannerModels = [];
+                            final List<BannerModel> bannerModels = [];
                             for (int index = 0;
                                 index < state.blogPost.imageArray!.length;
                                 index++) {

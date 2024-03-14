@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
+import '../../../widgets/tittle_widget.dart';
 import '../../add_address_page/view/add_address_screen.dart';
 import '../../add_card_page/view/add_card_screen.dart';
 import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
@@ -64,17 +65,9 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                   children: [
                     Container(
                       alignment: Alignment.center,
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const Text(
-                            'CHECKOUT',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              letterSpacing: 4,
-                            ),
-                          ),
-                          Image.asset('assets/img/3.png'),
+                          TittleWidget(text: 'CHECKOUT'),
                         ],
                       ),
                     ),
@@ -152,7 +145,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                     'Add shipping address',
                                   ),
                                   IconButton(
-                                    onPressed: () {
+                                    onPressed: () async {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -194,6 +187,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text(
+                                  // ignore: lines_longer_than_80_chars
                                   'Pickup at store                             FREE',
                                 ),
                                 IconButton(
@@ -229,7 +223,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                             children: [
                               const Text('select payment method'),
                               IconButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -277,7 +271,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
               ),
               bottomSheet: ButtonCustom(
                 message: 'PLACE ORDER',
-                onTap: () {
+                onTap: () async {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

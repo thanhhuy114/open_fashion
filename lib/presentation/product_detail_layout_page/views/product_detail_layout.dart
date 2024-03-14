@@ -117,6 +117,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 const SizedBox(height: 6),
                                 Text(
                                   r'$'
+                                  // ignore: lines_longer_than_80_chars
                                   '${state.productDetailLayoutModel.productItem.price.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,

@@ -30,10 +30,11 @@ class _HomePageCollectionState extends State<HomePageCollection> {
           onTap: () async {
             setState(() {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (final context) => const CollectionScreen(),
-                  ));
+                context,
+                MaterialPageRoute(
+                  builder: (final context) => const CollectionScreen(),
+                ),
+              );
             });
           },
           child: Stack(

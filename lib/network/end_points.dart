@@ -29,5 +29,4 @@ class EndPoints {
   static const String contactUs = '/contact_us.json';
   static const String recentSearch = '/recent_search';
   static const String cart = '/cart.json';
-  static const String contactUs = '/contact_us.json';
 }

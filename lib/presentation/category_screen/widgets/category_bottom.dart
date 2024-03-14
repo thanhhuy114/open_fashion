@@ -4,7 +4,7 @@ class Bottom extends StatelessWidget {
   const Bottom({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       children: [
         Padding(
@@ -52,7 +52,7 @@ class Bottom extends StatelessWidget {
             Text(
               'Blog',
               style: TextStyle(fontSize: 20),
-            )
+            ),
           ],
         ),
         const Padding(
@@ -61,7 +61,7 @@ class Bottom extends StatelessWidget {
             'Copyright© OpenUI All Rights Reserved.',
             style: TextStyle(fontSize: 15),
           ),
-        )
+        ),
       ],
     );
   }

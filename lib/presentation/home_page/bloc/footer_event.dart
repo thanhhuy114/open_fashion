@@ -6,4 +6,5 @@ sealed class FooterEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-class LoadFooter extends FooterEvent{}
+
+class LoadFooter extends FooterEvent {}

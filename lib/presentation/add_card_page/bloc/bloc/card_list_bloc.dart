@@ -14,7 +14,9 @@ class CardListBloc extends Bloc<CardListEvent, CardListState> {
 
   //Load card
   Future<void> fetchCardList(
-      final LoadCardList event, final Emitter<CardListState> emit) async {
+    final LoadCardList event,
+    final Emitter<CardListState> emit,
+  ) async {
     //
     emit(CardListLoanding());
     try {

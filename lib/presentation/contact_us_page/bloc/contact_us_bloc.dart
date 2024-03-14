@@ -9,13 +9,13 @@ part 'contact_us_state.dart';
 
 class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
   ContactUsBloc() : super(ContactUsLoading()) {
-    on<ContactUsEvent>((event, emit) async {
+    on<ContactUsEvent>((final event, final emit) async {
       emit(ContactUsLoading());
-      final Api api =Api();
-      try{
+      final Api api = Api();
+      try {
         final data = await api.getContactUs();
         emit(ContactUsLoaded(contactus: data!.data));
-      }catch(e){
+      } catch (e) {
         emit(ContactUsError(error: e.toString()));
       }
     });

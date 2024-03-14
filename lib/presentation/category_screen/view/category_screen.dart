@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_bottom.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_filter.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_gridview.dart';
-import 'package:open_fashion/presentation/category_screen/widgets/category_listview.dart';
+import '../../../widgets/appbar_custom_widget.dart';
+import '../../home_page/widgets/home_page_footer.dart';
+import '../widgets/category_filter.dart';
+import '../widgets/category_gridview.dart';
+import '../widgets/category_listview.dart';
 
 import '../../../models/category_status_filer_manager.dart';
 import '../bloc/category_bloc.dart';
@@ -17,7 +18,7 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -26,7 +27,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         ),
       ],
       child: Scaffold(
-        appBar: AppBar(title: const Text('Cate Screen')),
+        appBar: AppBarCustom(),
         body: CustomScrollView(
           slivers: [
             SliverPadding(
@@ -40,7 +41,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                     ValueListenableBuilder<int>(
                       valueListenable: CategoryStatusFilterManager.status,
-                      builder: (context, value, child) {
+                      builder: (final context, final value, final child) {
                         if (value == 3) {
                           return const CategoryGridView(
                             state: true,
@@ -54,7 +55,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         }
                       },
                     ),
-                    const Bottom()
+                    const HomePageFooter(),
                   ],
                 ),
               ),

@@ -18,7 +18,7 @@ class Indicatior extends StatelessWidget {
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(total, (index) {
+        children: List.generate(total, (final index) {
           return dot(
             color: index == active
                 ? const Color.fromRGBO(221, 133, 96, 1)

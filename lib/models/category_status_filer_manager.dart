@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CategoryStatusFilterManager {
   static ValueNotifier<int> status = ValueNotifier<int>(3);
 
-  static void setStatus(int newStatus) {
+  static Future<void> setStatus(final int newStatus) async {
     status.value = newStatus;
   }
 }

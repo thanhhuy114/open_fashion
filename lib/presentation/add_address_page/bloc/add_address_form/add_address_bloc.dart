@@ -69,10 +69,12 @@ class AddAddressBloc extends Bloc<AddAddressEvent, AddAddressState> {
         ),
       );
     } else if (!regexOnlyLetter.hasMatch(event.text.trim())) {
-      emit(state.copyWith(
-        isValidLastName: true,
-        lastNameMessage: '* Special characters or numbers are not allowed.',
-      ));
+      emit(
+        state.copyWith(
+          isValidLastName: true,
+          lastNameMessage: '* Special characters or numbers are not allowed.',
+        ),
+      );
     } else {
       emit(
         state.copyWith(
