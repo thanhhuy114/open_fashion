@@ -14,12 +14,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../locator.dart';
-import '../../../models/collections_response_model.dart';
-import '../../../widgets/appbar_custom_widget.dart';
-import '../../../widgets/menu_drawer_widget.dart';
-import '../../collection_detail_page/view/collection_detail_screen.dart';
-import '../../home_page/widgets/home_page_footer.dart';
+import '../../../../../locator.dart';
+import '../../../../../models/collections_response_model.dart';
+import '../../../../../widgets/appbar_custom_widget.dart';
+import '../../../../../widgets/menu_drawer_widget.dart';
+import '../../../../../presentation/collection_detail_page/view/collection_detail_screen.dart';
+import '../../../../../presentation/home_page/widgets/home_page_footer.dart';
 import '../bloc/bloc/remote_collection_bloc.dart';
 import 'collection_item_screen.dart';
 
@@ -98,14 +98,14 @@ class _CollectionScreenState extends State<CollectionScreen> {
                                   final secondaryAnimation,
                                 ) {
                                   return CollectionDetailScreen(
-                                    collection:
-                                        CollectionDetailModel.fromCollection(
+                                    collection: CollectionDetailModel
+                                        .fromCollectionEntity(
                                       state.collecttion[index],
                                     ),
                                     moreCollection: state.collecttion
                                         .map(
                                           (e) => CollectionDetailModel
-                                              .fromCollection(e),
+                                              .fromCollectionEntity(e),
                                         )
                                         .toList(),
                                   );

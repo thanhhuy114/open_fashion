@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
-
+import '../../domain/entities/collection_entity.dart';
 import 'collection_detail.dart';
 
-class Collection extends Equatable {
+class Collection extends CollectionEntity {
   final String? id;
   final String? collectionName;
   final String? collectionImage;
@@ -15,7 +15,12 @@ class Collection extends Equatable {
     this.collectionName,
     this.collectionImage,
     this.items = const [],
-  });
+  }) : super(
+          id: id,
+          collectionName: collectionName,
+          collectionImage: collectionImage,
+          items: items,
+        );
 
   Collection copyWith({
     String? id,
@@ -34,8 +39,8 @@ class Collection extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'collection_Name': collectionName,
-      'collection_image': collectionImage,
+      'collectionName': collectionName,
+      'collectionImage': collectionImage,
       'items': items.map((x) => x.toMap()).toList(),
     };
   }
@@ -50,7 +55,7 @@ class Collection extends Equatable {
           ? map['collection_image'] as String
           : null,
       items: List<CollectionDetail>.from(
-        (map['items'] as List<dynamic>).map<CollectionDetail?>(
+        (map['items'] as List<dynamic>).map<CollectionDetail>(
           (x) => CollectionDetail.fromMap(x as Map<String, dynamic>),
         ),
       ),
@@ -62,9 +67,12 @@ class Collection extends Equatable {
   factory Collection.fromJson(String source) =>
       Collection.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  @override
-  bool get stringify => true;
-
-  @override
-  List<Object?> get props => [id, collectionName, collectionImage, items];
+  factory Collection.fromEntity(CollectionEntity entity) {
+    return Collection(
+      id: entity.id,
+      collectionImage: entity.collectionImage,
+      collectionName: entity.collectionName,
+      items: entity.items.map((e) => CollectionDetail.fromEntity(e)).toList(),
+    );
+  }
 }

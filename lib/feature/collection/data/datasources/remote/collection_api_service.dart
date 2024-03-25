@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import '../../../domain/models/responses/collection_response.dart';
+import '../../models/responses/collection_response.dart';
 import '../../../../../network/end_points.dart';
 part 'collection_api_service.g.dart';
 

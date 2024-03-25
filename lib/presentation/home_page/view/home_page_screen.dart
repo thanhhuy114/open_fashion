@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/menu_arrival_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
-import '../../collection_page/views/collection_screen.dart';
+import '../../../feature/collection/presentation/collection_page/views/collection_screen.dart';
 import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_bloc.dart';
 import '../widgets/Home_page_trending.dart';
