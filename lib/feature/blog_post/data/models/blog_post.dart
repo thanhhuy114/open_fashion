@@ -1,5 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -22,6 +24,9 @@ class BLogPostResponseModel extends Equatable {
 
   factory BLogPostResponseModel.fromJson(final Map<String, dynamic> json) =>
       _$BLogPostResponseModelFromJson(json);
+
+  factory BLogPostResponseModel.formJsonString(final String str) =>
+      BLogPostResponseModel.fromJson(jsonDecode(str));
 
   final int? code;
   static const String codeKey = 'code';

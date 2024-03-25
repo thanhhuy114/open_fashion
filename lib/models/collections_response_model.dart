@@ -1,6 +1,9 @@
 // ignore_for_file: lines_longer_than_80_chars
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../feature/collection/domain/models/collection.dart';
+import '../feature/collection/domain/models/collection_detail.dart';
 part 'collections_response_model.g.dart';
 
 /* 
@@ -83,6 +86,14 @@ class CollectionDetailModel extends Equatable {
         collectionImage,
         items,
       ];
+
+  CollectionDetailModel.fromCollection(Collection it)
+      : id = it.id,
+        collectionImage = it.collectionImage,
+        collectionName = it.collectionName,
+        items = it.items
+            .map((e) => ItemOfCollectionModel.formCollecitionDetail(e))
+            .toList();
 }
 
 @JsonSerializable()
@@ -128,6 +139,13 @@ class ItemOfCollectionModel extends Equatable {
         description,
         price,
       ];
+
+  ItemOfCollectionModel.formCollecitionDetail(CollectionDetail it)
+      : id = it.id,
+        description = it.description,
+        image = it.image,
+        name = it.name,
+        price = it.price;
 }
 
 /*

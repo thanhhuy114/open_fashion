@@ -5,7 +5,7 @@ import '../../../widgets/button_lead_more.dart';
 import '../../../widgets/footer.dart';
 import '../../../widgets/header_blog.dart';
 import '../../../widgets/menu_drawer_widget.dart';
-import '../../blog_post_page/views/blog_post_screen.dart';
+import '../../../feature/blog_post/pages/blog_post_page/views/blog_post_screen.dart';
 import '../bloc/post_menu/post_menu_bloc.dart';
 import '../bloc/post_menu/post_menu_state.dart';
 import '../widget/button_list_gird.dart';
@@ -27,7 +27,7 @@ class _BlogGirdPageState extends State<BlogGirdPage> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
-      drawer:  MenuDrawer(),
+      drawer: MenuDrawer(),
       backgroundColor: Colors.white,
       appBar: AppBarCustom(),
       body: BlocBuilder<PostMenuBloc, PostMenuState>(
