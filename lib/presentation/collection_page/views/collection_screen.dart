@@ -14,11 +14,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../locator.dart';
+import '../../../models/collections_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../collection_detail_page/view/collection_detail_screen.dart';
 import '../../home_page/widgets/home_page_footer.dart';
-import '../bloc/collection_bloc/collection_bloc.dart';
+import '../bloc/bloc/remote_collection_bloc.dart';
 import 'collection_item_screen.dart';
 
 class CollectionScreen extends StatefulWidget {
@@ -40,17 +42,18 @@ class _CollectionScreenState extends State<CollectionScreen> {
         color: Colors.black,
       ),
       body: BlocProvider(
-        create: (final context) => CollectionBloc()..add(LoadCollectionEvent()),
-        child: BlocConsumer<CollectionBloc, CollectionState>(
+        create: (final context) =>
+            sl<RemoteCollectionBloc>()..add(LoadCollection()),
+        child: BlocConsumer<RemoteCollectionBloc, RemoteCollectionState>(
           listener: (final context, final state) {
-            if (state.status == CollectionStatus.failure) {
+            if (state is RemoteCollectionFailed) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Something wrong!')),
               );
             }
           },
           builder: (final context, final state) {
-            if (state.status == CollectionStatus.success) {
+            if (state is RemoteCollectionSuccess) {
               //add singlechidScollview
               return SingleChildScrollView(
                 child: Column(
@@ -59,9 +62,10 @@ class _CollectionScreenState extends State<CollectionScreen> {
                       height: 40,
                     ),
                     Text(
-                      state.collections[0].collectionName!.substring(
+                      (state.collecttion[0].collectionName ?? '').substring(
                         0,
-                        state.collections[0].collectionName!.indexOf(' '),
+                        (state.collecttion[0].collectionName ?? '')
+                            .indexOf(' '),
                       ),
                       style: const TextStyle(
                         fontFamily: 'BodoniModa',
@@ -82,7 +86,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
                     //Collection List changing lisview -> column
                     Column(
                       children: List.generate(
-                        state.collections.length,
+                        state.collecttion.length,
                         (final index) => GestureDetector(
                           onTap: () async {
                             Navigator.push(
@@ -94,8 +98,16 @@ class _CollectionScreenState extends State<CollectionScreen> {
                                   final secondaryAnimation,
                                 ) {
                                   return CollectionDetailScreen(
-                                    collection: state.collections[index],
-                                    moreCollection: state.collections,
+                                    collection:
+                                        CollectionDetailModel.fromCollection(
+                                      state.collecttion[index],
+                                    ),
+                                    moreCollection: state.collecttion
+                                        .map(
+                                          (e) => CollectionDetailModel
+                                              .fromCollection(e),
+                                        )
+                                        .toList(),
                                   );
                                 },
                               ),
@@ -103,9 +115,9 @@ class _CollectionScreenState extends State<CollectionScreen> {
                           },
                           child: CollectionItem(
                             collectionName:
-                                state.collections[index].collectionName!,
+                                state.collecttion[index].collectionName!,
                             idx: index + 1,
-                            image: state.collections[index].collectionImage!,
+                            image: state.collecttion[index].collectionImage!,
                           ),
                         ),
                       )..add(const HomePageFooter()),

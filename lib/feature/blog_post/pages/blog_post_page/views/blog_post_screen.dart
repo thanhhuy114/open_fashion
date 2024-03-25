@@ -9,11 +9,12 @@
 import 'package:banner_carousel/banner_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../widgets/appbar_custom_widget.dart';
-import '../../../widgets/menu_drawer_widget.dart';
+import '../../../../../locator.dart';
+import '../../../../../widgets/appbar_custom_widget.dart';
+import '../../../../../widgets/menu_drawer_widget.dart';
 import '../bloc/bloc/blog_post_bloc.dart';
 import '../widgets/tag.dart';
-import '../../../widgets/footer.dart';
+import '../../../../../widgets/footer.dart';
 
 class BLogPostScreen extends StatefulWidget {
   const BLogPostScreen({super.key});
@@ -29,7 +30,7 @@ class _BLogPostScreenState extends State<BLogPostScreen> {
     const double marginAll = 20;
 
     return BlocProvider(
-      create: (final context) => BlogPostBloc()..add(LoadBlogPostEvent()),
+      create: (final context) => sl<BlogPostBloc>()..add(LoadBlogPostEvent()),
       child: Scaffold(
         appBar: AppBarCustom(),
         drawer: MenuDrawer(),
