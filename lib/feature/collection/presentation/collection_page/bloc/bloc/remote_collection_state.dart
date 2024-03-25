@@ -2,7 +2,7 @@ part of 'remote_collection_bloc.dart';
 
 abstract class RemoteCollectionState extends Equatable {
   const RemoteCollectionState({this.collecttion = const [], this.error});
-  final List<Collection> collecttion;
+  final List<CollectionEntity> collecttion;
   final DioException? error;
 
   @override

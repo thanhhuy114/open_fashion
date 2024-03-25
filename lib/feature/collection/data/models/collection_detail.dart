@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
+import '../../domain/entities/collection_detail_entity.dart';
 
-class CollectionDetail extends Equatable {
+class CollectionDetail extends CollectionDetailEntity {
   final int? id;
   final String? name;
   final String? image;
@@ -15,7 +16,13 @@ class CollectionDetail extends Equatable {
     this.image,
     this.description,
     this.price,
-  });
+  }) : super(
+          id: id,
+          image: image,
+          description: description,
+          name: name,
+          price: price,
+        );
 
   CollectionDetail copyWith({
     int? id,
@@ -59,17 +66,13 @@ class CollectionDetail extends Equatable {
   factory CollectionDetail.fromJson(String source) =>
       CollectionDetail.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  @override
-  bool get stringify => true;
-
-  @override
-  List<Object?> get props {
-    return [
-      id,
-      name,
-      image,
-      description,
-      price,
-    ];
+  factory CollectionDetail.fromEntity(CollectionDetailEntity entity) {
+    return CollectionDetail(
+      id: entity.id,
+      name: entity.name,
+      price: entity.price,
+      image: entity.image,
+      description: entity.description,
+    );
   }
 }

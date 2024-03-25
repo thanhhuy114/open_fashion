@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../domain/entities/blog_post_entity.dart';
+
 part 'blog_post.g.dart';
 
 /* 
@@ -53,8 +55,8 @@ class BLogPostResponseModel extends Equatable {
 }
 
 @JsonSerializable()
-class BlogPostModel extends Equatable {
-  const BlogPostModel({
+class BlogPostModel extends BlogPostEntity {
+  BlogPostModel({
     required this.postBy,
     required this.titlePost,
     required this.content,
@@ -62,7 +64,15 @@ class BlogPostModel extends Equatable {
     required this.imageArray,
     required this.postDate,
     required this.tag,
-  });
+  }) : super(
+          titlePost: titlePost,
+          content: content,
+          imageArray: imageArray,
+          mainPicture: mainPicture,
+          postBy: postBy,
+          postDate: postDate,
+          tag: tag,
+        );
 
   factory BlogPostModel.fromJson(final Map<String, dynamic> json) =>
       _$BlogPostModelFromJson(json);
@@ -94,22 +104,6 @@ class BlogPostModel extends Equatable {
   static const String tagKey = 'tag';
 
   Map<String, dynamic> toJson() => _$BlogPostModelToJson(this);
-
-  @override
-  String toString() {
-    return '$postBy, $titlePost, $content, $mainPicture, $imageArray, $postDate, $tag, ';
-  }
-
-  @override
-  List<Object?> get props => [
-        postBy,
-        titlePost,
-        content,
-        mainPicture,
-        imageArray,
-        postDate,
-        tag,
-      ];
 }
 
 

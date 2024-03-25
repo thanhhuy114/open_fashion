@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../../models/collections_response_model.dart';
-import '../../../../network/api.dart';
+import '../../../../../../models/collections_response_model.dart';
+import '../../../../../../network/api.dart';
 part 'collection_event.dart';
 part 'collection_state.dart';
 

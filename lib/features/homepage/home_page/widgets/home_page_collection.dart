@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../presentation/collection_page/views/collection_screen.dart';
+import '../../../../feature/collection/presentation/collection_page/views/collection_screen.dart';
 
 class HomePageCollection extends StatefulWidget {
   const HomePageCollection({super.key});

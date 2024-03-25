@@ -11,7 +11,7 @@ class BlogPostLoading extends BlogPostState {}
 
 class BlogPostLoaded extends BlogPostState {
   const BlogPostLoaded(this.blogPost);
-  final BlogPostModel blogPost;
+  final BlogPostEntity blogPost;
 
   @override
   List<Object> get props => [blogPost];

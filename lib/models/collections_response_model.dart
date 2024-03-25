@@ -2,8 +2,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../feature/collection/domain/models/collection.dart';
-import '../feature/collection/domain/models/collection_detail.dart';
+import '../feature/collection/domain/entities/collection_detail_entity.dart';
+import '../feature/collection/domain/entities/collection_entity.dart';
 part 'collections_response_model.g.dart';
 
 /* 
@@ -87,12 +87,12 @@ class CollectionDetailModel extends Equatable {
         items,
       ];
 
-  CollectionDetailModel.fromCollection(Collection it)
+  CollectionDetailModel.fromCollectionEntity(CollectionEntity it)
       : id = it.id,
         collectionImage = it.collectionImage,
         collectionName = it.collectionName,
         items = it.items
-            .map((e) => ItemOfCollectionModel.formCollecitionDetail(e))
+            .map((e) => ItemOfCollectionModel.formCollecitionDetailEntity(e))
             .toList();
 }
 
@@ -140,7 +140,7 @@ class ItemOfCollectionModel extends Equatable {
         price,
       ];
 
-  ItemOfCollectionModel.formCollecitionDetail(CollectionDetail it)
+  ItemOfCollectionModel.formCollecitionDetailEntity(CollectionDetailEntity it)
       : id = it.id,
         description = it.description,
         image = it.image,

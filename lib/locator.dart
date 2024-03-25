@@ -10,7 +10,7 @@ import 'feature/collection/data/datasources/remote/collection_api_service.dart';
 import 'feature/collection/data/repositories/collection_repository_impl.dart';
 import 'feature/collection/domain/repositories/collection_repository.dart';
 import 'feature/collection/domain/usecases/get_collection.dart';
-import 'presentation/collection_page/bloc/bloc/remote_collection_bloc.dart';
+import 'feature/collection/presentation/collection_page/bloc/bloc/remote_collection_bloc.dart';
 
 final sl = GetIt.instance;
 

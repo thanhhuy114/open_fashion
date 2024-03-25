@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../feature/collection/presentation/collection_page/views/collection_screen.dart';
 import '../../../../injection_container.dart';
 import '../../../../widgets/appbar_custom_widget.dart';
 import '../../../../widgets/menu_drawer_widget.dart';
-import '../../../../presentation/collection_page/views/collection_screen.dart';
-import '../bloc/footer_bloc.dart';
 import '../bloc/home_page_arrival_bloc.dart';
 import '../bloc/home_page_followus_bloc.dart';
 import '../bloc/home_page_justforyou_bloc.dart';
@@ -39,7 +38,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
         BlocProvider<HomePageJustforyouBloc>(
           create: (final context) => sl()..add(const GetJustforyou()),
         ),
-        BlocProvider<HomePageFollowusBloc>(create: (final context) => sl()..add(GetFollowus()),),
+        BlocProvider<HomePageFollowusBloc>(
+          create: (final context) => sl()..add(GetFollowus()),
+        ),
       ],
       child: BlocBuilder<HomePageArrivalBloc, HomePageArrivalState>(
         builder: (final context, final state) {
