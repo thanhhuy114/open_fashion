@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'feature/blog_post/pages/blog_post_page/views/blog_post_screen.dart';
-import 'locator.dart';
-import 'feature/collection/presentation/collection_page/views/collection_screen.dart';
-import 'presentation/home_page/view/home_page_screen.dart';
+import 'injection_container.dart';
+import 'features/homepage/home_page/view/home_page_screen.dart';
 import 'widgets/text_theme_custom.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initializeDefendencies();
+  await initializeDependencies();
   runApp(const MyApp());
 }
 

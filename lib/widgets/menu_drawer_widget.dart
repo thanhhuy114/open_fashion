@@ -3,10 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../models/drawer_response_model.dart';
+import '../features/drawer/domain/drawer.dart';
+import '../injection_container.dart';
 import '../presentation/category_screen/view/category_screen.dart';
-import '../presentation/home_page/bloc/drawer_bloc.dart';
-import '../presentation/home_page/widgets/home_page_newArrival.dart';
+import '../features/homepage/home_page/bloc/drawer_bloc.dart';
+import '../features/homepage/home_page/widgets/home_page_newArrival.dart';
 
 class MenuDrawer extends StatefulWidget {
   MenuDrawer({super.key, this.color});
@@ -17,13 +18,13 @@ class MenuDrawer extends StatefulWidget {
 
 class _MenuDrawerState extends State<MenuDrawer> {
   final List<String> itemTab = [];
-  List<DrawerModel> items = [];
-  List<ItemsDataModel> filteredItems = [];
+  List<DrawerEntity> items = [];
+  List<ItemsDataEntity> filteredItems = [];
   int selectedIndex = 0;
   @override
   Widget build(final BuildContext context) {
-    return BlocProvider(
-      create: (final context) => DrawerBloc()..add(LoadDrawer()),
+    return BlocProvider<DrawerBloc>(
+      create: (final context) => sl()..add(GetDrawer()),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Drawer(
@@ -41,14 +42,14 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 );
               }
               if (state is DrawerLoaded) {
-                final List<DrawerModel> drawer = state.drawerData;
+                final List<DrawerEntity> drawer = state.drawer!;
                 itemTab.clear();
                 for (final i in drawer) {
-                  itemTab.add(i.type);
+                  itemTab.add(i.type!);
                 }
                 filteredItems.clear();
                 // ignore: prefer_foreach
-                for (final element in drawer[selectedIndex].items) {
+                for (final element in drawer[selectedIndex].items!) {
                   filteredItems.add(element);
                 }
                 return ListView(
@@ -96,7 +97,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
                                         filteredItems.clear();
                                         // ignore: prefer_foreach
                                         for (final element
-                                            in drawer[selectedIndex].items) {
+                                            in drawer[selectedIndex].items!) {
                                           filteredItems.add(element);
                                         }
                                       },
@@ -121,8 +122,8 @@ class _MenuDrawerState extends State<MenuDrawer> {
                                 itemCount: filteredItems.length,
                                 itemBuilder: (final context, final index) {
                                   return ItemName(
-                                    data: filteredItems[index].name,
-                                    items: filteredItems[index].items,
+                                    data: filteredItems[index].name!,
+                                    items: filteredItems[index].items!,
                                     color: widget.color,
                                   );
                                 },
@@ -230,7 +231,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
 class ItemName extends StatefulWidget {
   ItemName({super.key, required this.data, required this.items, this.color});
   final String data;
-  final List<ItemsDrawerModel> items;
+  final List<ItemsDrawerEntity> items;
   Color? color;
 
   @override
@@ -277,7 +278,7 @@ class _ItemNameState extends State<ItemName> {
                 itemBuilder: (final context, final index) {
                   return ListTile(
                     title: Text(
-                      widget.items[index].item,
+                      widget.items[index].item!,
                       style: TextStyle(
                         color:
                             widget.color != null ? Colors.white : Colors.black,

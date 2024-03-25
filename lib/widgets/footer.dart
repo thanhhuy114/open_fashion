@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../presentation/contact_us_page/view/contact_us_screen.dart';
+import '../features/contactus/contact_us_page/view/contact_us_screen.dart';
 import '../presentation/our_story_page/views/our_story.dart';
 
 class FooterWidget extends StatelessWidget {
