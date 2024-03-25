@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'presentation/home_page/view/home_page_screen.dart';
+import 'injection_container.dart';
+import 'features/homepage/home_page/view/home_page_screen.dart';
 import 'widgets/text_theme_custom.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependencies();
   runApp(const MyApp());
 }
 

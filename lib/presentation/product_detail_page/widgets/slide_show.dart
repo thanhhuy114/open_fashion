@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/product_detail_response_models.dart';
 import '../../../widgets/my_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../home_page/widgets/RhombusContainer.dart';
+import '../../../features/homepage/home_page/widgets/RhombusContainer.dart';
 import '../cubit/pick_color/color_cubit.dart';
 import 'rhombus_indicator.dart';
 

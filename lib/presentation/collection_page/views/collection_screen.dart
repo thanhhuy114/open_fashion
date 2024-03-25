@@ -19,8 +19,9 @@ import '../../../models/collections_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../collection_detail_page/view/collection_detail_screen.dart';
-import '../../home_page/widgets/home_page_footer.dart';
 import '../bloc/bloc/remote_collection_bloc.dart';
+import '../../../features/homepage/home_page/widgets/home_page_footer.dart';
+import '../bloc/collection_bloc/collection_bloc.dart';
 import 'collection_item_screen.dart';
 
 class CollectionScreen extends StatefulWidget {

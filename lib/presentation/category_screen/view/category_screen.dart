@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/appbar_custom_widget.dart';
-import '../../home_page/widgets/home_page_footer.dart';
+import '../../../features/homepage/home_page/widgets/home_page_footer.dart';
 import '../widgets/category_filter.dart';
 import '../widgets/category_gridview.dart';
 import '../widgets/category_listview.dart';

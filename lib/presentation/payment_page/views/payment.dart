@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../home_page/view/home_page_screen.dart';
+import '../../../features/homepage/home_page/view/home_page_screen.dart';
 
 class Payment extends StatefulWidget {
   const Payment({super.key});
