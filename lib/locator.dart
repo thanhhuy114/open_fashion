@@ -21,6 +21,11 @@ import 'feature/product_detail/data/repository/product_detail_repository_iml.dar
 import 'feature/product_detail/domain/repository/product_detail_repository.dart';
 import 'feature/product_detail/domain/usecases/get_product_detail.dart';
 import 'feature/product_detail/page/product_detail_page/bloc/remote_product_detail_bloc.dart';
+import 'feature/product_detail_layout/data/data_source/remote/product_detail_lauyout_api_service.dart';
+import 'feature/product_detail_layout/data/repository/product_detail_layout_iml.dart';
+import 'feature/product_detail_layout/domain/repository/product_detail_layout_repository.dart';
+import 'feature/product_detail_layout/domain/usecases/get_product_detail_layout.dart';
+import 'feature/product_detail_layout/page/product_detail_layout_page/bloc/remote_product_detail_layout_bloc.dart';
 import 'features/contactus/contact_us_page/bloc/contact_us_bloc.dart';
 import 'features/contactus/data/contact_us_repository_impl.dart';
 import 'features/contactus/domain/contact_us_repository.dart';
@@ -43,6 +48,7 @@ import 'features/homepage/home_page/bloc/drawer_bloc.dart';
 import 'features/homepage/home_page/bloc/home_page_arrival_bloc.dart';
 import 'features/homepage/home_page/bloc/home_page_followus_bloc.dart';
 import 'features/homepage/home_page/bloc/home_page_justforyou_bloc.dart';
+
 final sl = GetIt.instance;
 
 Future initializeDefendencies() async {
@@ -57,12 +63,18 @@ Future initializeDefendencies() async {
   sl.registerSingleton<BlogPostRepository>(BlogPostRepositoryImpl(sl()));
   sl.registerSingleton<OurStoryApiService>(OurStoryApiService(sl()));
   sl.registerSingleton<ProductDetailApiService>(ProductDetailApiService(sl()));
+  sl.registerSingleton<ProductDetailLayoutApiService>(
+    ProductDetailLayoutApiService(sl()),
+  );
   //dependencies
   sl.registerSingleton<OurStoryRepository>(OurStoryRepositoryIml(sl()));
   sl.registerSingleton<ProductDetailRepository>(
     ProductDetailRepositoryIml(sl()),
   );
- //Dependencies thuan
+  sl.registerSingleton<ProductDetailLayoutRepository>(
+    ProductDetailLayoutRepositoryIml(sl()),
+  );
+  //Dependencies thuan
   sl.registerSingleton<ApiProvider>(ApiProvider());
 
   sl.registerSingleton<Api>(Api());
@@ -72,7 +84,7 @@ Future initializeDefendencies() async {
   sl.registerSingleton<ContactUsRepository>(ContactUsRepositoryImpl(sl()));
 
   sl.registerSingleton<DrawerRepository>(DrawerRepositoryImpl(sl()));
-  
+
   sl.registerSingleton<FooterRepository>(FooterRepositoryImpl(sl()));
   //Usercase
   sl.registerSingleton<GetCollectionUsecase>(GetCollectionUsecase(sl()));
@@ -80,7 +92,10 @@ Future initializeDefendencies() async {
 
   sl.registerSingleton<GetOurStoryUseCase>(GetOurStoryUseCase(sl()));
   sl.registerSingleton<GetProductDetailUseCase>(GetProductDetailUseCase(sl()));
-    //Usecases thuan
+  sl.registerSingleton<GetProductDetailLayoutUsecase>(
+    GetProductDetailLayoutUsecase(sl()),
+  );
+  //Usecases thuan
   sl.registerSingleton<GetArrivalUseCase>(GetArrivalUseCase(sl()));
   sl.registerSingleton<GetJustForYouUseCase>(GetJustForYouUseCase(sl()));
   sl.registerSingleton<GetContactUsUseCase>(GetContactUsUseCase(sl()));
@@ -92,9 +107,14 @@ Future initializeDefendencies() async {
   sl.registerSingleton<BlogPostBloc>(BlogPostBloc(sl()));
   sl.registerSingleton<RemoteOurStoryBloc>(RemoteOurStoryBloc(sl()));
   sl.registerSingleton<RemoteProductDetailBloc>(RemoteProductDetailBloc(sl()));
-    //Blocs thuan
+  sl.registerSingleton<RemoteProductDetailLayoutBloc>(
+    RemoteProductDetailLayoutBloc(sl()),
+  );
+  //Blocs thuan
   sl.registerFactory<HomePageArrivalBloc>(() => HomePageArrivalBloc(sl()));
-  sl.registerFactory<HomePageJustforyouBloc>(() => HomePageJustforyouBloc(sl()));
+  sl.registerFactory<HomePageJustforyouBloc>(
+    () => HomePageJustforyouBloc(sl()),
+  );
   sl.registerFactory<HomePageFollowusBloc>(() => HomePageFollowusBloc(sl()));
   sl.registerFactory<DrawerBloc>(() => DrawerBloc(sl()));
   sl.registerFactory<FooterBloc>(() => FooterBloc(sl()));
