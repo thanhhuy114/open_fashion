@@ -15,7 +15,6 @@ import '../models/category_data.dart';
 import '../models/checkout_response_model.dart';
 import '../models/collections_response_model.dart';
 import '../models/post_menu_response_model.dart';
-import '../models/product_detail_layout_response_models.dart';
 import '../models/recent_search_response_model.dart';
 import 'api_local_provider.dart';
 import 'api_provider.dart';
@@ -251,18 +250,18 @@ class Api {
     Date: 
     Content: 
   */
-  static Future<ProductDetailLayoutResponseModel>
-      getProductDetailLayout() async {
-    try {
-      final response = await http.getRequest(EndPoints.productDetailLayout);
-      final result = ProductDetailLayoutResponseModel.fromJson(response!);
-      log(result.toString());
-      return result;
-    } catch (e) {
-      log(e.toString());
-      throw e.toString();
-    }
-  }
+  // static Future<ProductDetailLayoutResponseModel>
+  //     getProductDetailLayout() async {
+  //   try {
+  //     final response = await http.getRequest(EndPoints.productDetailLayout);
+  //     final result = ProductDetailLayoutResponseModel.fromJson(response!);
+  //     log(result.toString());
+  //     return result;
+  //   } catch (e) {
+  //     log(e.toString());
+  //     throw e.toString();
+  //   }
+  // }
 
   static Future<CompleteCheckoutResponeModel> getCheckout() async {
     try {
