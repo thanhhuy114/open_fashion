@@ -206,9 +206,9 @@ class _SlideShowProductDetailState extends State<SlideShowProductDetail> {
                   itemBuilder: (final context, final index) {
                     return GestureDetector(
                       onTap: () {
-                        setState(() async {
+                        setState(() {
                           activeIndex = index;
-                          _controller.animateToPage(activeIndex);
+                          unawaited(_controller.animateToPage(activeIndex));
                         });
                       },
                       child: Column(
