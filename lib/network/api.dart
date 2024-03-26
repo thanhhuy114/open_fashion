@@ -9,7 +9,6 @@ import '../features/contactus/data/contact_us_response_model.dart';
 import '../features/drawer/data/drawer_response_model.dart';
 import '../features/footer/data/footer_response_model.dart';
 import '../features/homepage/data/models/menu_arrival_response_model.dart';
-import '../models/cart_response_model.dart';
 import '../models/category.dart';
 import '../models/category_data.dart';
 import '../models/checkout_response_model.dart';
@@ -285,14 +284,14 @@ class Api {
   //   }
   // }
 
-  static Future<CartResponseModel> getCart() async {
-    try {
-      final response = await http.getRequest(EndPoints.cart);
-      final result = CartResponseModel.fromJson(response!);
-      return result;
-    } catch (e) {
-      log('load faild');
-      throw e.toString();
-    }
-  }
+  // static Future<CartResponseModel> getCart() async {
+  //   try {
+  //     final response = await http.getRequest(EndPoints.cart);
+  //     final result = CartResponseModel.fromJson(response!);
+  //     return result;
+  //   } catch (e) {
+  //     log('load faild');
+  //     throw e.toString();
+  //   }
+  // }
 }
