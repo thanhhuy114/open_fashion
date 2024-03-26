@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../data/models/menu_arrival_response_model.dart';
 import '../../domain/entities/arrival.dart';
 
 class HomePageProduct extends StatefulWidget {

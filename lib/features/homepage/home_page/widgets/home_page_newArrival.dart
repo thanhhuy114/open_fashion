@@ -2,17 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../data/models/menu_arrival_response_model.dart';
+import '../../../../feature/product_detail/page/product_detail_page/views/product_detail.dart';
 import '../../domain/entities/arrival.dart';
 import '../../../../widgets/tittle_widget.dart';
 import '../../../../presentation/blog_grid_page/bloc/bloc_grid_page_provider.dart';
-import '../../../../presentation/product_detail_page/views/product_detail.dart';
 import 'RhombusContainer.dart';
 import 'home_page_product.dart';
 
 class HomePageNewArrival extends StatefulWidget {
   const HomePageNewArrival({super.key, required this.menu});
-  final List<ArrivalEntity> ? menu;
+  final List<ArrivalEntity>? menu;
   @override
   State<HomePageNewArrival> createState() => _HomePageNewArrivalState();
 }
@@ -31,7 +30,7 @@ class _HomePageNewArrivalState extends State<HomePageNewArrival> {
       for (final i in widget.menu!) {
         itemTab.add(i.name!);
       }
-       filterItems = widget.menu!
+      filterItems = widget.menu!
           .where((final element) => element.name == itemTab[0])
           .toList();
       for (final e in filterItems) {

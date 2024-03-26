@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../injection_container.dart';
+import '../../../../locator.dart';
 import '../../../../widgets/appbar_custom_widget.dart';
 import '../../../../widgets/menu_drawer_widget.dart';
 import '../../../homepage/home_page/widgets/home_page_footer.dart';
