@@ -6,6 +6,11 @@ import 'feature/blog_post/data/repository/blog_post_repository_impl.dart';
 import 'feature/blog_post/domain/repository/blog_post_repositoty.dart';
 import 'feature/blog_post/domain/usecases/get_blog_post_usecase.dart';
 import 'feature/blog_post/pages/blog_post_page/bloc/bloc/blog_post_bloc.dart';
+import 'feature/cart/data/data_sources/remote/cart_api_service.dart';
+import 'feature/cart/data/repository/cart_repository_iml.dart';
+import 'feature/cart/domain/repository/cart_repository.dart';
+import 'feature/cart/domain/usecases/get_cart.dart';
+import 'feature/cart/page/cart_page/bloc/remote_cart_bloc.dart';
 import 'feature/collection/data/datasources/remote/collection_api_service.dart';
 import 'feature/collection/data/repositories/collection_repository_impl.dart';
 import 'feature/collection/domain/repositories/collection_repository.dart';
@@ -66,6 +71,8 @@ Future initializeDefendencies() async {
   sl.registerSingleton<ProductDetailLayoutApiService>(
     ProductDetailLayoutApiService(sl()),
   );
+  sl.registerSingleton<CartApiService>(CartApiService(sl()));
+
   //dependencies
   sl.registerSingleton<OurStoryRepository>(OurStoryRepositoryIml(sl()));
   sl.registerSingleton<ProductDetailRepository>(
@@ -74,6 +81,8 @@ Future initializeDefendencies() async {
   sl.registerSingleton<ProductDetailLayoutRepository>(
     ProductDetailLayoutRepositoryIml(sl()),
   );
+  sl.registerSingleton<CartRepository>(CartRepositoryIml(sl()));
+
   //Dependencies thuan
   sl.registerSingleton<ApiProvider>(ApiProvider());
 
@@ -95,6 +104,7 @@ Future initializeDefendencies() async {
   sl.registerSingleton<GetProductDetailLayoutUsecase>(
     GetProductDetailLayoutUsecase(sl()),
   );
+  sl.registerSingleton<GetCartUsecase>(GetCartUsecase(sl()));
   //Usecases thuan
   sl.registerSingleton<GetArrivalUseCase>(GetArrivalUseCase(sl()));
   sl.registerSingleton<GetJustForYouUseCase>(GetJustForYouUseCase(sl()));
@@ -110,6 +120,7 @@ Future initializeDefendencies() async {
   sl.registerSingleton<RemoteProductDetailLayoutBloc>(
     RemoteProductDetailLayoutBloc(sl()),
   );
+  sl.registerSingleton<RemoteCartBloc>(RemoteCartBloc(sl()));
   //Blocs thuan
   sl.registerFactory<HomePageArrivalBloc>(() => HomePageArrivalBloc(sl()));
   sl.registerFactory<HomePageJustforyouBloc>(
