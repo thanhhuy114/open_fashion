@@ -2,19 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../feature/product_detail/page/product_detail_page/cubit/pick_color/color_cubit.dart';
+import '../../../feature/product_detail/page/product_detail_page/cubit/pick_favorie/favorite_cubit.dart';
+import '../../../feature/product_detail/page/product_detail_page/cubit/pick_size/size_cubit.dart';
+import '../../../feature/product_detail/page/product_detail_page/widgets/button_basket.dart';
+import '../../../feature/product_detail/page/product_detail_page/widgets/choose_size.dart';
+import '../../../feature/product_detail/page/product_detail_page/widgets/item_arrow_up_down.dart';
+import '../../../feature/product_detail/page/product_detail_page/widgets/item_content_show.dart';
+import '../../../feature/product_detail/page/product_detail_page/widgets/may_so_like.dart';
+import '../../../feature/product_detail/page/product_detail_page/widgets/slide_show.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/footer.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../bloc/product_detail_layout_bloc.dart';
-import '../../product_detail_page/cubit/pick_color/color_cubit.dart';
-import '../../product_detail_page/cubit/pick_favorie/favorite_cubit.dart';
-import '../../product_detail_page/cubit/pick_size/size_cubit.dart';
-import '../../product_detail_page/widgets/button_basket.dart';
-import '../../product_detail_page/widgets/choose_size.dart';
-import '../../product_detail_page/widgets/item_arrow_up_down.dart';
-import '../../product_detail_page/widgets/item_content_show.dart';
-import '../../product_detail_page/widgets/may_so_like.dart';
-import '../../product_detail_page/widgets/slide_show.dart';
 import '../../../widgets/my_color.dart';
 
 class ProductDetailLayoutPage extends StatefulWidget {
@@ -170,7 +170,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                     padding: const EdgeInsets.only(bottom: 10),
                                     child: Image.network(
                                       state.productDetailLayoutModel
-                                          .gallery[index].url,
+                                          .gallery[index].url!,
                                     ),
                                   );
                                 },
@@ -198,7 +198,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                               checked: checkShipping,
                               name: 'Estimated to be delivered on',
                               content: state.productDetailLayoutModel.carePolicy
-                                  .shippingInfo,
+                                  .shippingInfo!,
                             ),
                             const Padding(
                               padding: EdgeInsets.only(left: 34, right: 16),
@@ -213,7 +213,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                               checked: checkCod,
                               name: 'Estimated to be delivered on',
                               content: state.productDetailLayoutModel.carePolicy
-                                  .codPolicy,
+                                  .codPolicy!,
                             ),
                             const Padding(
                               padding: EdgeInsets.only(left: 34, right: 16),
@@ -228,7 +228,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                               checked: checkRePolicy,
                               name: 'Estimated to be delivered on',
                               content: state.productDetailLayoutModel.carePolicy
-                                  .returnPolicy,
+                                  .returnPolicy!,
                             ),
                           ],
                         ),

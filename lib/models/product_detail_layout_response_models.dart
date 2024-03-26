@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import '../feature/product_detail/data/models/product_detail_response_models.dart';
 import 'checkout_response_model.dart';
-import 'product_detail_response_models.dart';
 part 'product_detail_layout_response_models.g.dart';
 
 @JsonSerializable()

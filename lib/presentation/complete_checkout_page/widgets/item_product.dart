@@ -17,7 +17,7 @@ class ItemProduct extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Image.network(
-            productItem.image.url,
+            productItem.image.url!,
           ),
         ),
         const SizedBox(width: 10),

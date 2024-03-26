@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../feature/product_detail/page/product_detail_page/views/product_detail.dart';
 import '../../../models/collections_response_model.dart';
-import '../../product_detail_page/views/product_detail.dart';
 
 /*
   Create by: Thach

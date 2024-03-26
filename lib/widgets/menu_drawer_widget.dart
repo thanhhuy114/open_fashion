@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../features/drawer/domain/drawer.dart';
-import '../injection_container.dart';
+import '../locator.dart';
 import '../presentation/category_screen/view/category_screen.dart';
 import '../features/homepage/home_page/bloc/drawer_bloc.dart';
 import '../features/homepage/home_page/widgets/home_page_newArrival.dart';

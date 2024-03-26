@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'product_detail_response_models.dart';
+import '../feature/product_detail/data/models/product_detail_response_models.dart';
 
 part 'checkout_response_model.g.dart';
 

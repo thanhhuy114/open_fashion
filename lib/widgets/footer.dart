@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../feature/our_story/page/our_story_page/views/our_story.dart';
 import '../features/contactus/contact_us_page/view/contact_us_screen.dart';
-import '../presentation/our_story_page/views/our_story.dart';
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({
@@ -106,7 +106,7 @@ class FooterWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (final context) => const OurStoryPage(),
+                        builder: (final context) =>  OurStoryPage(),
                       ),
                     );
                   },

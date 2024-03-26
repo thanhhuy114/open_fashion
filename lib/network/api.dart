@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import '../feature/blog_post/data/models/blog_post.dart';
+import '../feature/product_detail/data/models/product_detail_response_models.dart';
 import '../models/card_response_model.dart';
 import '../features/contactus/data/contact_us_response_model.dart';
 import '../features/drawer/data/drawer_response_model.dart';
@@ -13,23 +14,13 @@ import '../models/category.dart';
 import '../models/category_data.dart';
 import '../models/checkout_response_model.dart';
 import '../models/collections_response_model.dart';
-import '../models/checkout_response_model.dart';
-import '../models/card_response_model.dart';
-import '../models/our_story_response_model.dart';
 import '../models/post_menu_response_model.dart';
 import '../models/product_detail_layout_response_models.dart';
-import '../models/product_detail_response_models.dart';
 import '../models/recent_search_response_model.dart';
 import 'api_local_provider.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
-import 'dart:developer';
-import '../models/post_menu_response_model.dart';
-import '../models/product_detail_layout_response_models.dart';
-import '../models/product_detail_response_models.dart';
-import '../models/category_data.dart';
-import '../models/category.dart';
 
 class Api {
   /* Api._internal();
@@ -284,16 +275,16 @@ class Api {
     }
   }
 
-  static Future<OurStoryResponseModel> getOurStory() async {
-    try {
-      final response = await http.getRequest(EndPoints.ourStory);
-      final result = OurStoryResponseModel.fromJson(response!);
-      return result;
-    } catch (e) {
-      log('load faild');
-      throw e.toString();
-    }
-  }
+  // static Future<OurStoryResponseModel> getOurStory() async {
+  //   try {
+  //     final response = await http.getRequest(EndPoints.ourStory);
+  //     final result = OurStoryResponseModel.fromJson(response!);
+  //     return result;
+  //   } catch (e) {
+  //     log('load faild');
+  //     throw e.toString();
+  //   }
+  // }
 
   static Future<CartResponseModel> getCart() async {
     try {

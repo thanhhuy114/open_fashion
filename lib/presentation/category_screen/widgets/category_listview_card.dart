@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../../../feature/product_detail/page/product_detail_page/views/product_detail.dart';
 import '../../../models/category.dart';
-import '../../product_detail_page/views/product_detail.dart';
 
 class CategoryListViewCard extends StatelessWidget {
   const CategoryListViewCard({required this.mycat, super.key});
