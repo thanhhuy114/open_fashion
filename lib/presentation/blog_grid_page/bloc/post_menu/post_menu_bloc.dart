@@ -10,12 +10,12 @@ class PostMenuBloc extends Bloc<PostMenuEvent, PostMenuState> {
     on<PostMenuEventStarted>(_onStarted);
   }
 
-  FutureOr<void> _onStarted(final event, final emit) async {
+  FutureOr<void> _onStarted(final event, final Emitter emit) async {
     emit(PostMenuStateLoading());
 
     PostMenuResponseModel? postMenu;
 
-    fetchData() async {
+    Future<void> fetchData() async {
       postMenu = await Api.fetchPostMenu();
     }
 

@@ -7,39 +7,44 @@ class PostCart extends StatelessWidget {
   const PostCart({
     super.key,
     required this.postSumary,
+    required this.onTap,
   });
 
+  final Function() onTap;
   final PostSummaryModel postSumary;
 
   @override
   Widget build(final BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-      color: Colors.white,
-      child: Column(
-        children: [
-          _buildPostImage(context),
-          const SizedBox(height: 10),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildTags(context),
-              Text(
-                getDatePublished(postSumary.datePublished),
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+        color: Colors.white,
+        child: Column(
+          children: [
+            _buildPostImage(context),
+            const SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTags(context),
+                Text(
+                  getDatePublished(postSumary.datePublished),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
 
-  SizedBox _buildTags(final BuildContext context) {
+  Widget _buildTags(final BuildContext context) {
     return SizedBox(
-      width: 260,
+      width: 220,
       child: Wrap(
         spacing: 12,
         runSpacing: 5,
@@ -87,8 +92,8 @@ class PostCart extends StatelessWidget {
               onPressed: () {},
               icon: Image.asset(
                 'assets/images/bookmark.png',
-                height: 17,
-                width: 17,
+                height: 20,
+                width: 20,
                 fit: BoxFit.cover,
               ),
             ),

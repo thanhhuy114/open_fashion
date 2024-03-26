@@ -6,7 +6,7 @@ part of 'checkout_response_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CompleteCheckoutResponeModel _$CheckoutResponeModelFromJson(
+CompleteCheckoutResponeModel _$CompleteCheckoutResponeModelFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutResponeModel(
       code: json['code'] as int?,
@@ -17,7 +17,7 @@ CompleteCheckoutResponeModel _$CheckoutResponeModelFromJson(
               json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CheckoutResponeModelToJson(
+Map<String, dynamic> _$CompleteCheckoutResponeModelToJson(
         CompleteCheckoutResponeModel instance) =>
     <String, dynamic>{
       'code': instance.code,
@@ -25,32 +25,32 @@ Map<String, dynamic> _$CheckoutResponeModelToJson(
       'data': instance.data,
     };
 
-CompleteCheckoutModel _$CheckoutModelFromJson(Map<String, dynamic> json) =>
+CompleteCheckoutModel _$CompleteCheckoutModelFromJson(
+        Map<String, dynamic> json) =>
     CompleteCheckoutModel(
-      checkout: json['checkout'] == null
-          ? null
-          : CompleteCheckoutModelInfo.fromJson(
-              json['checkout'] as Map<String, dynamic>),
+      checkout: CompleteCheckoutModelInfo.fromJson(
+          json['checkout'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$CheckoutModelToJson(CompleteCheckoutModel instance) =>
+Map<String, dynamic> _$CompleteCheckoutModelToJson(
+        CompleteCheckoutModel instance) =>
     <String, dynamic>{
       'checkout': instance.checkout,
     };
 
-CompleteCheckoutModelInfo _$CheckoutModelInfoFromJson(
+CompleteCheckoutModelInfo _$CompleteCheckoutModelInfoFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutModelInfo(
-      address: json['address'] as String?,
-      addressDetail: json['address_detail'] as String?,
-      phoneNumber: json['phone_number'] as String?,
-      masterCard: json['master_card'] as String?,
-      product: (json['product'] as List<dynamic>?)
-          ?.map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
+      address: json['address'] as String,
+      addressDetail: json['address_detail'] as String,
+      phoneNumber: json['phone_number'] as String,
+      masterCard: json['master_card'] as String,
+      product: (json['product'] as List<dynamic>)
+          .map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$CheckoutModelInfoToJson(
+Map<String, dynamic> _$CompleteCheckoutModelInfoToJson(
         CompleteCheckoutModelInfo instance) =>
     <String, dynamic>{
       'address': instance.address,
@@ -61,12 +61,10 @@ Map<String, dynamic> _$CheckoutModelInfoToJson(
     };
 
 ProductItem _$ProductItemFromJson(Map<String, dynamic> json) => ProductItem(
-      image: json['image'] == null
-          ? null
-          : ImageModel.fromJson(json['image'] as Map<String, dynamic>),
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
+      image: ImageModel.fromJson(json['image'] as Map<String, dynamic>),
+      name: json['name'] as String,
+      description: json['description'] as String,
+      price: (json['price'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$ProductItemToJson(ProductItem instance) =>

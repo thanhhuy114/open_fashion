@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../feature/our_story/page/our_story_page/views/our_story.dart';
+import '../features/contactus/contact_us_page/view/contact_us_screen.dart';
+
 class FooterWidget extends StatelessWidget {
-  const FooterWidget(
-      {super.key,
-      this.email = '___@___.____',
-      this.phone = '+60 825 876',
-      this.closeTime = '08:00',
-      this.openTime = '22:00',
-      this.daysPerWeek = 'Everyday',
-      this.copyRight = 'OpenUI All Rights Reserved.'});
+  const FooterWidget({
+    super.key,
+    this.email = '___@___.____',
+    this.phone = '+60 825 876',
+    this.closeTime = '08:00',
+    this.openTime = '22:00',
+    this.daysPerWeek = 'Everyday',
+    this.copyRight = 'OpenUI All Rights Reserved.',
+  });
   final String email;
   final String phone;
   final String openTime;
@@ -17,8 +21,8 @@ class FooterWidget extends StatelessWidget {
   final String copyRight;
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -33,14 +37,17 @@ class FooterWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {},
-                    icon: Image.asset('assets/icons/Twitter.jpg')),
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/Twitter.jpg'),
+                ),
                 IconButton(
-                    onPressed: () {},
-                    icon: Image.asset('assets/icons/Instagram.jpg')),
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/Instagram.jpg'),
+                ),
                 IconButton(
-                    onPressed: () {},
-                    icon: Image.asset('assets/icons/YouTube.jpg'))
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/YouTube.jpg'),
+                ),
               ],
             ),
           ),
@@ -78,7 +85,7 @@ class FooterWidget extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     height: 2.4,
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -95,25 +102,41 @@ class FooterWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (final context) =>  OurStoryPage(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'About',
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        height: 2.4,
-                        color: Colors.black),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 2.4,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (final context) => const ContactUsScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'Contact',
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        height: 2.4,
-                        color: Colors.black),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 2.4,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 TextButton(
@@ -121,10 +144,11 @@ class FooterWidget extends StatelessWidget {
                   child: const Text(
                     'Blog',
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        height: 2.4,
-                        color: Colors.black),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 2.4,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
@@ -134,13 +158,14 @@ class FooterWidget extends StatelessWidget {
           //Copyright
           Container(
             alignment: Alignment.center,
+            color: const Color(0xFFf9f9f9),
             width: size.width,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Text(
               'Copyright© $copyRight',
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -151,11 +176,10 @@ class DividerCustom extends StatelessWidget {
   const DividerCustom({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width / 3,
-      height: 50,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -166,7 +190,7 @@ class DividerCustom extends StatelessWidget {
           CustomPaint(
             size: const Size(20, 20),
             painter: DiamondPainter(),
-          )
+          ),
         ],
       ),
     );
@@ -174,12 +198,11 @@ class DividerCustom extends StatelessWidget {
 }
 
 class DiamondPainter extends CustomPainter {
+  DiamondPainter({this.color = Colors.white});
   final Color color;
 
-  DiamondPainter({this.color = Colors.white});
-
   @override
-  void paint(Canvas canvas, Size size) {
+  void paint(final Canvas canvas, final Size size) {
     final Paint paint = Paint()..color = color;
 
     final double centerX = size.width / 2;
@@ -206,7 +229,7 @@ class DiamondPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
+  bool shouldRepaint(final CustomPainter oldDelegate) {
     return false;
   }
 }

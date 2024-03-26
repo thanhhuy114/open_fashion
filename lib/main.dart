@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'presentation/complete_checkout_page/views/complete_checkout.dart';
+import 'features/homepage/home_page/view/home_page_screen.dart';
+import 'locator.dart';
 import 'widgets/text_theme_custom.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDefendencies();
   runApp(const MyApp());
 }
 
@@ -16,11 +19,12 @@ class MyApp extends StatelessWidget {
       title: 'Open Fashion',
       theme: ThemeData(
         fontFamily: 'TenorSans',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         textTheme: TextThemeCustom(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
+            .copyWith(background: Colors.white),
       ),
-      home: const CompleteCheckoutPage(),
+      home: const HomePageScreen(),
     );
   }
 }

@@ -1,11 +1,12 @@
-// ignore_for_file: lines_longer_than_80_chars
-
+// ignore_for_file: lines_longer_than_80_chars, must_be_immutable
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/checkout_response_model.dart';
 import '../../../widgets/appbar_custom_widget.dart';
+import '../../../widgets/menu_drawer_widget.dart';
 import '../../../widgets/my_color.dart';
+import '../../../widgets/tittle_widget.dart';
 import '../../payment_page/views/payment.dart';
 import '../bloc/complete_checkout_bloc.dart';
 import '../cubit/counter/counter_cubit.dart';
@@ -14,7 +15,7 @@ import '../widgets/button_custom.dart';
 import '../widgets/item_product.dart';
 
 class CompleteCheckoutPage extends StatelessWidget {
-  const CompleteCheckoutPage({super.key});
+  CompleteCheckoutPage({super.key});
   String getLastTwoDigits(final String text) {
     if (text.length >= 2) {
       return text.substring(text.length - 2);
@@ -23,25 +24,22 @@ class CompleteCheckoutPage extends StatelessWidget {
     }
   }
 
-  double total(final double price, final int quantity) {
-    final double total = price * quantity;
-    return total;
-  }
-
   double calculateInitialTotal(
     final List<ProductItem> products,
     final int quantity,
   ) {
     double total = 0;
+
     for (final product in products) {
-      total += quantity * product.price!;
+      total += quantity * product.price;
     }
     return total;
   }
 
+  double? total = 0.0;
+
   @override
   Widget build(final BuildContext context) {
-    double total = 0.0;
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -49,7 +47,7 @@ class CompleteCheckoutPage extends StatelessWidget {
               CompleteCheckoutBloc()..add(CompleteCheckoutLoadedEvent()),
         ),
         BlocProvider(
-          create: (final context) => TotalCubit(total),
+          create: (final context) => TotalCubit(total!),
         ),
         BlocProvider(
           create: (final context) => CounterCubit(),
@@ -57,11 +55,12 @@ class CompleteCheckoutPage extends StatelessWidget {
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const AppBarCustom(),
+        appBar: AppBarCustom(),
+        drawer: MenuDrawer(),
         body: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
           builder: (final context, final state) {
             switch (state) {
-              case CompleteCheckoutInitial():
+              case CompleteCheckoutLoading():
                 return const Scaffold(
                   body: Center(
                     child: CircularProgressIndicator(),
@@ -69,7 +68,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                 );
               case CompleteCheckoutLoaded():
                 total = calculateInitialTotal(
-                  state.checkoutModel!.checkout!.product!,
+                  state.checkoutModel.checkout.product,
                   context.read<CounterCubit>().state,
                 );
                 return SizedBox(
@@ -81,27 +80,9 @@ class CompleteCheckoutPage extends StatelessWidget {
                         physics: const AlwaysScrollableScrollPhysics(),
                         child: Column(
                           children: [
-                            const SizedBox(height: 28),
-                            Column(
-                              children: [
-                                const Text(
-                                  'CHECKOUT',
-                                  style:
-                                      TextStyle(fontSize: 20, letterSpacing: 4),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 145,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/3.png',
-                                    height: 10,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            const TittleWidget(text: 'CHECKOUT'),
                             Padding(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                               child: Row(
                                 children: [
                                   Expanded(
@@ -111,8 +92,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          state.checkoutModel!.checkout!
-                                              .address!,
+                                          state.checkoutModel.checkout.address,
                                           style: const TextStyle(
                                             fontSize: 18.5,
                                             fontWeight: FontWeight.w600,
@@ -120,16 +100,16 @@ class CompleteCheckoutPage extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          state.checkoutModel!.checkout!
-                                              .addressDetail!,
+                                          state.checkoutModel.checkout
+                                              .addressDetail,
                                           style: const TextStyle(
                                             height: 1.6,
                                             fontSize: 17,
                                           ),
                                         ),
                                         Text(
-                                          state.checkoutModel!.checkout!
-                                              .phoneNumber!,
+                                          state.checkoutModel.checkout
+                                              .phoneNumber,
                                           style: const TextStyle(
                                             height: 1.7,
                                             fontSize: 17,
@@ -172,11 +152,14 @@ class CompleteCheckoutPage extends StatelessWidget {
                                   Image.network(
                                     'https://res.cloudinary.com/dc4nkguls/image/upload/v1709785886/OpenFashion/icons/ereyla5zjmlsqvrgwegs.png',
                                   ),
-                                  Text(
-                                    'Master Card ending ####${getLastTwoDigits(state.checkoutModel!.checkout!.masterCard!)}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 17,
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      'Master Card ending ####${getLastTwoDigits(state.checkoutModel.checkout.masterCard)}',
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17,
+                                      ),
                                     ),
                                   ),
                                   IconButton(
@@ -197,12 +180,16 @@ class CompleteCheckoutPage extends StatelessWidget {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: state
-                                  .checkoutModel!.checkout!.product!.length,
+                              itemCount:
+                                  state.checkoutModel.checkout.product.length,
                               itemBuilder: (final context, final index) {
-                                return ItemProduct(
-                                  productItem: state
-                                      .checkoutModel!.checkout!.product![index],
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                  child: ItemProduct(
+                                    productItem: state
+                                        .checkoutModel.checkout.product[index],
+                                  ),
                                 );
                               },
                             ),
@@ -230,7 +217,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                     builder: (final context, final state) {
                                       return Text(
                                         r'$'
-                                        '${context.read<TotalCubit>().state}',
+                                        '${context.read<TotalCubit>().state.toInt()}',
                                         style: const TextStyle(
                                           fontSize: 17,
                                           color: MyColor.primaryColor,
@@ -244,7 +231,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                             const SizedBox(height: 20),
                             ButtonCustom(
                               message: 'CHECKOUT',
-                              onTap: () {
+                              onTap: () async {
                                 showDialog(
                                   context: context,
                                   builder: (final context) => Padding(
@@ -263,6 +250,7 @@ class CompleteCheckoutPage extends StatelessWidget {
                                 Icons.shopping_bag_outlined,
                                 color: Colors.white,
                               ),
+                              checkLR: true,
                             ),
                           ],
                         ),

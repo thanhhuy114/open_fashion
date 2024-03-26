@@ -1,16 +1,26 @@
 // ignore_for_file: only_throw_errors
+import 'dart:async';
+import 'dart:developer';
 
-import '../models/blog_post.dart';
+import '../feature/blog_post/data/models/blog_post.dart';
+import '../feature/product_detail/data/models/product_detail_response_models.dart';
+import '../models/card_response_model.dart';
+import '../features/contactus/data/contact_us_response_model.dart';
+import '../features/drawer/data/drawer_response_model.dart';
+import '../features/footer/data/footer_response_model.dart';
+import '../features/homepage/data/models/menu_arrival_response_model.dart';
+import '../models/cart_response_model.dart';
+import '../models/category.dart';
+import '../models/category_data.dart';
 import '../models/checkout_response_model.dart';
+import '../models/collections_response_model.dart';
+import '../models/post_menu_response_model.dart';
+import '../models/product_detail_layout_response_models.dart';
+import '../models/recent_search_response_model.dart';
+import 'api_local_provider.dart';
 import 'api_provider.dart';
 import 'end_points.dart';
 import 'network_helper.dart';
-import 'dart:developer';
-import '../models/post_menu_response_model.dart';
-import '../models/footer_response_model.dart';
-import '../models/menu_arrival_response_model.dart';
-import '../models/product_detail_layout_response_models.dart';
-import '../models/product_detail_response_models.dart';
 
 class Api {
   /* Api._internal();
@@ -30,6 +40,38 @@ class Api {
     };
   }
 
+  static Future<CategoryData?> getCategoryDataResponse() async {
+    try {
+      final data = await http.getRequest(EndPoints.category);
+      return CategoryData.fromJson(data!);
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  static Future<List<Cat>?> getCategoryResponse() async {
+    final data = await getCategoryDataResponse();
+    return data!.data;
+  }
+
+  /*
+    Create by: Thach
+    Date: 8/3 11:26
+    Content: Lay danh sach card infor
+  */
+  static Future<CardResponseModel> getCards() async {
+    try {
+      final response = await http.getRequest(EndPoints.card);
+      final card = CardResponseModel.fromJson(response!);
+      handleExceptionCase(card.code);
+      return card;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
+
   /* 
     Create by: Thach
     Date: 5/3 13:20
@@ -45,6 +87,26 @@ class Api {
           BLogPostResponseModel.fromJson(res!);
       handleExceptionCase(blogPost.code);
       return blogPost;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /* 
+    Create by: Thach
+    Date: 6/3 09:28
+    Content: Call API get Collections
+  */
+  static Future<CollectionsResponseModel?> getCollections() async {
+    try {
+      final res = await http.getRequest(
+        EndPoints.collections,
+        headers: await getHeaders(),
+      );
+      final CollectionsResponseModel collections =
+          CollectionsResponseModel.fromJson(res!);
+      handleExceptionCase(collections.code);
+      return collections;
     } catch (_) {
       return null;
     }
@@ -113,6 +175,52 @@ class Api {
     }
   }
 
+  /*
+    Create by Thuan
+    Data: 07/03
+    Content: Lấy data cho Drawer
+  */
+  Future<DrawerResponseModel?> getDrawer() async {
+    try {
+      final res = await http.getRequest(EndPoints.drawer);
+      final result = DrawerResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /*
+    Create by Thuan
+    Data: 08/03
+    Content: Lấy data cho contactus
+  */
+  Future<ContactUsResponseModel?> getContactUs() async {
+    try {
+      final res = await http.getRequest(EndPoints.contactUs);
+      final result = ContactUsResponseModel.fromJson(res!);
+      handleExceptionCase(result.code);
+      return result;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<RecentSearchResponseModel?> getRecentSearch() async {
+    try {
+      final ApiLocalProvider http = ApiLocalProvider();
+
+      final response = await http.getRequest(EndPoints.recentSearch);
+      log(response.toString());
+      final a = RecentSearchResponseModel.fromJson(response!);
+      return a;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
   // static Future<LoginModel?> login({
   //   required String email,
   //   required String password,
@@ -148,9 +256,10 @@ class Api {
     try {
       final response = await http.getRequest(EndPoints.productDetailLayout);
       final result = ProductDetailLayoutResponseModel.fromJson(response!);
+      log(result.toString());
       return result;
     } catch (e) {
-      log('load faild');
+      log(e.toString());
       throw e.toString();
     }
   }
@@ -159,6 +268,28 @@ class Api {
     try {
       final response = await http.getRequest(EndPoints.completeCheckout);
       final result = CompleteCheckoutResponeModel.fromJson(response!);
+      return result;
+    } catch (e) {
+      log('load faild');
+      throw e.toString();
+    }
+  }
+
+  // static Future<OurStoryResponseModel> getOurStory() async {
+  //   try {
+  //     final response = await http.getRequest(EndPoints.ourStory);
+  //     final result = OurStoryResponseModel.fromJson(response!);
+  //     return result;
+  //   } catch (e) {
+  //     log('load faild');
+  //     throw e.toString();
+  //   }
+  // }
+
+  static Future<CartResponseModel> getCart() async {
+    try {
+      final response = await http.getRequest(EndPoints.cart);
+      final result = CartResponseModel.fromJson(response!);
       return result;
     } catch (e) {
       log('load faild');
