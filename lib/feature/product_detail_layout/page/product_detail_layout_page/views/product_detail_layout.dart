@@ -100,7 +100,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                     Text(
                                       state
                                           .productDetailLayout!.productItem.name
-                                          .toUpperCase(),
+                                          !.toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 19,
                                         fontWeight: FontWeight.w600,
@@ -112,7 +112,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 const SizedBox(height: 8),
                                 Text(
                                   state.productDetailLayout!.productItem
-                                      .description,
+                                      .description!,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -122,7 +122,7 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
                                 Text(
                                   r'$'
                                   // ignore: lines_longer_than_80_chars
-                                  '${state.productDetailLayout!.productItem.price.toStringAsFixed(0)}',
+                                  '${state.productDetailLayout!.productItem.price!.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,

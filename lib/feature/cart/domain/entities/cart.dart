@@ -3,7 +3,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../models/checkout_response_model.dart';
+import '../../../complete_checkout/data/models/checkout_response_model.dart';
+
 
 class CartEntity extends Equatable {
   CartEntity({required this.cartInfoModel});

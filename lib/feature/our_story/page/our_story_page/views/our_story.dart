@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../locator.dart';
 import '../../../../../widgets/appbar_custom_widget.dart';
 import '../../../../../widgets/menu_drawer_widget.dart';
-import '../../../../../presentation/complete_checkout_page/widgets/button_custom.dart';
+import '../../../../complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
 import '../bloc/remote/remote_our_story_bloc_bloc.dart';
 
 class OurStoryPage extends StatelessWidget {

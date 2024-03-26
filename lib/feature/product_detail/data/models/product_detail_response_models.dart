@@ -3,7 +3,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../models/checkout_response_model.dart';
+import '../../../complete_checkout/data/models/checkout_response_model.dart';
 import '../../../our_story/domain/entities/our_story.dart';
 import '../../domain/entities/product_detail_response.dart';
 

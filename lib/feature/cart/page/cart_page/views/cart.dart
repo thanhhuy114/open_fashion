@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../locator.dart';
-import '../../../../../models/checkout_response_model.dart';
 import '../../../../../widgets/my_color.dart';
 import '../../../../../presentation/checkout_page/view/checkout_screen.dart';
-import '../../../../../presentation/complete_checkout_page/cubit/counter/counter_cubit.dart';
-import '../../../../../presentation/complete_checkout_page/cubit/total/total_cubit.dart';
-import '../../../../../presentation/complete_checkout_page/widgets/button_custom.dart';
-import '../../../../../presentation/complete_checkout_page/widgets/item_product.dart';
+import '../../../../complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
+import '../../../../complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../../../complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
+import '../../../../complete_checkout/pages/complete_checkout_page/widgets/item_product.dart';
+import '../../../../complete_checkout/data/models/checkout_response_model.dart';
 import '../bloc/remote_cart_bloc.dart';
 
 class CartPage extends StatefulWidget {
@@ -26,7 +26,7 @@ class _CartPageState extends State<CartPage> {
     final int quantity,
   ) {
     for (final product in products) {
-      total += quantity * product.price;
+      total += quantity * product.price!;
     }
     return total;
   }
@@ -185,7 +185,7 @@ class _CartPageState extends State<CartPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (final context) =>
-                                            const CheckOutScreen(),
+                                             CheckOutScreen(),
                                       ),
                                     );
                                   },

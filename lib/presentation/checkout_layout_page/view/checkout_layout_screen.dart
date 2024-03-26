@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/checkout_response_model.dart';
+import '../../../feature/complete_checkout/data/models/checkout_response_model.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
+import '../../../locator.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../../widgets/tittle_widget.dart';
 import '../../add_address_page/view/add_address_screen.dart';
 import '../../add_card_page/view/add_card_screen.dart';
-import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
-import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
-import '../../complete_checkout_page/cubit/total/total_cubit.dart';
-import '../../complete_checkout_page/views/complete_checkout.dart';
-import '../../complete_checkout_page/widgets/button_custom.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/views/complete_checkout.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
 
 class CheckOutLayOutScreen extends StatefulWidget {
   const CheckOutLayOutScreen({super.key, required this.total});
@@ -20,6 +21,9 @@ class CheckOutLayOutScreen extends StatefulWidget {
   @override
   State<CheckOutLayOutScreen> createState() => _CheckOutLayOutScreenState();
 }
+
+RemoteCompleteCheckoutBloc _remoteCompleteCheckoutBloc =
+    RemoteCompleteCheckoutBloc(sl());
 
 class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
   @override
@@ -33,28 +37,29 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
         BlocProvider(
           create: (final context) => CounterCubit(),
         ),
-        BlocProvider(
-          create: (final context) =>
-              CompleteCheckoutBloc()..add(CompleteCheckoutLoadedEvent()),
+        BlocProvider<RemoteCompleteCheckoutBloc>(
+          create: (final context) => _remoteCompleteCheckoutBloc
+            ..add(const GetRemoteCompleteCheckout()),
         ),
       ],
-      child: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
+      child:
+          BlocBuilder<RemoteCompleteCheckoutBloc, RemoteCompleteCheckoutState>(
         builder: (final context, final state) {
-          if (state is CompleteCheckoutLoading) {
+          if (state is RemoteCompleteCheckoutLoading) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-          if (state is CompleteCheckoutError) {
+          if (state is RemoteCompleteCheckoutError) {
             return const Scaffold(
               body: Center(
                 child: Text('Something went wrong!'),
               ),
             );
           }
-          if (state is CompleteCheckoutLoaded) {
+          if (state is RemoteCompleteCheckoutDone) {
             return Scaffold(
               appBar: AppBarCustom(),
               drawer: MenuDrawer(),
@@ -85,7 +90,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      state.checkoutModel.checkout.address,
+                                      state.completeCheckoutInfo!.address!,
                                       style: const TextStyle(
                                         fontSize: 18.5,
                                         fontWeight: FontWeight.w400,
@@ -94,14 +99,14 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
                                     ),
                                     Text(
                                       state
-                                          .checkoutModel.checkout.addressDetail,
+                                          .completeCheckoutInfo!.addressDetail!,
                                       style: const TextStyle(
                                         height: 1.6,
                                         fontSize: 17,
                                       ),
                                     ),
                                     Text(
-                                      state.checkoutModel.checkout.phoneNumber,
+                                      state.completeCheckoutInfo!.phoneNumber!,
                                       style: const TextStyle(
                                         height: 1.7,
                                         fontSize: 17,
@@ -299,7 +304,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
   ) {
     double total = 0;
     for (final product in products) {
-      total += quantity * product.price;
+      total += quantity * product.price!;
     }
     return total;
   }

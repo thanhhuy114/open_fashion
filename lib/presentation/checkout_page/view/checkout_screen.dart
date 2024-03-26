@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/checkout_response_model.dart';
+import '../../../feature/complete_checkout/data/models/checkout_response_model.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
+import '../../../locator.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../../widgets/my_color.dart';
 import '../../checkout_layout_page/view/checkout_layout_screen.dart';
-import '../../complete_checkout_page/bloc/complete_checkout_bloc.dart';
-import '../../complete_checkout_page/cubit/counter/counter_cubit.dart';
-import '../../complete_checkout_page/cubit/total/total_cubit.dart';
-import '../../complete_checkout_page/widgets/button_custom.dart';
-import '../../complete_checkout_page/widgets/item_product.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
+import '../../../feature/complete_checkout/pages/complete_checkout_page/widgets/item_product.dart';
 
 class CheckOutScreen extends StatelessWidget {
-  const CheckOutScreen({super.key});
-
+  CheckOutScreen({super.key});
+  final RemoteCompleteCheckoutBloc _remoteCompleteCheckoutBloc =
+      RemoteCompleteCheckoutBloc(sl());
   @override
   Widget build(final BuildContext context) {
     double total = 0.0;
@@ -22,7 +24,7 @@ class CheckOutScreen extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (final context) =>
-              CompleteCheckoutBloc()..add(CompleteCheckoutLoadedEvent()),
+              _remoteCompleteCheckoutBloc..add(GetRemoteCompleteCheckout()),
         ),
         BlocProvider(
           create: (final context) => TotalCubit(total),
@@ -31,25 +33,25 @@ class CheckOutScreen extends StatelessWidget {
           create: (final context) => CounterCubit(),
         ),
       ],
-      child: BlocBuilder<CompleteCheckoutBloc, CompleteCheckoutState>(
+      child: BlocBuilder<RemoteCompleteCheckoutBloc, RemoteCompleteCheckoutState>(
         builder: (final context, final state) {
-          if (state is CompleteCheckoutLoading) {
+          if (state is RemoteCompleteCheckoutLoading) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           }
-          if (state is CompleteCheckoutError) {
+          if (state is RemoteCompleteCheckoutError) {
             return const Scaffold(
               body: Center(
                 child: Text('Something went wrong!'),
               ),
             );
           }
-          if (state is CompleteCheckoutLoaded) {
+          if (state is RemoteCompleteCheckoutDone) {
             total = calculateInitialTotal(
-              state.checkoutModel.checkout.product,
+              state.completeCheckoutInfo!.product,
               context.read<CounterCubit>().state,
             );
             return Scaffold(
@@ -72,13 +74,13 @@ class CheckOutScreen extends StatelessWidget {
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: state.checkoutModel.checkout.product.length,
+                      itemCount: state.completeCheckoutInfo!.product.length,
                       itemBuilder: (final context, final index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: ItemProduct(
                             productItem:
-                                state.checkoutModel.checkout.product[index],
+                                state.completeCheckoutInfo!.product[index],
                           ),
                         );
                       },
@@ -182,7 +184,7 @@ double calculateInitialTotal(
 ) {
   double total = 0;
   for (final product in products) {
-    total += quantity * product.price;
+    total += quantity * product.price!;
   }
   return total;
 }

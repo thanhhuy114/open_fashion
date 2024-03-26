@@ -11,7 +11,6 @@ import '../features/footer/data/footer_response_model.dart';
 import '../features/homepage/data/models/menu_arrival_response_model.dart';
 import '../models/category.dart';
 import '../models/category_data.dart';
-import '../models/checkout_response_model.dart';
 import '../models/collections_response_model.dart';
 import '../models/post_menu_response_model.dart';
 import '../models/recent_search_response_model.dart';
@@ -262,16 +261,16 @@ class Api {
   //   }
   // }
 
-  static Future<CompleteCheckoutResponeModel> getCheckout() async {
-    try {
-      final response = await http.getRequest(EndPoints.completeCheckout);
-      final result = CompleteCheckoutResponeModel.fromJson(response!);
-      return result;
-    } catch (e) {
-      log('load faild');
-      throw e.toString();
-    }
-  }
+  // static Future<CompleteCheckoutResponeModel> getCheckout() async {
+  //   try {
+  //     final response = await http.getRequest(EndPoints.completeCheckout);
+  //     final result = CompleteCheckoutResponeModel.fromJson(response!);
+  //     return result;
+  //   } catch (e) {
+  //     log('load faild');
+  //     throw e.toString();
+  //   }
+  // }
 
   // static Future<OurStoryResponseModel> getOurStory() async {
   //   try {

@@ -28,7 +28,7 @@ Map<String, dynamic> _$CompleteCheckoutResponeModelToJson(
 CompleteCheckoutModel _$CompleteCheckoutModelFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutModel(
-      checkout: CompleteCheckoutModelInfo.fromJson(
+      CompleteCheckoutModelInfo.fromJson(
           json['checkout'] as Map<String, dynamic>),
     );
 
@@ -41,11 +41,11 @@ Map<String, dynamic> _$CompleteCheckoutModelToJson(
 CompleteCheckoutModelInfo _$CompleteCheckoutModelInfoFromJson(
         Map<String, dynamic> json) =>
     CompleteCheckoutModelInfo(
-      address: json['address'] as String,
-      addressDetail: json['address_detail'] as String,
-      phoneNumber: json['phone_number'] as String,
-      masterCard: json['master_card'] as String,
-      product: (json['product'] as List<dynamic>)
+      json['address'] as String?,
+      json['address_detail'] as String?,
+      json['phone_number'] as String?,
+      json['master_card'] as String?,
+      (json['product'] as List<dynamic>)
           .map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -61,10 +61,10 @@ Map<String, dynamic> _$CompleteCheckoutModelInfoToJson(
     };
 
 ProductItem _$ProductItemFromJson(Map<String, dynamic> json) => ProductItem(
-      image: ImageModel.fromJson(json['image'] as Map<String, dynamic>),
-      name: json['name'] as String,
-      description: json['description'] as String,
-      price: (json['price'] as num).toDouble(),
+      ImageModel.fromJson(json['image'] as Map<String, dynamic>),
+      json['name'] as String?,
+      json['description'] as String?,
+      (json['price'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ProductItemToJson(ProductItem instance) =>

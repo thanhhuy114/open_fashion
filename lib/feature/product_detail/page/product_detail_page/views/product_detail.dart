@@ -51,14 +51,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     });
   }
 
-  RemoteProductDetailBloc _remoteProductDetailBloc = RemoteProductDetailBloc(sl());
-  
+  final RemoteProductDetailBloc _remoteProductDetailBloc =
+      RemoteProductDetailBloc(sl());
+
   @override
   Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteProductDetailBloc>(
-          create: (final context) => _remoteProductDetailBloc..add(const GetProductDetailEvent()),
+          create: (final context) =>
+              _remoteProductDetailBloc..add(const GetProductDetailEvent()),
         ),
         BlocProvider(create: (final context) => SizeCubit()),
         BlocProvider(create: (final context) => ColorCubit()),
@@ -103,7 +105,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      state.productDetail!.productItem.name
+                                      state.productDetail!.productItem.name!
                                           .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 19,
@@ -115,7 +117,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  state.productDetail!.productItem.description,
+                                  state.productDetail!.productItem.description!,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
@@ -125,7 +127,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 Text(
                                   r'$'
                                   // ignore: lines_longer_than_80_chars
-                                  '${state.productDetail!.productItem.price.toStringAsFixed(0)}',
+                                  '${state.productDetail!.productItem.price!.toStringAsFixed(0)}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,

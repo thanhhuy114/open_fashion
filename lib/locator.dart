@@ -16,6 +16,11 @@ import 'feature/collection/data/repositories/collection_repository_impl.dart';
 import 'feature/collection/domain/repositories/collection_repository.dart';
 import 'feature/collection/domain/usecases/get_collection.dart';
 import 'feature/collection/presentation/collection_page/bloc/bloc/remote_collection_bloc.dart';
+import 'feature/complete_checkout/data/data_sources/remote/complete_checkout_api_service.dart';
+import 'feature/complete_checkout/data/repository/complete_checkout_repository_iml.dart';
+import 'feature/complete_checkout/domain/repository/complete_checkout_repository.dart';
+import 'feature/complete_checkout/domain/usecases/get_complete_checkout.dart';
+import 'feature/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
 import 'feature/our_story/data/data_sources/remote/our_story_api_service.dart';
 import 'feature/our_story/data/repository/our_story_repository_iml.dart';
 import 'feature/our_story/domain/repository/our_story_repository.dart';
@@ -72,6 +77,9 @@ Future initializeDefendencies() async {
     ProductDetailLayoutApiService(sl()),
   );
   sl.registerSingleton<CartApiService>(CartApiService(sl()));
+  sl.registerSingleton<CompleteCheckoutApiService>(
+    CompleteCheckoutApiService(sl()),
+  );
 
   //dependencies
   sl.registerSingleton<OurStoryRepository>(OurStoryRepositoryIml(sl()));
@@ -82,6 +90,9 @@ Future initializeDefendencies() async {
     ProductDetailLayoutRepositoryIml(sl()),
   );
   sl.registerSingleton<CartRepository>(CartRepositoryIml(sl()));
+  sl.registerSingleton<CompleteCheckoutRepository>(
+    CompleteCheckoutRepositortIml(sl()),
+  );
 
   //Dependencies thuan
   sl.registerSingleton<ApiProvider>(ApiProvider());
@@ -105,6 +116,10 @@ Future initializeDefendencies() async {
     GetProductDetailLayoutUsecase(sl()),
   );
   sl.registerSingleton<GetCartUsecase>(GetCartUsecase(sl()));
+  sl.registerSingleton<GetCompleteCheckoutUsecase>(
+    GetCompleteCheckoutUsecase(sl()),
+  );
+
   //Usecases thuan
   sl.registerSingleton<GetArrivalUseCase>(GetArrivalUseCase(sl()));
   sl.registerSingleton<GetJustForYouUseCase>(GetJustForYouUseCase(sl()));
@@ -121,6 +136,9 @@ Future initializeDefendencies() async {
     RemoteProductDetailLayoutBloc(sl()),
   );
   sl.registerSingleton<RemoteCartBloc>(RemoteCartBloc(sl()));
+  sl.registerSingleton<RemoteCompleteCheckoutBloc>(
+    RemoteCompleteCheckoutBloc(sl()),
+  );
   //Blocs thuan
   sl.registerFactory<HomePageArrivalBloc>(() => HomePageArrivalBloc(sl()));
   sl.registerFactory<HomePageJustforyouBloc>(
