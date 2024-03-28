@@ -2,8 +2,8 @@
 import 'dart:async';
 import 'dart:developer';
 
-import '../feature/blog_post/data/models/blog_post.dart';
-import '../feature/product_detail/data/models/product_detail_response_models.dart';
+import '../features/blog_post/data/models/blog_post.dart';
+import '../features/product_detail/data/models/product_detail_response_models.dart';
 import '../models/card_response_model.dart';
 import '../features/contactus/data/contact_us_response_model.dart';
 import '../features/drawer/data/drawer_response_model.dart';

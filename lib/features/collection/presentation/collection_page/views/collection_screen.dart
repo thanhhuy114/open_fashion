@@ -14,7 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../features/homepage/home_page/widgets/home_page_footer.dart';
+import '../../../../homepage/home_page/widgets/home_page_footer.dart';
 import '../../../../../locator.dart';
 import '../../../../../models/collections_response_model.dart';
 import '../../../../../widgets/appbar_custom_widget.dart';

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../feature/complete_checkout/data/models/checkout_response_model.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
+import '../../../features/complete_checkout/data/models/checkout_response_model.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
 import '../../../locator.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../../widgets/tittle_widget.dart';
 import '../../add_address_page/view/add_address_screen.dart';
 import '../../add_card_page/view/add_card_screen.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/views/complete_checkout.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/views/complete_checkout.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
 
 class CheckOutLayOutScreen extends StatefulWidget {
   const CheckOutLayOutScreen({super.key, required this.total});

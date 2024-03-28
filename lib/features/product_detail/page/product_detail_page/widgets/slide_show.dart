@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../features/homepage/home_page/widgets/RhombusContainer.dart';
+import '../../../../homepage/home_page/widgets/RhombusContainer.dart';
 import '../../../data/models/product_detail_response_models.dart';
 import '../../../../../widgets/my_color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

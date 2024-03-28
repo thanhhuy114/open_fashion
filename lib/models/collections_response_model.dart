@@ -2,8 +2,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../feature/collection/domain/entities/collection_detail_entity.dart';
-import '../feature/collection/domain/entities/collection_entity.dart';
+import '../features/collection/domain/entities/collection_detail_entity.dart';
+import '../features/collection/domain/entities/collection_entity.dart';
 part 'collections_response_model.g.dart';
 
 /* 

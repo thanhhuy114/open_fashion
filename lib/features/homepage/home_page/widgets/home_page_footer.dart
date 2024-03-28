@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../feature/our_story/page/our_story_page/views/our_story.dart';
+import '../../../our_story/page/our_story_page/views/our_story.dart';
 import '../../../../locator.dart';
 import '../../../../presentation/blog_grid_page/bloc/bloc_grid_page_provider.dart';
 import '../../../contactus/contact_us_page/view/contact_us_screen.dart';
@@ -84,8 +84,7 @@ class HomePageFooter extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (final context) =>
-                                     OurStoryPage(),
+                                builder: (final context) => OurStoryPage(),
                               ),
                             );
                           },
