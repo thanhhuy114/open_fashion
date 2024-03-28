@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../feature/product_detail/page/product_detail_page/views/product_detail.dart';
+import '../../../features/product_detail/page/product_detail_page/views/product_detail.dart';
 import '../../../models/category.dart';
 
 class CategoryGridviewCard extends StatelessWidget {

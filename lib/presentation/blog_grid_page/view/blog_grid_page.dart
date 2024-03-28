@@ -5,7 +5,7 @@ import '../../../widgets/button_lead_more.dart';
 import '../../../widgets/footer.dart';
 import '../../../widgets/header_blog.dart';
 import '../../../widgets/menu_drawer_widget.dart';
-import '../../../feature/blog_post/pages/blog_post_page/views/blog_post_screen.dart';
+import '../../../features/blog_post/pages/blog_post_page/views/blog_post_screen.dart';
 import '../bloc/post_menu/post_menu_bloc.dart';
 import '../bloc/post_menu/post_menu_state.dart';
 import '../widget/button_list_gird.dart';

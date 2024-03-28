@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
-import '../feature/cart/page/cart_page/views/cart.dart';
+import '../features/cart/page/cart_page/views/cart.dart';
 import '../presentation/srearch_page/bloc/search_page_provider.dart';
 
 class AppBarCustom extends StatefulWidget implements PreferredSizeWidget {

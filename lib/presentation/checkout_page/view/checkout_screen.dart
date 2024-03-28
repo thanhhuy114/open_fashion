@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../feature/complete_checkout/data/models/checkout_response_model.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
+import '../../../features/complete_checkout/data/models/checkout_response_model.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/bloc/remote_complete_checkout_bloc.dart';
 import '../../../locator.dart';
 import '../../../widgets/appbar_custom_widget.dart';
 import '../../../widgets/menu_drawer_widget.dart';
 import '../../../widgets/my_color.dart';
 import '../../checkout_layout_page/view/checkout_layout_screen.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
-import '../../../feature/complete_checkout/pages/complete_checkout_page/widgets/item_product.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/cubit/counter/counter_cubit.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/cubit/total/total_cubit.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/widgets/button_custom.dart';
+import '../../../features/complete_checkout/pages/complete_checkout_page/widgets/item_product.dart';
 
 class CheckOutScreen extends StatelessWidget {
   CheckOutScreen({super.key});
@@ -33,7 +33,8 @@ class CheckOutScreen extends StatelessWidget {
           create: (final context) => CounterCubit(),
         ),
       ],
-      child: BlocBuilder<RemoteCompleteCheckoutBloc, RemoteCompleteCheckoutState>(
+      child:
+          BlocBuilder<RemoteCompleteCheckoutBloc, RemoteCompleteCheckoutState>(
         builder: (final context, final state) {
           if (state is RemoteCompleteCheckoutLoading) {
             return const Scaffold(

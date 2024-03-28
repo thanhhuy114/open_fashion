@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'feature/cart/page/cart_page/views/cart.dart';
+import 'features/cart/page/cart_page/views/cart.dart';
 import 'features/homepage/home_page/view/home_page_screen.dart';
 import 'locator.dart';
 import 'widgets/text_theme_custom.dart';
