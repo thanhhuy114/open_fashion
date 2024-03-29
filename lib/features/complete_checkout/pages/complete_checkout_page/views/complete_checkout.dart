@@ -38,14 +38,13 @@ class CompleteCheckoutPage extends StatelessWidget {
   }
 
   double? total = 0.0;
-  final RemoteCompleteCheckoutBloc _remoteCompleteCheckoutBloc =
-      RemoteCompleteCheckoutBloc(sl());
+
   @override
   Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteCompleteCheckoutBloc>(
-          create: (final context) => _remoteCompleteCheckoutBloc
+          create: (final context) => sl()
             ..add(const GetRemoteCompleteCheckout()),
         ),
         BlocProvider(

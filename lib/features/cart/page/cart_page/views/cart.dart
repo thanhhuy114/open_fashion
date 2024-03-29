@@ -31,14 +31,13 @@ class _CartPageState extends State<CartPage> {
     return total;
   }
 
-  final RemoteCartBloc _remoteCartBloc = RemoteCartBloc(sl());
   @override
   Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteCartBloc>(
           create: (final context) =>
-              _remoteCartBloc..add(const GetRemoteCartEvent()),
+              sl()..add(const GetRemoteCartEvent()),
         ),
         BlocProvider(
           create: (final context) => TotalCubit(total),
