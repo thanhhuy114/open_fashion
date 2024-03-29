@@ -130,15 +130,15 @@ Future initializeDefendencies() async {
   //Bloc
   sl.registerFactory<RemoteCollectionBloc>(() => RemoteCollectionBloc(sl()));
   sl.registerFactory<BlogPostBloc>(() => BlogPostBloc(sl()));
-  sl.registerSingleton<RemoteOurStoryBloc>(RemoteOurStoryBloc(sl()));
-  sl.registerSingleton<RemoteProductDetailBloc>(RemoteProductDetailBloc(sl()));
-  sl.registerSingleton<RemoteProductDetailLayoutBloc>(
-
-    RemoteProductDetailLayoutBloc(sl()),
+  sl.registerFactory<RemoteOurStoryBloc>(() => RemoteOurStoryBloc(sl()));
+  sl.registerFactory<RemoteProductDetailBloc>(
+      () => RemoteProductDetailBloc(sl()));
+  sl.registerFactory<RemoteProductDetailLayoutBloc>(
+    () => RemoteProductDetailLayoutBloc(sl()),
   );
-  sl.registerFactory<RemoteCartBloc>(()=>RemoteCartBloc(sl()));
-  sl.registerFactory<RemoteCompleteCheckoutBloc>(()=>
-    RemoteCompleteCheckoutBloc(sl()),
+  sl.registerFactory<RemoteCartBloc>(() => RemoteCartBloc(sl()));
+  sl.registerFactory<RemoteCompleteCheckoutBloc>(
+    () => RemoteCompleteCheckoutBloc(sl()),
   );
   //Blocs thuan
   sl.registerFactory<HomePageArrivalBloc>(() => HomePageArrivalBloc(sl()));
