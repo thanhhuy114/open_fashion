@@ -128,8 +128,8 @@ Future initializeDefendencies() async {
   sl.registerSingleton<GetDrawerUseCase>(GetDrawerUseCase(sl()));
   sl.registerSingleton<GetFooterUseCase>(GetFooterUseCase(sl()));
   //Bloc
-  sl.registerSingleton<RemoteCollectionBloc>(RemoteCollectionBloc(sl()));
-  sl.registerSingleton<BlogPostBloc>(BlogPostBloc(sl()));
+  sl.registerFactory<RemoteCollectionBloc>(() => RemoteCollectionBloc(sl()));
+  sl.registerFactory<BlogPostBloc>(() => BlogPostBloc(sl()));
   sl.registerSingleton<RemoteOurStoryBloc>(RemoteOurStoryBloc(sl()));
   sl.registerSingleton<RemoteProductDetailBloc>(RemoteProductDetailBloc(sl()));
   sl.registerSingleton<RemoteProductDetailLayoutBloc>(
