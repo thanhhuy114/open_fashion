@@ -7,7 +7,7 @@ import '../../../../../widgets/appbar_custom_widget.dart';
 import '../../../../../widgets/menu_drawer_widget.dart';
 import '../../../../../widgets/my_color.dart';
 import '../../../../../widgets/tittle_widget.dart';
-import '../../../../../presentation/payment_page/views/payment.dart';
+import '../../../../payment_page/views/payment.dart';
 import '../../../data/models/checkout_response_model.dart';
 import '../bloc/remote_complete_checkout_bloc.dart';
 import '../cubit/counter/counter_cubit.dart';
