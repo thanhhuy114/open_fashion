@@ -51,14 +51,13 @@ class _ProductDetailLayoutPageState extends State<ProductDetailLayoutPage> {
     });
   }
 
-  final RemoteProductDetailLayoutBloc _remoteProductDetailLayoutBloc =
-      RemoteProductDetailLayoutBloc(sl());
+
   @override
   Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteProductDetailLayoutBloc>(
-          create: (final context) => _remoteProductDetailLayoutBloc
+          create: (final context) => sl()
             ..add(const GetProductDetailLayout()),
         ),
         BlocProvider(create: (final context) => SizeCubit()),

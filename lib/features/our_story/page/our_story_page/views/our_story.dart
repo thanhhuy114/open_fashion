@@ -9,7 +9,6 @@ import '../bloc/remote/remote_our_story_bloc_bloc.dart';
 
 class OurStoryPage extends StatelessWidget {
   OurStoryPage({super.key});
-  final RemoteOurStoryBloc _remoteOurStoryBloc = RemoteOurStoryBloc(sl());
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
@@ -18,7 +17,7 @@ class OurStoryPage extends StatelessWidget {
       drawer: MenuDrawer(),
       body: BlocProvider<RemoteOurStoryBloc>(
         create: (final context) =>
-            _remoteOurStoryBloc..add(const GetOurStory()),
+           sl()..add(const GetOurStory()),
         child: BlocBuilder<RemoteOurStoryBloc, RemoteOurStoryBlocState>(
           builder: (final context, final state) {
             switch (state) {

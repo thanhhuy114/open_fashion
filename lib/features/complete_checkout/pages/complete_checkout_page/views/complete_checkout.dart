@@ -7,7 +7,7 @@ import '../../../../../widgets/appbar_custom_widget.dart';
 import '../../../../../widgets/menu_drawer_widget.dart';
 import '../../../../../widgets/my_color.dart';
 import '../../../../../widgets/tittle_widget.dart';
-import '../../../../../presentation/payment_page/views/payment.dart';
+import '../../../../payment_page/views/payment.dart';
 import '../../../data/models/checkout_response_model.dart';
 import '../bloc/remote_complete_checkout_bloc.dart';
 import '../cubit/counter/counter_cubit.dart';
@@ -38,14 +38,13 @@ class CompleteCheckoutPage extends StatelessWidget {
   }
 
   double? total = 0.0;
-  final RemoteCompleteCheckoutBloc _remoteCompleteCheckoutBloc =
-      RemoteCompleteCheckoutBloc(sl());
+
   @override
   Widget build(final BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RemoteCompleteCheckoutBloc>(
-          create: (final context) => _remoteCompleteCheckoutBloc
+          create: (final context) => sl()
             ..add(const GetRemoteCompleteCheckout()),
         ),
         BlocProvider(

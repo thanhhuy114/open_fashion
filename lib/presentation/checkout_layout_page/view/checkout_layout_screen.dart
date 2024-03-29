@@ -22,8 +22,6 @@ class CheckOutLayOutScreen extends StatefulWidget {
   State<CheckOutLayOutScreen> createState() => _CheckOutLayOutScreenState();
 }
 
-RemoteCompleteCheckoutBloc _remoteCompleteCheckoutBloc =
-    RemoteCompleteCheckoutBloc(sl());
 
 class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
   @override
@@ -38,7 +36,7 @@ class _CheckOutLayOutScreenState extends State<CheckOutLayOutScreen> {
           create: (final context) => CounterCubit(),
         ),
         BlocProvider<RemoteCompleteCheckoutBloc>(
-          create: (final context) => _remoteCompleteCheckoutBloc
+          create: (final context) => sl()
             ..add(const GetRemoteCompleteCheckout()),
         ),
       ],

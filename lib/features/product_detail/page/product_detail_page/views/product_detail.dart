@@ -51,8 +51,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     });
   }
 
-  final RemoteProductDetailBloc _remoteProductDetailBloc =
-      RemoteProductDetailBloc(sl());
 
   @override
   Widget build(final BuildContext context) {
@@ -60,7 +58,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       providers: [
         BlocProvider<RemoteProductDetailBloc>(
           create: (final context) =>
-              _remoteProductDetailBloc..add(const GetProductDetailEvent()),
+              sl()..add(const GetProductDetailEvent()),
         ),
         BlocProvider(create: (final context) => SizeCubit()),
         BlocProvider(create: (final context) => ColorCubit()),
